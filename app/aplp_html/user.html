@@ -1,0 +1,469 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <title>Dashboard</title>
+  <!-- Favicon-->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+  <!-- Bootstrap Core Css -->
+  <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <!-- Waves Effect Css -->
+  <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+  <!-- Animation Css -->
+  <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+  <!-- Morris Chart Css-->
+  <link href="plugins/morrisjs/morris.css" rel="stylesheet" />
+  <!-- Bootstrap Select Css -->
+  <link href="plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+  <link href="plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+  <!-- Custom Css -->
+  <link href="css/style.css" rel="stylesheet">
+  <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+  <link href="css/themes/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="theme-blue">
+
+  <!-- Page Loader -->
+  <div class="page-loader-wrapper">
+    <div class="loader">
+      <div class="preloader">
+        <div class="spinner-layer pl-red">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+      <p>Mohon Tunggu...</p>
+    </div>
+  </div>
+  <!-- #END# Page Loader -->
+  <!-- Overlay For Sidebars -->
+  <!-- <div class="overlay"></div> -->
+  <!-- #END# Overlay For Sidebars -->
+  <!-- Search Bar -->
+  <!--  -->
+  <!-- #END# Search Bar -->
+  <!-- Top Bar -->
+
+<!--   <nav class="navbar">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+        <a href="javascript:void(0);" class="bars"></a>
+        <a class="navbar-brand" href="user.html">Selamat Datang di Aplikasi APLP 2017</a>
+      </div>
+    </div>
+  </nav> -->
+  <!-- Top Bar -->
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header">
+              <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+              <a href="javascript:void(0);" class="bars"></a>
+              <a class="navbar-brand" href="index.html">Selamat Datang di Aplikasi APLP 2017</a>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="konfirmasi.html">
+                  Konfirmasi Kehadiran
+                </a>
+              </li>
+              <li>
+                <a href="user.html">
+                  Home
+                </a>
+              </li>
+              <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" style="    margin-top: 8px;">
+                  <img src="images/user.png" width="40" height="40" alt="User" style="border-radius:50%;">
+                  John Doe
+                  <i class="material-icons" style="position: relative;top: 7px;">keyboard_arrow_down</i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="sign-in.html;" class=" waves-effect waves-block">
+                      <i class="material-icons">input</i>
+                      Keluar
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+      </div>
+  </nav>
+  <!-- #Top Bar -->
+  <!-- #Top Bar -->
+  <section class="content content-full">
+    <div class="container">
+      <div class="block-header">
+        <!-- <h2>HOME</h2> -->
+      </div>
+      <div class="row clearfix">
+      <!--  -->
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <div class="thumbnail">
+                <img src="images/dummyuser.png" alt="" class="img-responsive">
+              </div>
+        <!-- </div> -->
+      <!--  -->
+        <!-- Task Info -->
+        <!-- <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"> -->
+          <div class="card">
+            <div class="header">
+              <h2>Profile</h2>
+            </div>
+            <div class="body">
+              <div class="table-responsive">
+                <table class="table table-hover table-striped dashboard-task-infos">
+                    <tr>
+                      <td>Status</td>
+                      <td><span class="label bg-pink">Masa Pendaftaran</span></td>
+                    </tr>
+                    <tr>
+                      <td>Nama</td>
+                      <td>John Doe</td>
+                    </tr>
+                    <tr>
+                      <td>No Registrasi</td>
+                      <td>APLP-2017-06-20-0001</td>
+                    </tr>
+                    <tr>
+                      <td>Email</td>
+                      <td>john_doe@@gmail.com</td>
+                    </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        <!-- </div> -->
+        <!-- <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"> -->
+          <div class="card">
+            <div class="header">
+              <h2>Jadwal</h2>
+            </div>
+
+            <div class="body">
+              <div class="table-responsive">
+                <table class="table table-hover table-striped dashboard-task-infos">
+                    <tr>
+                      <td>Mulai registrasi</td>
+                      <td>10, Juni 2017</td>
+                    </tr>
+                    <tr>
+                      <td>Selesai registrasi</td>
+                      <td>10, Juli 2017</td>
+                    </tr>
+                    <tr>
+                      <td>Selesai seleksi KBRI/KJRI</td>
+                      <td>10, Agustus 2017</td>
+                    </tr>
+                    <tr>
+                      <td>Mulai seleksi Pusat</td>
+                      <td>10, Oktober 2017</td>
+                    </tr>
+                    <tr>
+                      <td>Selesai seleksi Pusat (pengumuman)</td>
+                      <td>10, November 2017</td>
+                    </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- #END# Task Info -->
+      
+      <div class="container-fluid">
+          <!-- Basic Validation -->
+          <div class="row clearfix">
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <div class="card">
+                      <div class="header">
+                          <div class="alert alert-danger">
+                              <strong>Perhatian!</strong> Form belum dikirim, mohon lengkapi lalu klik tombol kirim di bawah.
+                          </div>
+                          <h2>Form Pendaftaran</h2>
+                      </div>
+                      <div class="body">
+                          <form id="form_validation" method="POST">
+                              <div class="form-group form-float">
+                                  <div class="form-line">
+                                      <input type="text" class="form-control" name="name" required>
+                                      <label class="form-label">Nama Sesuai Passport</label>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <input type="radio" name="gender" checked id="lk" class="with-gap" required>
+                                  <label for="lk">Laki-Laki</label>
+
+                                  <input type="radio" name="gender" id="pr" class="with-gap" required>
+                                  <label for="pr" class="m-l-20">Perempuan</label>
+                              </div>
+                              <h2 class="card-inside-title">No Passport</h2>
+                              <div class="form-group form-float">
+                                  <div class="form-line disabled">
+                                      <input type="number" min="0" placeholder="082834878293489" class="form-control" name="passport" required disabled>
+                                      <!-- <label class="form-label">No Passport</label> -->
+                                  </div>
+                              </div>
+                              <div class="form-group form-float">
+                                  <div class="form-line">
+                                  <input type="text" placeholder="Tgl Kadaluarsa Passport" class="datepicker form-control" name="expire_passport" data-dtp="dtp_mnCGV" required>
+                                      <!-- <label class="form-label">Tgl Kadaluarsa Passport</label> -->
+                                  </div>
+                              </div>
+                              <h2 class="card-inside-title">Negara</h2>
+                              <div class="form-group form-float">
+                                  <div class="form-line">
+                                    <select class="form-control show-tick" name="country" required>
+                                        <option value="">-- Pilih Negara --</option>
+                                        <option value="bangladesh">Bangladesh</option>
+                                        <option value="singapura">Singapura</option>
+                                    </select>
+                                    <!-- <label class="form-label">Negara</label> -->
+                                  </div>
+                              </div>
+                              <h2 class="card-inside-title">KBRI/KJRI</h2>
+                              <div class="form-group form-float">
+                                  <div class="form-line">
+                                    <select class="form-control show-tick" name="consulate" required>
+                                        <option value="">-- Pilih KBRI/KJRI --</option>
+                                        <option value="bangladesh">Bangladesh</option>
+                                        <option value="singapura">Singapura</option>
+                                    </select>
+                                    <!-- <label class="form-label">Negara</label> -->
+                                  </div>
+                              </div>
+                              
+                              <h2 class="card-inside-title">Tanggal Lahir</h2>
+                              <div class="form-group form-float">
+                                  <div class="form-line">
+                                  <input type="text" placeholder="Tgl Lahir" class="datepicker form-control" name="expire_passport" data-dtp="dtp_mnCGV" required>
+                                      <!-- <label class="form-label">Tgl Kadaluarsa Passport</label> -->
+                                  </div>
+                              </div>
+                              <h2 class="card-inside-title">Email</h2>
+                              <div class="form-group form-float">
+                                  <div class="form-line disabled">
+                                      <input type="email" class="form-control" placeholder="john_doe@gmail" name="email" disabled required>
+                                      <!-- <label class="form-label">Email</label> -->
+                                  </div>
+                              </div>
+                              <div class="form-group form-float">
+                                  <div class="form-line">
+                                      <input type="number" class="form-control" name="phone" required>
+                                      <label class="form-label">No Handphone</label>
+                                  </div>
+                              </div>
+                              <h2 class="card-inside-title">Pendidikan Terakhir</h2>
+                              <div class="form-group form-float">
+                                  <div class="form-line">
+                                      <input type="text" class="form-control" name="campus" required>
+                                      <label class="form-label">Nama Kampus</label>
+                                  </div>
+                              </div>
+                              <div class="form-group form-float">
+                                  <div class="form-line">
+                                      <input type="text" class="form-control" name="majors" required>
+                                      <label class="form-label">Jurusan</label>
+                                  </div>
+                              </div>
+
+                              <h2 class="card-inside-title">Profesi</h2>
+                              <div class="form-group form-float">
+                                  <div class="form-line">
+                                    <input type="radio" name="profession" value="pelajar" checked id="pelajar" class="with-gap js-profession" required>
+                                    <label for="pelajar">Pelajar</label>
+
+                                    <input type="radio" value="" name="profession" id="profesional" class="with-gap js-profession" required>
+                                    <label for="profesional" class="m-l-20">Profesional</label>
+                                  </div>
+                              </div>
+                              <div class="form-group form-float js-pekerjaan">
+                                  <div class="form-line">
+                                      <input type="text" class="form-control" placeholder="Pekerjaan" name="profession" required disabled>
+                                      <!-- <label class="form-label">Pekerjaan</label> -->
+                                  </div>
+                              </div>
+
+                              <h2 class="card-inside-title">Pernah ke Indonesia</h2>
+                              <div class="form-group form-float">
+                                  <div class="form-line">
+                                    <input type="radio" value="belum" checked name="to-indonesia" id="never-to-indonesia" class="with-gap js-to-indonesia" required>
+                                    <label for="never-to-indonesia">Belum Pernah</label>
+
+                                    <input type="radio" name="to-indonesia" value="pernah" id="ever-to-indonesia" class="with-gap js-to-indonesia" required>
+                                    <label for="ever-to-indonesia" class="m-l-20">Pernah</label>
+                                  </div>
+                              </div>
+
+                              <div class="row clearfix js-to-indonesia-details">
+                                <div id="space-dest">
+                                  <div class="col-xs-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" placeholder="Tujuan" name="destination" required disabled>
+                                        </div>
+                                    </div>
+                                    
+                                  </div>
+                                  <div class="col-xs-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="number" class="form-control" placeholder="Berapa kali" name="long" required disabled>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-6">
+                                    <div class="form-line">
+                                      <select class="form-control show-tick" name="unit" required disabled>
+                                          <option value="">-- Pilih Satuan --</option>
+                                          <option value="day">Hari</option>
+                                          <option value="month">Bulan</option>
+                                          <option value="year">Tahun</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-xs-12"><a class="btn btn-primary waves-effect js-add-dest" disabled>Tambahkan Tujuan</a></div>
+                              </div>
+
+                              <h2 class="card-inside-title">Pernah Kursus BIPA</h2>
+                              <div class="form-group form-float">
+                                  <div class="form-line">
+                                    <input type="radio" value="belum" checked name="course-bipa" id="never-course-bipa" class="with-gap js-course-bipa" required>
+                                    <label for="never-course-bipa">Belum Pernah</label>
+
+                                    <input type="radio" name="course-bipa" value="pernah" id="ever-course-bipa" class="with-gap js-course-bipa" required>
+                                    <label for="ever-course-bipa" class="m-l-20">Pernah</label>
+                                  </div>
+                              </div>
+
+                              <div class="row clearfix js-course-details">
+                                <div id="space-course">
+                                  <div class="col-xs-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" placeholder="Lokasi" name="location" required disabled>
+                                        </div>
+                                    </div>
+                                    
+                                  </div>
+                                  <div class="col-xs-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="number" class="form-control" placeholder="Berapa Lama" name="long" required disabled>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-6">
+                                    <div class="form-line">
+                                      <select class="form-control show-tick" name="unit" required disabled>
+                                          <option value="">-- Pilih Satuan --</option>
+                                          <option value="day">Hari</option>
+                                          <option value="month">Bulan</option>
+                                          <option value="year">Tahun</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-xs-12"><a class="btn btn-primary waves-effect js-add-course" disabled>Tambahkan Tujuan</a></div>
+                              </div>
+
+                              <div class="form-group form-float">
+                                  <div class="form-line">
+                                      <input type="text" class="form-control" name="skype_id">
+                                      <label class="form-label">ID Skype</label>
+                                  </div>
+                              </div>
+
+                              <h2 class="card-inside-title">Upload Foto</h2>
+                              <div class="form-group form-float">
+                                  <div class="form-line">
+                                      <input type="file" class="form-control" placeholder="Upload Foto" name="avatar" required>
+                                  </div>
+                              </div>
+                              <p>Foto 3 bulan terakhir</p>
+                              <p>Background putih</p>
+                              <p>Menghadap depan</p>
+                              <a class="m-r-20" href="#x" data-toggle="modal" data-target="#fotoModal">Lihat contoh foto</a>
+                              
+                              <h2 class="card-inside-title">Upload Passport</h2>
+                              <div class="form-group form-float">
+                                  <div class="form-line">
+                                      <input type="file" class="form-control" placeholder="Upload Foto" name="passport_image" required>
+                                  </div>
+                              </div>
+
+
+                                            
+                              <div class="clearfix m-t-20">
+                                <button class="btn btn-primary waves-effect" type="submit">KIRIM</button>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+       </div>
+    </section>
+    
+    <!-- MODAL -->
+    <div class="modal fade" id="fotoModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" id="fotoModalLabel">Contoh Foto</h4>
+                </div>
+                <div class="modal-body">
+                  <img src="images/pass-foto.jpg" alt="" class="img-responsive" style="margin: auto">
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <!-- Jquery Core Js -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap Core Js -->
+  <script src="plugins/bootstrap/js/bootstrap.js"></script>
+  <!-- Select Plugin Js -->
+  <script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
+  <!-- Slimscroll Plugin Js -->
+  <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+  <!-- Waves Effect Plugin Js -->
+  <script src="plugins/node-waves/waves.js"></script>
+  <!-- Jquery CountTo Plugin Js -->
+  <script src="plugins/jquery-countto/jquery.countTo.js"></script>
+  <!-- Morris Plugin Js -->
+  <script src="plugins/raphael/raphael.min.js"></script>
+  <script src="plugins/morrisjs/morris.js"></script>
+  <script src="plugins/momentjs/moment.js"></script>
+
+  <!-- Bootstrap Material Datetime Picker Plugin Js -->
+  <script src="plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+  <!-- ChartJs -->
+  <script src="plugins/chartjs/Chart.bundle.js"></script>
+  <script src="plugins/jquery-sparkline/jquery.sparkline.js"></script>
+  <!-- Custom Js -->
+  <script src="js/admin.js"></script>
+  <script src="js/custom.js"></script>
+  <!-- <script src="js/pages/index.js"></script> -->
+  <!-- Demo Js -->
+  <script src="js/demo.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+# == Schema Information
+#
+# Table name: scores
+#
+#  id         :integer          not null, primary key
+#  plot       :decimal(, )
+#  content    :decimal(, )
+#  bahasa     :decimal(, )
+#  fluency    :decimal(, )
+#  interlude  :decimal(, )
+#  gesture    :decimal(, )
+#  sound      :decimal(, )
+#  duration   :decimal(, )
+#  showing    :decimal(, )
+#  type       :integer
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plot: 9.99
+  content: 9.99
+  bahasa: 9.99
+  fluency: 9.99
+  interlude: 9.99
+  gesture: 9.99
+  sound: 9.99
+  duration: 9.99
+  showing: 9.99
+  type: 1
+  user: one
+
+two:
+  plot: 9.99
+  content: 9.99
+  bahasa: 9.99
+  fluency: 9.99
+  interlude: 9.99
+  gesture: 9.99
+  sound: 9.99
+  duration: 9.99
+  showing: 9.99
+  type: 1
+  user: two

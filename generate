@@ -1,0 +1,42 @@
+
+rails g scaffold Confirmation flight_arrival_number:string flight_arrival_date:date flight_arrival_hours:string flight_return_number:string date_of_return_flight:date return_flight_hours:string hijab:boolean dress_size:integer script:attachment arrival_ticket:attachment return_ticket:attachment user:references
+
+
+rails g scaffold Country name:string country_code:string iso_code:string
+
+
+#rails g scaffold Consulate name:string email:string phone:string username:string:unique iso_code:string country:references
+
+rails g scaffold Schedule year:string start_registration:date end_registration:date start_central_selection:date start_consulate_selection:date end_consulate_selection:date
+
+rails db:drop;rails db:create;rails db:migrate;db:seed;
+
+
+annotate --exclude fixtures
+
+annotate --routes
+
+annotate --routes --delete
+
+
+- satu kbri/kjri bisa punya banyak country
+- satu country bisa punya banyak kbri/kjri
+- satu pengguna cuma punya satu country
+
+- User cuma bisa ikut satu lomba, ditentukan oleh kbri/kjri
+
+- User
+#Dashboard
+- Status
+- No Registrasi
+- Jadwal
+- Ganti Password 
+- Logout
+
+FEEDBACK
+Email admin yg di sidebar di hapus 
+tambah foto profile di profile user
+
+firefo
+Xvfb :99 &
+export DISPLAY=:99

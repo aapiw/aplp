@@ -1,0 +1,72 @@
+<%= form_with(model: score, local: true) do |form| %>
+  <% if score.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(score.errors.count, "error") %> prohibited this score from being saved:</h2>
+
+      <ul>
+      <% score.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :plot %>
+    <%= form.text_field :plot, id: :score_plot %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content, id: :score_content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bahasa %>
+    <%= form.text_field :bahasa, id: :score_bahasa %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fluency %>
+    <%= form.text_field :fluency, id: :score_fluency %>
+  </div>
+
+  <div class="field">
+    <%= form.label :interlude %>
+    <%= form.text_field :interlude, id: :score_interlude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gesture %>
+    <%= form.text_field :gesture, id: :score_gesture %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sound %>
+    <%= form.text_field :sound, id: :score_sound %>
+  </div>
+
+  <div class="field">
+    <%= form.label :duration %>
+    <%= form.text_field :duration, id: :score_duration %>
+  </div>
+
+  <div class="field">
+    <%= form.label :showing %>
+    <%= form.text_field :showing, id: :score_showing %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.number_field :type, id: :score_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :score_user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

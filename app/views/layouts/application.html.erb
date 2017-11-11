@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Aplp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+  </head>
+
+  <!-- <body class="theme-indigo"> admin-->
+  <body class="theme-blue <%= @body_class %>">
+
+    <% flash.each do |key, value| %>
+    	<% color = {alert:"red", notice:"green" } %>
+      <div class="alert bg-<%=color[key.to_sym] %>"><%= value %></div>
+    <% end %>
+		
+		<!-- Page Loader -->
+		<div class="page-loader-wrapper">
+		    <div class="loader">
+		        <div class="preloader">
+		            <div class="spinner-layer pl-red">
+		                <div class="circle-clipper left">
+		                    <div class="circle"></div>
+		                </div>
+		                <div class="circle-clipper right">
+		                    <div class="circle"></div>
+		                </div>
+		            </div>
+		        </div>
+		        <p>Mohon tunggu...</p>
+		    </div>
+		</div>
+
+		<% if user_signed_in? or admin_signed_in? %>
+			
+			<div class="overlay"></div>
+
+			<section class="<%= user_signed_in? ? 'content content-full' : '' %>">
+				
+				<%= render "layouts/navbar" %>
+				<% if admin_signed_in? %>
+					<%= render "layouts/sidebar" %>
+				<% end %>
+				<section class="content">
+				    <div class="<%= user_signed_in? ? 'container' : 'container-fluid' %>">
+				        <div class="block-header">
+				            <h2>DASHBOARD</h2>
+				        </div>
+	    					<%= yield %>
+	    		</div>
+				</section>
+
+			</section>
+		<% else %>
+	    	<%= yield %>
+		<% end %>
+
+  </body>
+</html>

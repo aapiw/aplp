@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @bipa_course.location %>
+</p>
+
+<p>
+  <strong>Long:</strong>
+  <%= @bipa_course.long %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @bipa_course.unit %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @bipa_course.user %>
+</p>
+
+<%= link_to 'Edit', edit_bipa_course_path(@bipa_course) %> |
+<%= link_to 'Back', bipa_courses_path %>

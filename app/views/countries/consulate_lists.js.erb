@@ -1,0 +1,3 @@
+$("#consulates_lists").html("<%= j select(:user, :admin_id, @consulates, {include_blank: 'Pilih KBRI'}, class:'form-control form-control--z-4 show-tick', required:true) %> ")
+$.AdminBSB.select.activate();
+$('#sign_up').waitMe("hide");

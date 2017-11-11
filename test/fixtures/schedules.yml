@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: schedules
+#
+#  id                        :integer          not null, primary key
+#  year                      :string
+#  start_registration        :date
+#  end_registration          :date
+#  start_central_selection   :date
+#  start_consulate_selection :date
+#  end_consulate_selection   :date
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  year: MyString
+  start_registration: 2017-11-11
+  end_registration: 2017-11-11
+  start_central_selection: 2017-11-11
+  start_consulate_selection: 2017-11-11
+  end_consulate_selection: 2017-11-11
+
+two:
+  year: MyString
+  start_registration: 2017-11-11
+  end_registration: 2017-11-11
+  start_central_selection: 2017-11-11
+  start_consulate_selection: 2017-11-11
+  end_consulate_selection: 2017-11-11

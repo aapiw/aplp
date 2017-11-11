@@ -1,0 +1,77 @@
+<%= form_with(model: confirmation, local: true) do |form| %>
+  <% if confirmation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(confirmation.errors.count, "error") %> prohibited this confirmation from being saved:</h2>
+
+      <ul>
+      <% confirmation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :flight_arrival_number %>
+    <%= form.text_field :flight_arrival_number, id: :confirmation_flight_arrival_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :flight_arrival_date %>
+    <%= form.date_select :flight_arrival_date, id: :confirmation_flight_arrival_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :flight_arrival_hours %>
+    <%= form.text_field :flight_arrival_hours, id: :confirmation_flight_arrival_hours %>
+  </div>
+
+  <div class="field">
+    <%= form.label :flight_return_number %>
+    <%= form.text_field :flight_return_number, id: :confirmation_flight_return_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_return_flight %>
+    <%= form.date_select :date_of_return_flight, id: :confirmation_date_of_return_flight %>
+  </div>
+
+  <div class="field">
+    <%= form.label :return_flight_hours %>
+    <%= form.text_field :return_flight_hours, id: :confirmation_return_flight_hours %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hijab %>
+    <%= form.check_box :hijab, id: :confirmation_hijab %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dress_size %>
+    <%= form.number_field :dress_size, id: :confirmation_dress_size %>
+  </div>
+
+  <div class="field">
+    <%= form.label :script %>
+    <%= form.text_field :script, id: :confirmation_script %>
+  </div>
+
+  <div class="field">
+    <%= form.label :arrival_ticket %>
+    <%= form.text_field :arrival_ticket, id: :confirmation_arrival_ticket %>
+  </div>
+
+  <div class="field">
+    <%= form.label :return_ticket %>
+    <%= form.text_field :return_ticket, id: :confirmation_return_ticket %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :confirmation_user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
