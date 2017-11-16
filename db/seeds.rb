@@ -54,6 +54,12 @@ kbrixls.each_row_streaming(offset: 1) do |row|
 end
 # END
 
+Schedule.find_or_create_by(year:"2018", start_registration:Time.now.next_year,
+													end_registration:Time.now.next_year.next_month, 
+													start_consulate_selection:Time.now.next_year.next_month.next_week,
+													end_consulate_selection:Time.now.next_year.next_month.next_week.next_month,
+													start_central_selection:Time.now.next_year.next_month.next_week.next_month,
+													end_central_selection:Time.now.next_year.next_month.next_month.next_month )
 
 if Rails.env.staging? or Rails.env.development?
 	puts 'start development seed'

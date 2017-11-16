@@ -31,6 +31,7 @@
 #  profession                  :string
 #  win                         :boolean
 #  lock                        :boolean
+#  complete                    :boolean
 #  contest                     :integer
 #  note                        :text
 #  skype_id                    :integer

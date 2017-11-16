@@ -1,10 +1,13 @@
 class LandingsController < ApplicationController
   before_action :set_landing, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: :index
+
+  before_action :set_class
 
   # GET /landings
   # GET /landings.json
   def index
-    @landings = Landing.all
+    # @landings = Landing.all
   end
 
   # GET /landings/1
@@ -62,13 +65,9 @@ class LandingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_landing
-      @landing = Landing.find(params[:id])
+    
+    def set_class
+      @body_class = "four-zero-four"
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def landing_params
-      params.require(:landing).permit(:title)
-    end
 end

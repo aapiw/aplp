@@ -1,0 +1,68 @@
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+  <div class="thumbnail">
+    <img src="<%= asset_path('dummyuser')%>" alt="" class="img-responsive">
+  </div>
+  <div class="card">
+    <div class="header">
+      <h2>Profile</h2>
+    </div>
+    <div class="body">
+      <div class="table-responsive">
+        <table class="table table-hover table-striped dashboard-task-infos">
+          <tr>
+            <td>Status</td>
+            <td><%= @user.status %></td>
+          </tr>
+          <tr>
+            <td>Nama</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td>No Registrasi</td>
+            <td><%= @user.id_reg %></td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td><%= @user.email %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="header">
+      <h2>Jadwal</h2>
+    </div>
+    <div class="body">
+      <div class="table-responsive">
+        <table class="table table-hover table-striped dashboard-task-infos">
+          
+          <tr>
+            <td>Mulai registrasi</td>
+            <td><%= @schedule.start_registration%></td>
+          </tr>
+          <tr>
+            <td>Selesai registrasi</td>
+            <td><%= @schedule.end_registration%></td>
+          </tr>
+          <tr>
+            <td>Mulai seleksi KBRI/KJRI</td>
+            <td><%= @schedule.start_consulate_selection %></td>
+          </tr>
+          <tr>
+            <td>Selesai seleksi KBRI/KJRI</td>
+            <td><%= @schedule.end_consulate_selection %></td>
+          </tr>
+          <tr>
+            <td>Mulai seleksi Pusat</td>
+            <td><%= @schedule.start_central_selection%></td>
+          </tr>
+          <tr>
+            <td>Selesai seleksi Pusat (pengumuman)</td>
+            <td><%= @schedule.end_central_selection%></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -14,7 +14,7 @@
 class ToIndonesia < ApplicationRecord
 	belongs_to :user
 	
-	validates_presence_of :destination, :long, :unit, :user_id
+	validates_presence_of :destination, :long, :unit
 	
 	validates :long, numericality: true
 

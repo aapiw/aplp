@@ -1,0 +1,19 @@
+<div class="container container-flash" style="margin-top: 100px;">
+	<div class="row">
+		<% flash.each do |key, value| %>
+		<% color = {alert:"red", notice:"green" } %>
+			<div class="alert bg-<%=color[key.to_sym] %>">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			  <ul>
+			  <% if value.respond_to? :each %>
+				  <% value.each do |message| %>
+				  	<li><%= message %></li>
+				  <% end %>
+				  <%else%>
+				  	<li><%= value %></li>
+				 <% end %>
+			  </ul>
+			</div>
+		<% end %>
+	</div>
+</div>

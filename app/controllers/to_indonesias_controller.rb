@@ -4,7 +4,7 @@ class ToIndonesiasController < ApplicationController
   # GET /to_indonesia
   # GET /to_indonesia.json
   def index
-    @to_indonesia = ToIndonesias.all
+    @to_indonesia = ToIndonesia.all
   end
 
   # GET /to_indonesia/1
@@ -14,7 +14,7 @@ class ToIndonesiasController < ApplicationController
 
   # GET /to_indonesia/new
   def new
-    @to_indonesium = ToIndonesias.new
+    @to_indonesium = ToIndonesia.new
   end
 
   # GET /to_indonesia/1/edit
@@ -24,7 +24,7 @@ class ToIndonesiasController < ApplicationController
   # POST /to_indonesia
   # POST /to_indonesia.json
   def create
-    @to_indonesium = ToIndonesias.new(to_indonesium_params)
+    @to_indonesium = ToIndonesia.new(to_indonesium_params)
 
     respond_to do |format|
       if @to_indonesium.save
@@ -56,15 +56,16 @@ class ToIndonesiasController < ApplicationController
   def destroy
     @to_indonesium.destroy
     respond_to do |format|
-      format.html { redirect_to to_indonesia_url, notice: 'To indonesium was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to user_root_path }
+      flash[:notice] = 'Kunjungan Berhasil Dihapus.'
+      # format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_to_indonesium
-      @to_indonesium = ToIndonesias.find(params[:id])
+      @to_indonesium = ToIndonesia.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -17,7 +17,7 @@ id:
               taken: "sudah ada"
   devise:
     confirmations:
-      confirmed: Akun anda telah berhasil dikonfirmasi. Anda telah sign in.
+      confirmed: Akun anda telah berhasil dikonfirmasi. silahkan login.
       new:
         resend_confirmation_instructions: Kirim ulang petunjuk konfirmasi
       send_instructions: Anda akan menerima e-mail berisi instruksi untuk melakukan konfirmasi akun dalam beberapa menit lagi.

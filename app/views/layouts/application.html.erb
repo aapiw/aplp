@@ -14,11 +14,6 @@
 
   <!-- <body class="theme-indigo"> admin-->
   <body class="theme-blue <%= @body_class %>">
-
-    <% flash.each do |key, value| %>
-    	<% color = {alert:"red", notice:"green" } %>
-      <div class="alert bg-<%=color[key.to_sym] %>"><%= value %></div>
-    <% end %>
 		
 		<!-- Page Loader -->
 		<div class="page-loader-wrapper">
@@ -36,30 +31,45 @@
 		        <p>Mohon tunggu...</p>
 		    </div>
 		</div>
-
 		<% if user_signed_in? or admin_signed_in? %>
 			
 			<div class="overlay"></div>
+			<%= render "layouts/navbar" %>
 
-			<section class="<%= user_signed_in? ? 'content content-full' : '' %>">
-				
-				<%= render "layouts/navbar" %>
 				<% if admin_signed_in? %>
 					<%= render "layouts/sidebar" %>
 				<% end %>
-				<section class="content">
-				    <div class="<%= user_signed_in? ? 'container' : 'container-fluid' %>">
-				        <div class="block-header">
-				            <h2>DASHBOARD</h2>
-				        </div>
-	    					<%= yield %>
-	    		</div>
-				</section>
+					
+					<%= render  "layouts/flash_messages" %>
+		    	<%= yield %>
 
-			</section>
-		<% else %>
-	    	<%= yield %>
+			<% else %>
+					<%= render "layouts/flash_messages" %>
+		    	<%= yield %>
 		<% end %>
+	
+	<!-- MODAL -->
+	<div class="modal fade" id="fotoModal" tabindex="-1" role="dialog">
+	    <div class="modal-dialog modal-sm" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h4 class="modal-title text-center" id="fotoModalLabel">Contoh Foto</h4>
+	            </div>
+	            <div class="modal-body">
+	              <img src="<%= asset_path('pass-foto') %>" alt="" class="img-responsive" style="margin: auto">
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="modal fade" id="fotoModalView" tabindex="-1" role="dialog">
+	    <div class="modal-dialog modal-view" role="document">
+	        <!-- <div class="modal-content"> -->
+
+	            <!-- <div class="modal-body"> -->
+	            <!-- </div> -->
+	        <!-- </div> -->
+	    </div>
+	</div>
 
   </body>
 </html>

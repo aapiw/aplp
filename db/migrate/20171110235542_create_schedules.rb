@@ -5,6 +5,7 @@ class CreateSchedules < ActiveRecord::Migration[5.1]
       t.date :start_registration
       t.date :end_registration
       t.date :start_central_selection
+      t.date :end_central_selection
       t.date :start_consulate_selection
       t.date :end_consulate_selection
 

@@ -1,27 +1,17 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Landings</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @landings.each do |landing| %>
-      <tr>
-        <td><%= landing.title %></td>
-        <td><%= link_to 'Show', landing %></td>
-        <td><%= link_to 'Edit', edit_landing_path(landing) %></td>
-        <td><%= link_to 'Destroy', landing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Landing', new_landing_path %>
+<div class="four-zero-four-container container">
+    <h1 style="margin-bottom: 30px">Selamat datang di aplikasi APLP 2017 Atdikud Kemendikbud RI</h1>
+    <div class="row">
+        <div class="col-xs-12" style="height: 350px">
+                <img src="<%= asset_path('kemdikbud_logo') %>" width="250" alt="">
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-xs-12 error-message">Pendaftaran belum dibuka</div>
+        <div class="button-place">
+            <a href="<%= new_user_session_path  %>" class="btn btn-default btn-lg waves-effect" >LOGIN</a><!-- disabled --> 
+            <a href="<%= new_user_registration_path  %>" class="btn btn-default btn-lg waves-effect">DAFTAR</a>
+        </div>
+        
+    </div>
+</div>

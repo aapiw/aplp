@@ -35,7 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.integer :country_id, foreign_key: true
       t.integer :admin_id, foreign_key: true
       t.integer :gender
-      t.string :id_reg, unique: true
+      t.string :id_reg
       t.string :passport, unique: true 
       t.date :passport_expire
       t.date :dob
@@ -45,6 +45,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :profession
       t.boolean :win
       t.boolean :lock
+      t.boolean :complete
       t.integer :contest
       t.text :note
       t.integer :skype_id
@@ -55,6 +56,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
     end
 
     add_index :users, :email,                unique: true
+    add_index :users, :id_reg,                unique: true
     add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true

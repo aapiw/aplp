@@ -1,3 +1,9 @@
+function js_remove_wrap(){
+  $(".js-remove-wrap").click(function(event) {
+    $(this).parents(".wrap").remove();
+  });
+}
+
 // $(function () {
 $(document).ready(function() {
   // USERS
@@ -40,35 +46,43 @@ $(document).ready(function() {
       $(".js-to-indonesia-details button").addClass('disabled');
     }
   });
+  js_remove_wrap();
+
+  var index = 0;
+
   $(".js-add-dest").click(function(event) {
     if ($(this).attr('disabled') == "disabled") {
       return false
     } else {
+    index = index+1; 
 
-      var template = '<div class="col-xs-12">' +
+      var template = '<div class="wrap"><div class="col-xs-12">' +
         '<div class="form-group form-float">' +
         '<div class="form-line">' +
-        '<input type="text" class="form-control" placeholder="Tujuan" name="profession" required>' +
+        '<input type="text" class="form-control" placeholder="Tujuan" name="user[to_indonesias_attributes]['+index+'][destination]" required>' +
         '</div>' +
         '</div>' +
         '</div>' +
         '<div class="col-xs-6">' +
         '<div class="form-group form-float">' +
         '<div class="form-line">' +
-        '<input type="number" class="form-control" placeholder="Berapa kali" name="long" required>' +
+        '<input type="number" class="form-control" placeholder="Berapa kali" name="user[to_indonesias_attributes]['+index+'][long]" required>' +
         '</div>' +
         '</div>' +
         '</div>' +
         '<div class="col-xs-6">' +
         '<div class="form-line">' +
-        '<select class="form-control show-tick" name="unit" required>' +
-        '<option value="">-- Pilih Satuan --</option>' +
-        '<option value="day">Hari</option>' +
-        '<option value="month">Bulan</option>' +
-        '<option value="year">Tahun</option>' +
+        '<select class="form-control show-tick" name="user[to_indonesias_attributes]['+index+'][unit]" required>' +
+        '<option value="">Pilih Satuan</option>' +
+        '<option value="hari">Hari</option>' +
+        '<option value="bulan">Bulan</option>' +
+        '<option value="tahun">Tahun</option>' +
         '</select>' +
         '</div>' +
+        '<a class="pull-right m-t-15 btn btn-danger waves-effect js-remove-wrap">Hapus Kunjungan</a>'+
+        '</div>'+
         '</div>';
+      
       valid = true;
       $("#space-dest input, #space-dest select").each(function(index, el) {
         if ($(el).val() == "") {
@@ -77,7 +91,8 @@ $(document).ready(function() {
       });
 
       if (valid) {
-        $("#space-dest").append(template);
+        $(".js-to-indonesia-details").append(template);
+        js_remove_wrap();
         $.AdminBSB.select.activate();
       } else {
         alert("Mohon isi dulu tujuan sebelumnya");
@@ -85,6 +100,8 @@ $(document).ready(function() {
       return false
     }
   });
+  
+  var index_course = 0;
 
   $(".js-course-bipa").change(function(event) {
     if ($(this).val() == "pernah") {
@@ -104,31 +121,35 @@ $(document).ready(function() {
     if ($(this).attr('disabled') == "disabled") {
       return false
     } else {
+    index_course = index_course+1;
 
-      var template = '<div class="col-xs-12">' +
+      var template = '<div class="wrap"><div class="col-xs-12">' +
         '<div class="form-group form-float">' +
         '<div class="form-line">' +
-        '<input type="text" class="form-control" placeholder="Lokasi" name="location" required>' +
+        '<input type="text" class="form-control" placeholder="Lokasi" name="user[bipa_courses_attributes]['+index_course+'][location]" required>' +
         '</div>' +
         '</div>' +
         '</div>' +
         '<div class="col-xs-6">' +
         '<div class="form-group form-float">' +
         '<div class="form-line">' +
-        '<input type="number" class="form-control" placeholder="Berapa Lama" name="long" required>' +
+        '<input type="number" class="form-control" placeholder="Berapa Lama" name="user[bipa_courses_attributes]['+index_course+'][long]" required>' +
         '</div>' +
         '</div>' +
         '</div>' +
         '<div class="col-xs-6">' +
         '<div class="form-line">' +
-        '<select class="form-control show-tick" name="unit" required>' +
-        '<option value="">-- Pilih Satuan --</option>' +
-        '<option value="day">Hari</option>' +
-        '<option value="month">Bulan</option>' +
-        '<option value="year">Tahun</option>' +
+        '<select class="form-control show-tick" name="user[bipa_courses_attributes]['+index_course+'][unit]" required>' +
+        '<option value="">Pilih Satuan</option>' +
+        '<option value="hari">Hari</option>' +
+        '<option value="bulan">Bulan</option>' +
+        '<option value="tahun">Tahun</option>' +
         '</select>' +
         '</div>' +
+        '<a class="pull-right m-t-15 btn btn-danger waves-effect js-remove-wrap">Hapus Kursus</a>'+
+        '</div>'+
         '</div>';
+
       valid = true;
       $("#space-course input, #space-course select").each(function(index, el) {
         if ($(el).val() == "") {
@@ -137,7 +158,8 @@ $(document).ready(function() {
       });
 
       if (valid) {
-        $("#space-course").append(template);
+        $(".js-course-details").append(template);
+        js_remove_wrap();
         $.AdminBSB.select.activate();
       } else {
         alert("Mohon isi dulu kursus sebelumnya");
@@ -151,18 +173,18 @@ $(document).ready(function() {
   }
 
   // VALIDATE
-  $('#sign_in').validate({
-    highlight: function(input) {
-      console.log(input);
-      $(input).parents('.form-line').addClass('error');
-    },
-    unhighlight: function(input) {
-      $(input).parents('.form-line').removeClass('error');
-    },
-    errorPlacement: function(error, element) {
-      $(element).parents('.input-group').append(error);
-    }
-  });
+  // $('#sign_in').validate({
+  //   highlight: function(input) {
+  //     console.log(input);
+  //     $(input).parents('.form-line').addClass('error');
+  //   },
+  //   unhighlight: function(input) {
+  //     $(input).parents('.form-line').removeClass('error');
+  //   },
+  //   errorPlacement: function(error, element) {
+  //     $(element).parents('.input-group').append(error);
+  //   }
+  // });
   // VALIDATE END
 
   // GLOBAL
@@ -202,7 +224,14 @@ $(document).ready(function() {
       }
   });
   setTimeout(function() {
-    $(".alert").remove();
-  }, 5000);
+    $(".flash").hide();
+  }, 10000);
+
+  // $(".img-view").click(function(event) {
+  //   /* Act on the event */
+  //   $("#fotoModalView .modal-view").html("<img src='"+$(this).prop('src')+"'></img>")
+  //   $("#fotoModalView").modal()
+    
+  // });
 
 }); //ready

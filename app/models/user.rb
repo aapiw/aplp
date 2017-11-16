@@ -31,6 +31,7 @@
 #  profession                  :string
 #  win                         :boolean
 #  lock                        :boolean
+#  complete                    :boolean
 #  contest                     :integer
 #  note                        :text
 #  skype_id                    :integer
@@ -47,18 +48,22 @@
 #
 
 class User < ApplicationRecord
+	include UploadValidations
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 	attr_accessor :submit_profile
-	attr_accessor :decided
+	# attr_accessor :decided
 
-	has_many :to_indonesians, dependent: :destroy
+	# has_attached :avaatar
+
+	has_many :to_indonesias, dependent: :destroy
 	has_many :bipa_courses, dependent: :destroy
 
-	accepts_nested_attributes_for :to_indonesians, :bipa_courses, allow_destroy: true, reject_if: :all_blank
+	accepts_nested_attributes_for :to_indonesias, :bipa_courses, allow_destroy: true, reject_if: :all_blank
 	
 	has_one :confirmation, dependent: :destroy
 	has_one :score, dependent: :destroy
@@ -69,17 +74,36 @@ class User < ApplicationRecord
 	enum gender: [ :lk, :pr]
 
 	validates_presence_of :name, :country_id, :gender, :passport, :passport_expire, :dob,
-												:campus, :majors, :phone, :profession, :lock, :note, :avatar, :passport, if: :submit_profile
+												:campus, :majors, :phone, :profession, :lock, :avatar, :passport, if: :submit_profile
 
-	validates_presence_of	:win, if: :decided
+	validates_presence_of	:win, if: :contest
 
 	validates :passport, uniqueness: true
 	validates :id_reg, uniqueness: true
+
+	validate :locked_form, on: :update
+	 
 	
 	after_create :create_id_reg
 
+  def locked_form
+    if User.find(id).lock
+      errors.add(:lock, "Akun Anda di Kunci")
+    end
+  end
+
+	def status
+		if win == true
+			"<span class='label bg-green'>Menang</span>".html_safe
+		elsif win == false
+			"<span class='label bg-pink'>kalah</span>".html_safe
+		else
+			"<span class='label bg-pink'>Masa Pendaftaran</span>".html_safe
+		end
+	end
+
 	protected
-	
+
 	def create_id_reg
 		update_attributes(id_reg: "APLP-#{Time.now.strftime("%Y-%d-%m")}-#{id.to_s.rjust(4, '0')}")
 	end

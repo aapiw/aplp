@@ -38,5 +38,10 @@ Email admin yg di sidebar di hapus
 tambah foto profile di profile user
 
 firefo
-Xvfb :99 &
-export DISPLAY=:99
+Xvfb :99 & export DISPLAY=:99
+
+* Install chrome - [for Ubuntu](http://askubuntu.com/questions/510056/how-to-install-google-chrome)
+* Install xvfb ```﻿⁠⁠⁠⁠apt-get install xvfb﻿⁠⁠⁠⁠```
+* Run: ﻿⁠⁠⁠⁠```export DISPLAY=":99"﻿⁠⁠⁠⁠``` or set this on env var
+* Run it ﻿⁠⁠⁠⁠```Xvfb -ac :99 -screen 0 1280x1024x16 &``` as background process
+* That's it! [chromedriver-helper](https://github.com/flavorjones/chromedriver-helper) the job!

@@ -1,0 +1,288 @@
+<section class="content content-full">
+  <div class="container">
+    <div class="block-header">
+      <h2>HOME</h2>
+    </div>
+    <div class="row clearfix">
+      <%= render "shared/user_sidebar"%>
+        <!-- #END# Task Info -->
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="header">
+              <div class="alert alert-<%= @user.lock ? 'success' : 'danger' %>">
+                <%if @user.lock %>
+                <ul>
+                  <li>
+                    <strong>Selamat!</strong> Form Anda sudah dikirim. 
+                  </li>
+                  <li>
+                    Form anda sekarang dikunci, tidak bisa di rubah, untuk membukanya silahkan hubungi "admin@aplp.atdikbud.com".
+                  </li>
+                </ul>
+                <% else %>
+                  <strong>Perhatian!</strong> Form belum dikirim, mohon lengkapi lalu klik tombol kirim di bawah.
+                <% end %>
+              </div>
+              <h2><%= @user.lock ? '<i class="material-icons">lock </i>'.html_safe : '' %> 
+              Form Pendaftaran</h2>
+            </div>
+            <div class="body <%= @user.lock ? "lock" : '' %>">
+              <%= form_for(@user, url: users_dashboard_path(@user), html: { multipart: true } ) do |f| %>
+                <%= f.hidden_field :complete, value:true %>
+                <%= f.hidden_field :lock, value:true %>
+                <%= f.hidden_field :submit_profile, value:true %>
+
+                  <div class="form-group form-float">
+                    <div class="form-line">
+                      <!-- <input type="text" class="form-control" name="" required disabled> -->
+                      <%= f.text_field :name, class: "form-control"%>
+                        <label class="form-label">Nama Sesuai Passport</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <%= f.radio_button :gender, "lk", required:true, id:"male", class: "with-gap" %>
+                      <%= label :male, "Laki-Laki", for:"male" %>
+                        <%= f.radio_button :gender, "pr", id:"female", required:true  , class: "with-gap" %>
+                          <%= label :female, "Perempuan", for:"female" %>
+                  </div>
+                  <div class="form-group form-float">
+                    <div class="form-line">
+                      <%= f.number_field :passport, min:"0", class:"form-control", required:true, disabled:true %>
+                        <label class="form-label">No Passport</label>
+                    </div>
+                  </div>
+                  <div class="form-group form-float">
+                    <div class="form-line">
+                      <%= f.text_field :passport_expire, class:"form-control datepicker", placeholder:"Kadaluarsa Passport", required:true %>
+                    </div>
+                  </div>
+                  <h2 class="card-inside-title">Pilih Negara</h2>
+                  <div class="form-group">
+                    <div class="input-group form-float">
+                      <div class="form-line">
+                        <%= f.select(:country_id, Country.all.collect {|c| [ c.name, c.id ] }, {include_blank: 'Pilih Negara'}, class:"form-control form-control--z-5 show-tick", required:true) %>
+                      </div>
+                    </div>
+                  </div>
+                  <h2 class="card-inside-title">Pilih KBRI</h2>
+                  <div class="form-group">
+                    <div class="input-group form-float">
+                      <div class="form-line " id="consulates_lists">
+                        <%= f.select(:admin_id, Country.all.collect {|c| [ c.name, c.id ] }, {include_blank: 'Pilih KBRI'}, class:"form-control form-control--z-4 show-tick", required:true) %>
+                      </div>
+                    </div>
+                  </div>
+                  <h2 class="card-inside-title">Tanggal Lahir</h2>
+                  <div class="form-group form-float">
+                    <div class="form-line">
+                      <%= f.text_field :dob, class:"datepicker form-control", placeholder:"Tgl Lahir", required:true %>
+                    </div>
+                  </div>
+                  <div class="form-group form-float">
+                    <div class="form-line">
+                      <%= f.number_field :phone, class:"form-control", required:true %>
+                        <label class="form-label">No Handphone</label>
+                    </div>
+                  </div>
+                  <h2 class="card-inside-title">Pendidikan Terakhir</h2>
+                  <div class="form-group form-float">
+                    <div class="form-line">
+                      <%= f.text_field :campus, class:"form-control", required:true %>
+                        <label class="form-label">Nama Kampus</label>
+                    </div>
+                  </div>
+                  <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.text_field :majors, class:"form-control", required:true %>
+                        <label class="form-label">Jurusan</label>
+                    </div>
+                  </div>
+
+                  <h2 class="card-inside-title">Profesi</h2>
+                  <div class="form-group form-float">
+                    <div class="form-line">
+                      <input type="radio" name="user[profession]" value="pelajar" checked id="pelajar" class="with-gap js-profession">
+                      <label for="pelajar">Pelajar</label>
+                      <input type="radio" name="user[profession]" value="" id="profesional" class="with-gap js-profession">
+                      <label for="profesional" class="m-l-20">Profesional</label>
+                    </div>
+                  </div>
+                  <div class="form-group form-float js-pekerjaan">
+                    <div class="form-line">
+                      <input type="text" class="form-control" placeholder="Pekerjaan" name="user[profession]" required disabled>
+                    </div>
+                  </div>
+                  
+                  <h2 class="card-inside-title">Pernah ke Indonesia</h2>
+                  <% if @user.to_indonesias.present? %>
+                    <div class="form-group form-float">
+                      <!-- <div class="form-line">
+                        <input type="radio" value="belum" name="to_indonesia" id="never-to-indonesia" class="with-gap js-to-indonesia" required>
+                        <%#= radio_button :destination, "belum", checked:true, class:"form-control with-gap js-to-indonesia", id:"never-to-indonesia", required:true %>
+                        <label for="never-to-indonesia">Belum Pernah</label>
+                        <%#= radio_button :destination, "pernah", checked:false, class:"form-control with-gap js-to-indonesia", id:"ever-to-indonesia", required:true %>
+                        <input type="radio" checked name="to_indonesia" value="pernah" id="ever-to-indonesia" class="with-gap js-to-indonesia" required>
+                        <label for="ever-to-indonesia" class="m-l-20">Pernah</label>
+                      </div> -->
+                    </div>
+                    <div class="row clearfix js-to-indonesia-details">
+                      <%= f.fields_for :to_indonesias do |ff| %>
+                        <div class="wrap">
+                          <div class="col-xs-12">
+                            <div class="form-group form-float">
+                              <div class="form-line">
+                                <%= ff.text_field :destination, class:"form-control ", placeholder:"Tujuan", required:true %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6">
+                            <div class="form-group form-float">
+                              <div class="form-line">
+                                <%= ff.number_field :long, class:"form-control ", placeholder:"Berapa kali", required:true %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6">
+                            <div class="form-line">
+                                <%= ff.select(:unit, [["Hari","hari"], ["Bulan","bulan"], ["Tahun","tahun"]], {include_blank: 'Pilih Satuan'}, class:"form-control form-control--z-5 show-tick", required:true) %>
+                            </div>
+
+                            <%= link_to 'Hapus Kunjungan', to_indonesia_path(ff.object), class:"pull-right m-t-15 btn btn-danger waves-effect", data:{confirm: 'Kamu yakin?' }, :method => :delete %>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                    <a class="btn btn-primary waves-effect js-add-dest">Tambahkan Kunjungan</a>
+                  <% else %>
+                    <%= f.fields_for :to_indonesias, ToIndonesia.new do |ff| %>
+                      <!-- <h2 class="card-inside-title">Pernah ke Indonesia</h2> -->
+                      <!-- <div class="form-group form-float">
+                        <div class="form-line">
+                          <%#= ff.radio_button :destination, "belum", checked:true, class:"form-control with-gap js-to-indonesia", id:"never-to-indonesia", required:true %>
+                          <label for="never-to-indonesia">Belum Pernah</label>
+                          <%#= ff.radio_button :destination, "pernah", checked:false, class:"form-control with-gap js-to-indonesia", id:"ever-to-indonesia", required:true %>
+                          <label for="ever-to-indonesia" class="m-l-20">Pernah</label>
+                        </div>
+                      </div> -->
+                      <!-- <input type="radio" value="belum" checked name="user[to_indonesia_attributes][]" id="never-to-indonesia" class="with-gap js-to-indonesia" required> -->
+                      <!-- <input type="radio" name="user[to_indonesia_attributes][]" value="pernah" id="ever-to-indonesia" class="with-gap js-to-indonesia" required> -->
+                      <div class="row clearfix js-to-indonesia-details">
+                      </div>
+                      <a class="btn btn-primary waves-effect js-add-dest">Tambahkan Kunjungan</a>
+                    <% end %>
+                  <% end %>
+
+                  <!-- DONE  -->
+                  <h2 class="card-inside-title">Pernah Kursus BIPA</h2>
+                  <% if @user.bipa_courses.present? %>
+                    <div class="row clearfix js-course-details">
+                      <%= f.fields_for :bipa_courses do |ff| %>
+                        <!-- <div class="form-group form-float">
+                          <div class="form-line">
+                              <%#= ff.radio_button :location, "belum", checked:true, class:"form-control with-gap js-course-bipa", id:"never-course-bipa", required:true %>
+                              <label for="never-course-bipa">Belum Pernah</label>
+                              <%#= ff.radio_button :location, "pernah", checked:false, class:"form-control with-gap js-course-bipa", id:"ever-course-bipa", required:true %>
+                            <label for="ever-course-bipa" class="m-l-20">Pernah</label>
+                          </div>
+                        </div> -->
+                        <div class="wrap">
+                          <div class="col-xs-12">
+                            <div class="form-group form-float">
+                              <div class="form-line">
+                              <%= ff.text_field :location, class:"form-control",  placeholder:"Lokasi", required:true %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6">
+                            <div class="form-group form-float">
+                              <div class="form-line">
+                                <%= ff.number_field :long, class:"form-control with-gap",  placeholder:"Berapa Lama", required:true %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6">
+                            <div class="form-line">
+                              <%= ff.select(:unit, [["Hari","hari"], ["Bulan","bulan"], ["Tahun","tahun"]], {include_blank: 'Pilih Satuan'}, class:"form-control form-control--z-5 show-tick", required:true) %>
+                            </div>
+                            <%= link_to 'Hapus Kursus', bipa_course_path(ff.object), class:"pull-right m-t-15 btn btn-danger waves-effect", data:{confirm: 'Kamu yakin?' }, :method => :delete %>
+                            <a class="pull-right m-t-15 btn btn-danger waves-effect js-remove-wrap">Hapus Kursus</a>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                   <a class="btn btn-primary waves-effect js-add-course">Tambahkan Kursus</a>
+                  
+                  <% else %>
+                    <%= f.fields_for :bipa_courses, BipaCourse.new do |ff| %>
+                    <h2 class="card-inside-title">Pernah Kursus BIPA</h2>
+                    <!-- <div class="form-group form-float">
+                      <div class="form-line">
+                          <%#= ff.radio_button :location, "belum", checked:true, class:"form-control with-gap js-course-bipa", id:"never-course-bipa", required:true %>
+                          <label for="never-course-bipa">Belum Pernah</label>
+                          <%#= ff.radio_button :location, "pernah", checked:false, class:"form-control with-gap js-course-bipa", id:"ever-course-bipa", required:true %>
+                        <label for="ever-course-bipa" class="m-l-20">Pernah</label>
+                      </div>
+                    </div> -->
+                    <div class="row clearfix js-course-details">
+                      <div id="space-course">
+                      </div>
+                      <a class="btn btn-primary waves-effect js-add-course">Tambahkan Kursus</a>
+                    </div>
+                    <% end %>
+
+                  <% end %>
+
+                  <div class="form-group form-float">
+                    <div class="form-line">
+                      <%= f.text_field :skype_id, class:"form-control" %>
+                      <label class="form-label">ID Skype</label>
+                    </div>
+                  </div>
+
+                  <% if @user.avatar.path %>
+                    <h2 class="card-inside-title">Ganti Foto</h2>
+                    <a data-fancybox="gallery" href="<%= @user.avatar.url %>" data-caption="Profile"><img src="<%= @user.avatar.url %>" class="img-responsive col-sm-6 "></a>
+                    <div class="form-group form-float">
+                      <div class="form-line">
+                        <%= f.file_field :avatar, placeholder:"Upload Foto", class:"form-control"%>
+                      </div>
+                    </div>
+                  <% else %>
+                    <h2 class="card-inside-title">Upload Foto</h2>
+                    <div class="form-group form-float">
+                      <div class="form-line">
+                        <%= f.file_field :avatar, placeholder:"Upload Foto", class:"form-control", required:true %>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <p>Foto 3 bulan terakhir</p>
+                  <p>Background putih</p>
+                  <p>Menghadap depan</p>
+                  <a class="m-r-20" href="#x" data-toggle="modal" data-target="#fotoModal">Lihat contoh foto</a>
+                  <% if @user.passport_image.path %>
+                    <h2 class="card-inside-title">Ganti Passport</h2>
+                    <a data-fancybox="gallery" href="<%= @user.passport_image.url %>" data-caption="Passport"><img src="<%= @user.passport_image.url %>" class="img-responsive col-sm-6 "></a>
+                    <div class="form-group form-float">
+                      <div class="form-line">
+                        <%= f.file_field :passport_image, placeholder:"Upload Passport", class:"form-control" %>
+                      </div>
+                    </div>
+                  <% else %>
+                    <h2 class="card-inside-title">Upload Passport</h2>
+                    <div class="form-group form-float">
+                      <div class="form-line">
+                        <%= f.file_field :passport_image, placeholder:"Upload Passport", class:"form-control", required:true %>
+                      </div>
+                    </div>
+                  <% end %>
+                  <div class="clearfix m-t-20">
+                    <%= f.submit "KIRIM", class: "btn btn-lg btn-primary waves-effect"%>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>

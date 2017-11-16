@@ -14,7 +14,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    super do
+      resource.passport_expire = params["user"]["passport_expire"].to_date
+      resource.save
+    end
   end
 
   # GET /resource/edit

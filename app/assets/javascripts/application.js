@@ -33,6 +33,7 @@
 //= require plugin/index
 //= require plugin/demo
 //= require plugin/waitMe.min
+//= require plugin/jquery.fancybox.min
 //= require custom
 
 // require_tree .

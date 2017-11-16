@@ -1,3 +1,19 @@
+body:not(.ls-closed) .content.content-full{
+  margin-left: 0;
+  margin-top: 0;
+}
+
+.card.card-user .body{
+  min-height: 300px;
+}
+.navbar-nav > li> a:hover{
+  text-decoration: underline;
+}
+
+.bold{
+  font-weight: bold;
+}
+
 .signup-page{
 	position: relative;
 }
@@ -9,3 +25,36 @@
 		z-index: 5 !important;
 	}
 }
+
+.login-page{
+	.container-flash{
+		width: 100%;
+	}
+}
+.lock{
+	pointer-events:none;
+	opacity: 0.8;
+}
+
+[data-fancybox=gallery]{
+	position: relative;
+	z-index: 5;
+	// cursor: zoom-in;
+	// cursor: 
+}
+// .modal-view{
+// 	width: 100%;
+// 	max-width: 700px;
+// 	@media(max-width: 767px){	
+// 		max-width: 60%;
+// 	}
+// 	@media(max-width: 500px){
+// 		max-width: 90%;
+// 	}
+// 	img{
+// 		position: absolute;
+// 		left: 0;
+// 		right: 0;
+// 		margin: auto;
+// 	}
+// }
