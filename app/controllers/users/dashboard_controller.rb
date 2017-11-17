@@ -9,10 +9,11 @@ class Users::DashboardController < ApplicationController
 		dashboard_params_edit = dashboard_params
 		dashboard_params_edit["dob"] = dashboard_params_edit["dob"].to_date
 		dashboard_params_edit["passport_expire"] = dashboard_params_edit["passport_expire"].to_date
-		debugger
+		# debugger
 	  respond_to do |format|
 	    if @user.update(dashboard_params_edit)
-	      format.html { redirect_to user_root_path, notice: 'Data berhasil diperbarui.' }
+	      format.html { redirect_to user_root_path }
+	      flash["notice"] = 'Data berhasil diperbarui.'
 	    else
 	      format.html { render :index }
 	      flash["alert"] = @user.errors.full_messages

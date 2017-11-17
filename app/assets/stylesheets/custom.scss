@@ -32,8 +32,10 @@ body:not(.ls-closed) .content.content-full{
 	}
 }
 .lock{
-	pointer-events:none;
-	opacity: 0.8;
+	div, input, a:not([data-fancybox=gallery]){
+		pointer-events:none;
+		opacity: 0.8;
+	}
 }
 
 [data-fancybox=gallery]{
@@ -41,6 +43,9 @@ body:not(.ls-closed) .content.content-full{
 	z-index: 5;
 	// cursor: zoom-in;
 	// cursor: 
+}
+ul{
+	padding-left: 15px;
 }
 // .modal-view{
 // 	width: 100%;

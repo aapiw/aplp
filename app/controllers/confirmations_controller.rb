@@ -1,5 +1,5 @@
 class ConfirmationsController < ApplicationController
-  before_action :set_confirmation, only: [:show, :edit, :update, :destroy]
+  before_action :set_var #, only: [:show, :edit, :update, :destroy]
 
   # GET /confirmations
   # GET /confirmations.json
@@ -24,15 +24,18 @@ class ConfirmationsController < ApplicationController
   # POST /confirmations
   # POST /confirmations.json
   def create
-    @confirmation = Confirmation.new(confirmation_params)
+    
+    confirmation_params_edit = confirmation_params
+    confirmation_params_edit["flight_arrival_date"] = confirmation_params_edit["flight_arrival_date"].to_date
+    confirmation_params_edit["date_of_return_flight"] = confirmation_params_edit["date_of_return_flight"].to_date
 
+    @confirmation = Confirmation.new(confirmation_params_edit)
     respond_to do |format|
       if @confirmation.save
-        format.html { redirect_to @confirmation, notice: 'Confirmation was successfully created.' }
-        format.json { render :show, status: :created, location: @confirmation }
+        format.html { redirect_to present_confirmation_index_path }
+        flash["notice"] = 'Confirmasi berhasil diperbarui.'
       else
         format.html { render :new }
-        format.json { render json: @confirmation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -40,13 +43,15 @@ class ConfirmationsController < ApplicationController
   # PATCH/PUT /confirmations/1
   # PATCH/PUT /confirmations/1.json
   def update
+    confirmation_params_edit = confirmation_params
+    confirmation_params_edit["flight_arrival_date"] = confirmation_params_edit["flight_arrival_date"].to_date
+    confirmation_params_edit["date_of_return_flight"] = confirmation_params_edit["date_of_return_flight"].to_date
     respond_to do |format|
-      if @confirmation.update(confirmation_params)
-        format.html { redirect_to @confirmation, notice: 'Confirmation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @confirmation }
+      if @confirmation.update(confirmation_params_edit)
+        format.html { redirect_to present_confirmation_index_path, notice: 'Confirmation was successfully updated.' }
+        flash["notice"] = 'Confirmasi berhasil diperbarui.'
       else
         format.html { render :edit }
-        format.json { render json: @confirmation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,15 +61,17 @@ class ConfirmationsController < ApplicationController
   def destroy
     @confirmation.destroy
     respond_to do |format|
-      format.html { redirect_to confirmations_url, notice: 'Confirmation was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to present_confirmation_index_path, notice: 'Confirmation was successfully destroyed.' }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_confirmation
-      @confirmation = Confirmation.find(params[:id])
+    def set_var
+      @schedule = Schedule.last
+      @user = current_user #User.find(params[:id])
+      @confirmation =  @user.confirmation || Confirmation.new
+      # @confirmation = Confirmation.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

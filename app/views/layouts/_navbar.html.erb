@@ -8,11 +8,15 @@
         <% if user_signed_in? %>
         <div class="collapse navbar-collapse" id="navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
+            <% if current_user.win %>
             <li>
-              <a href="konfirmasi.html">
+              <a href="<%= present_confirmation_index_path %>">
                 Konfirmasi Kehadiran
               </a>
             </li>
+            <% else %>
+
+            <% end %>
             <li>
               <a href="<%= users_dashboard_index_path %>">
                 Home

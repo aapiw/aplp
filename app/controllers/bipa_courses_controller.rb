@@ -56,8 +56,9 @@ class BipaCoursesController < ApplicationController
   def destroy
     @bipa_course.destroy
     respond_to do |format|
-      format.html { redirect_to bipa_courses_url, notice: 'Bipa course was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to user_root_path }
+      flash[:notice] = 'Kursus Berhasil Dihapus.'
+      # format.json { head :no_content }
     end
   end
 

@@ -42,12 +42,12 @@
                   <div class="form-group">
                     <%= f.radio_button :gender, "lk", required:true, id:"male", class: "with-gap" %>
                       <%= label :male, "Laki-Laki", for:"male" %>
-                        <%= f.radio_button :gender, "pr", id:"female", required:true  , class: "with-gap" %>
-                          <%= label :female, "Perempuan", for:"female" %>
+                    <%= f.radio_button :gender, "pr", id:"female", required:true  , class: "with-gap" %>
+                      <%= label :female, "Perempuan", for:"female" %>
                   </div>
                   <div class="form-group form-float">
                     <div class="form-line">
-                      <%= f.number_field :passport, min:"0", class:"form-control", required:true, disabled:true %>
+                      <%= f.number_field :passport, min:"0", class:"form-control", required:true, disabled:true  %>
                         <label class="form-label">No Passport</label>
                     </div>
                   </div>
@@ -101,15 +101,24 @@
                   <h2 class="card-inside-title">Profesi</h2>
                   <div class="form-group form-float">
                     <div class="form-line">
-                      <input type="radio" name="user[profession]" value="pelajar" checked id="pelajar" class="with-gap js-profession">
+                      <% profession = @user.profession %>
+                      <%# @user.profession = "" if @user.profession != "pelajar" %>
+                      <%= f.radio_button :profession, "Pelajar", required:true, id:"pelajar", class: "js-profession with-gap" %>
+                      <%= label :pelajar, "Pelajar", for:"pelajar" %>
+                      <%= f.radio_button :profession, "Profesional", checked: @user.profession != "Pelajar" ? true : false , id:"profesional", required:true  , class: "js-profession with-gap" %>
+                      <%= label :profesional, "Profesional", for:"profesional" %>
+
+                      <!-- <input type="radio" name="user[profession]" value="pelajar" checked id="pelajar" class="with-gap js-profession">
                       <label for="pelajar">Pelajar</label>
-                      <input type="radio" name="user[profession]" value="" id="profesional" class="with-gap js-profession">
-                      <label for="profesional" class="m-l-20">Profesional</label>
+                      <input type="radio" name="user[profession]" value="<%= @user.profession %>" id="profesional" class="with-gap js-profession">
+                      <label for="profesional" class="m-l-20">Profesional</label> -->
                     </div>
                   </div>
                   <div class="form-group form-float js-pekerjaan">
                     <div class="form-line">
-                      <input type="text" class="form-control" placeholder="Pekerjaan" name="user[profession]" required disabled>
+                    <% profession = profession != "Pelajar" ? profession : "" %>
+                      <%= f.text_field :profession, placeholder:"Pekerjaan", value:profession,  class:"form-control", required:true, disabled:true%>
+                      <!-- <input type="text" class="form-control" placeholder="Pekerjaan" name="user[profession]" required disabled> -->
                     </div>
                   </div>
                   
@@ -204,17 +213,16 @@
                             <div class="form-line">
                               <%= ff.select(:unit, [["Hari","hari"], ["Bulan","bulan"], ["Tahun","tahun"]], {include_blank: 'Pilih Satuan'}, class:"form-control form-control--z-5 show-tick", required:true) %>
                             </div>
-                            <%= link_to 'Hapus Kursus', bipa_course_path(ff.object), class:"pull-right m-t-15 btn btn-danger waves-effect", data:{confirm: 'Kamu yakin?' }, :method => :delete %>
-                            <a class="pull-right m-t-15 btn btn-danger waves-effect js-remove-wrap">Hapus Kursus</a>
+                            <%= link_to 'Hapus Kursus', bipa_course_path(ff.object), class:"pull-right m-t-15 btn btn-danger waves-effect",
+                             data:{confirm: 'Kamu yakin?' }, :method => :delete %>
                           </div>
                         </div>
                       <% end %>
                     </div>
-                   <a class="btn btn-primary waves-effect js-add-course">Tambahkan Kursus</a>
+                   <a class="btn btn-primary waves-effect js-add-course m-b-25">Tambahkan Kursus</a>
                   
                   <% else %>
                     <%= f.fields_for :bipa_courses, BipaCourse.new do |ff| %>
-                    <h2 class="card-inside-title">Pernah Kursus BIPA</h2>
                     <!-- <div class="form-group form-float">
                       <div class="form-line">
                           <%#= ff.radio_button :location, "belum", checked:true, class:"form-control with-gap js-course-bipa", id:"never-course-bipa", required:true %>
@@ -224,14 +232,11 @@
                       </div>
                     </div> -->
                     <div class="row clearfix js-course-details">
-                      <div id="space-course">
-                      </div>
-                      <a class="btn btn-primary waves-effect js-add-course">Tambahkan Kursus</a>
                     </div>
                     <% end %>
+                    <a class="btn btn-primary waves-effect js-add-course m-b-25">Tambahkan Kursus</a>
 
                   <% end %>
-
                   <div class="form-group form-float">
                     <div class="form-line">
                       <%= f.text_field :skype_id, class:"form-control" %>
@@ -259,7 +264,7 @@
                   <p>Foto 3 bulan terakhir</p>
                   <p>Background putih</p>
                   <p>Menghadap depan</p>
-                  <a class="m-r-20" href="#x" data-toggle="modal" data-target="#fotoModal">Lihat contoh foto</a>
+                  <a data-fancybox="gallery" href="<%= asset_path('pass-foto') %>" data-caption="Contoh Poto">Lihat contoh foto</a>
                   <% if @user.passport_image.path %>
                     <h2 class="card-inside-title">Ganti Passport</h2>
                     <a data-fancybox="gallery" href="<%= @user.passport_image.url %>" data-caption="Passport"><img src="<%= @user.passport_image.url %>" class="img-responsive col-sm-6 "></a>

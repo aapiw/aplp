@@ -21,5 +21,11 @@ class ToIndonesia < ApplicationRecord
 	# validates :unit, inclusion: %w(hari bulan tahun)
 
 	enum unit: [ :hari, :bulan, :tahun  ]
-	
+	# validate :locked_form
+  
+ #  def locked_form
+ #    if self.user.lock
+ #      errors.add(:lock, "Akun Anda di Kunci")
+ #    end
+ #  end
 end

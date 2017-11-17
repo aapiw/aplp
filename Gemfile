@@ -41,6 +41,10 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# as beauty alert
+# gem 'sweet-alert'
+# gem 'sweet-alert-confirm'
+
 #Authenticable
 gem 'devise', '~> 4.3'
 

@@ -24,7 +24,7 @@ $(document).ready(function() {
   }
 
   $(".js-profession").change(function(event) {
-    if ($(this).val() != "pelajar") {
+    if ($(this).val() != "Pelajar") {
       $(".js-pekerjaan input").attr('disabled', false);
       $(".js-pekerjaan .form-line").addClass("focused");
     } else {
@@ -84,7 +84,7 @@ $(document).ready(function() {
         '</div>';
       
       valid = true;
-      $("#space-dest input, #space-dest select").each(function(index, el) {
+      $(".js-to-indonesia-details input, .js-to-indonesia-details select").each(function(index, el) {
         if ($(el).val() == "") {
           valid = false;
         }
@@ -95,6 +95,7 @@ $(document).ready(function() {
         js_remove_wrap();
         $.AdminBSB.select.activate();
       } else {
+        swal("Perhatian!", "Mohon isi dulu tujuan sebelumnya!", "warning");
         alert("Mohon isi dulu tujuan sebelumnya");
       }
       return false
@@ -151,7 +152,7 @@ $(document).ready(function() {
         '</div>';
 
       valid = true;
-      $("#space-course input, #space-course select").each(function(index, el) {
+      $(".js-course-details input, .js-course-details select").each(function(index, el) {
         if ($(el).val() == "") {
           valid = false;
         }

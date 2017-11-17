@@ -34,6 +34,9 @@
 //= require plugin/demo
 //= require plugin/waitMe.min
 //= require plugin/jquery.fancybox.min
+// require plugin/sweetalert.min
+// require sweet-alert
+// require sweet-alert-confirm
 //= require custom
 
 // require_tree .

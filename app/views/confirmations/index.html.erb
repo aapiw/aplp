@@ -1,49 +1,133 @@
-<p id="notice"><%= notice %></p>
+<section class="content content-full">
+  <div class="container">
+    <div class="block-header">
+      <h2>HOME</h2>
+    </div>
+    <div class="row clearfix">
+      <%= render "shared/user_sidebar"%>
+        <!-- #END# Task Info -->
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="header">
+              <div class="alert alert-<%= @user.win ? 'success' : 'danger' %>">
+                <%if @user.lock %>
+                <ul>
+                  <li>
+                    <strong>Selamat!</strong> Form Anda sudah dikirim.
+                  </li>
+                  <li>
+                    Form anda sekarang dikunci, tidak bisa di rubah, untuk membukanya silahkan hubungi "admin@aplp.atdikbud.com".
+                  </li>
+                </ul>
+                <% else %>
+                  <strong>Perhatian!</strong> Form belum dikirim, mohon lengkapi lalu klik tombol kirim di bawah.
+                <% end %>
+              </div>
+              <h2><%= @user.lock ? '<i class="material-icons">lock </i>'.html_safe : '' %> 
+              Form Konfirmasi Kehadiran</h2>
+            </div>
+            <div class="body <%= @user.lock ? "lock" : '' %>">
+            <%= form_for(@confirmation, url: present_confirmation_index_path, html: { multipart: true } ) do |f| %>
+                <%= f.hidden_field :user_id, value:@user.id %>
+                <h2 class="card-inside-title">Nomor Penerbangan Kedatangan</h2>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.text_field :flight_arrival_number, class:"form-control", required:true, placeholder:"Nomor Penerbangan Kedatangan"  %>
+                        <!-- <input type="text" class="form-control" name="name" required placeholder="Nomor Penerbangan Kedatangan"> -->
+                    </div>
+                </div>
+                <h2 class="card-inside-title">Tanggal penerbangan kedatangan</h2>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.text_field :flight_arrival_date, class:"datepicker form-control", required:true, placeholder:"Tanggal penerbangan kedatangan"  %>
+                    </div>
+                </div>
+                <h2 class="card-inside-title">Jam penerbangan kedatangan</h2>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.text_field :flight_arrival_hours, class:"timepicker form-control", required:true, placeholder:"Jam penerbangan kedatangan"  %>
+                    </div>
+                </div>
+                <h2 class="card-inside-title">Nomor penerbangan kepulangan</h2>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.text_field :flight_return_number, class:"timepicker form-control", required:true, placeholder:"Nomor penerbangan kepulangan"  %>
+                    </div>
+                </div>
+                <h2 class="card-inside-title">Tanggal penerbangan kepulangan</h2>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.text_field :date_of_return_flight, class:"datepicker form-control", required:true, placeholder:"Tanggal penerbangan kepulangan"  %>
+                    </div>
+                </div>
+                        <h2 class="card-inside-title">Jam penerbangan kepulangan</h2>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.text_field :return_flight_hours, class:"timepicker form-control", required:true, placeholder:"Jam penerbangan kepulangan"  %>
+                    </div>
+                </div>
+                <h2 class="card-inside-title">Memakai Jilbab</h2>
+                <div class="form-group">
+                    <%= f.radio_button :hijab, true, id:"yes", class:"with-gap", required:true%>
+                    <label for="yes">Ya</label>
 
-<h1>Confirmations</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Flight arrival number</th>
-      <th>Flight arrival date</th>
-      <th>Flight arrival hours</th>
-      <th>Flight return number</th>
-      <th>Date of return flight</th>
-      <th>Return flight hours</th>
-      <th>Hijab</th>
-      <th>Dress size</th>
-      <th>Script</th>
-      <th>Arrival ticket</th>
-      <th>Return ticket</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @confirmations.each do |confirmation| %>
-      <tr>
-        <td><%= confirmation.flight_arrival_number %></td>
-        <td><%= confirmation.flight_arrival_date %></td>
-        <td><%= confirmation.flight_arrival_hours %></td>
-        <td><%= confirmation.flight_return_number %></td>
-        <td><%= confirmation.date_of_return_flight %></td>
-        <td><%= confirmation.return_flight_hours %></td>
-        <td><%= confirmation.hijab %></td>
-        <td><%= confirmation.dress_size %></td>
-        <td><%= confirmation.script %></td>
-        <td><%= confirmation.arrival_ticket %></td>
-        <td><%= confirmation.return_ticket %></td>
-        <td><%= confirmation.user %></td>
-        <td><%= link_to 'Show', confirmation %></td>
-        <td><%= link_to 'Edit', edit_confirmation_path(confirmation) %></td>
-        <td><%= link_to 'Destroy', confirmation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Confirmation', new_confirmation_path %>
+                    <%= f.radio_button :hijab, false, id:"no", class:"with-gap", required:true%>
+                    <label for="no" class="m-l-20">Tidak</label>
+                </div>
+                <h2 class="card-inside-title">Ukuran Baju</h2>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                    <%= f.select(:dress_size, [ ["XS", "xs"],["S","s"],["M","m"],["L","l"],["XL","xl"], ["XXL","xxl" ] ], {include_blank: 'Pilih Ukuran'}, class:"form-control form-control--z-5 show-tick", required:true) %>
+                    </div>
+                </div>
+                
+                <% if @confirmation.script.path %>
+                  <h2 class="card-inside-title">Ganti Naskah Pidato/Cerita</h2>
+                  <a data-fancybox="gallery" href="<%= @confirmation.script.url %>" data-caption="Naskah Pidato/Cerita"><img src="<%= @confirmation.script.url %>" class="img-responsive col-sm-6 "></a>
+                  <%= f.file_field :script, placeholder:"Ganti Naskah", class:"form-control", required:true%>
+                <% else %>
+                  <h2 class="card-inside-title">Upload Naskah Pidato/Cerita</h2>
+                  <div class="form-group form-float">
+                      <div class="form-line">
+                          <%= f.file_field :script, placeholder:"Upload Naskah", class:"form-control", required:true%>
+                      </div>
+                  </div>
+                <% end %>
+                
+                <% if @confirmation.arrival_ticket.path %>
+                  <h2 class="card-inside-title">Ganti Tiket Kedatangan Pesawat</h2>
+                  <a data-fancybox="gallery" href="<%= @confirmation.arrival_ticket.url %>" data-caption="Tiket Kedatangan Pesawat"><img src="<%= @confirmation.arrival_ticket.url %>" class="img-responsive col-sm-6 "></a>
+                  <%= f.file_field :arrival_ticket, placeholder:"Ganti Tiket Kedatangan Pesawat", class:"form-control", required:true%>
+                <% else %>
+                  <h2 class="card-inside-title">Upload Tiket Kedatangan Pesawat </h2>
+                  <div class="form-group form-float">
+                      <div class="form-line">
+                          <%= f.file_field :arrival_ticket, placeholder:"Upload Tiket Pesawat Kedatangan", class:"form-control", required:true%>
+                      </div>
+                  </div>
+                <% end %>
+                <% if @confirmation.return_ticket.path %>
+                  <h2 class="card-inside-title">Ganti Tiket Kepulangan Pesawat</h2>
+                  <a data-fancybox="gallery" href="<%= @confirmation.return_ticket.url %>" data-caption="Tiket Kepulangan Pesawat"><img src="<%= @confirmation.return_ticket.url %>" class="img-responsive col-sm-6 "></a>
+                  <%= f.file_field :return_ticket, placeholder:"Ganti Tiket Kepulangan Pesawat", class:"form-control", required:true%>
+                  <% else %>
+                <h2 class="card-inside-title">Upload Tiket Kepulangan Pesawat </h2>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.file_field :return_ticket, placeholder:"Upload Kepulangan Tiket Pesawat", class:"form-control", required:true%>
+                    </div>
+                </div>
+                <% end %>
+                              
+                <div class="clearfix m-t-20">
+                  <%= f.submit "KIRIM", class:"btn btn-primary waves-effect"%>
+                  <!-- <button class="btn btn-primary waves-effect" type="submit">KIRIM</button> -->
+                </div>
+            <% end %>
+              
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
