@@ -48,7 +48,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.boolean :complete
       t.integer :contest
       t.text :note
-      t.integer :skype_id
+      t.string :skype_id
       t.attachment :avatar    
       t.attachment :passport_image
 
