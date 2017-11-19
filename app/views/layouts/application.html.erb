@@ -36,16 +36,26 @@
 			<div class="overlay"></div>
 			<%= render "layouts/navbar" %>
 
-				<% if admin_signed_in? %>
-					<%= render "layouts/sidebar" %>
-				<% end %>
-					
+			<% if admin_signed_in? %>
+				<%= render "layouts/sidebar" %>
+			<% end %>
+			<section class="content">
+        <div class="container-fluid">
+          <div class="block-header">
+              <h2>DASHBOARD</h2>
+          </div>
+			  
+				  <div class="block-header">
+				    <h2>HOME</h2>
+				  </div>
 					<%= render  "layouts/flash_messages" %>
 		    	<%= yield %>
+	    	</div>
+    	</section>
 
-			<% else %>
-					<%= render "layouts/flash_messages" %>
-		    	<%= yield %>
+		<% else %>
+			<%= render "layouts/flash_messages" %>
+    	<%= yield %>
 		<% end %>
 	
 	<!-- MODAL -->

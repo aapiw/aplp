@@ -29,40 +29,5 @@
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="header">
-      <h2>Jadwal</h2>
-    </div>
-    <div class="body">
-      <div class="table-responsive">
-        <table class="table table-hover table-striped dashboard-task-infos">
-          
-          <tr>
-            <td>Mulai registrasi</td>
-            <td><%= @schedule.start_registration%></td>
-          </tr>
-          <tr>
-            <td>Selesai registrasi</td>
-            <td><%= @schedule.end_registration%></td>
-          </tr>
-          <tr>
-            <td>Mulai seleksi KBRI/KJRI</td>
-            <td><%= @schedule.start_consulate_selection %></td>
-          </tr>
-          <tr>
-            <td>Selesai seleksi KBRI/KJRI</td>
-            <td><%= @schedule.end_consulate_selection %></td>
-          </tr>
-          <tr>
-            <td>Mulai seleksi Pusat</td>
-            <td><%= @schedule.start_central_selection%></td>
-          </tr>
-          <tr>
-            <td>Selesai seleksi Pusat (pengumuman)</td>
-            <td><%= @schedule.end_central_selection%></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
+  <%= render "shared/schedule" %>
 </div>

@@ -77,7 +77,7 @@
                 <h2 class="card-inside-title">Ukuran Baju</h2>
                 <div class="form-group form-float">
                     <div class="form-line">
-                    <%= f.select(:dress_size, [ ["XS", "xs"],["S","s"],["M","m"],["L","l"],["XL","xl"], ["XXL","xxl" ] ], {include_blank: 'Pilih Ukuran'}, class:"form-control form-control--z-5 show-tick", required:true) %>
+                    <%= f.select(:dress_size, [ ["XS", "xs"],["S","s"],["M","m"],["L","l"],["XL","xl"], ["XXL","xxl" ] ], {}, class:"form-control form-control--z-5 show-tick", required:true, "data-title": "Pilih Ukuran") %>
                     </div>
                 </div>
                 

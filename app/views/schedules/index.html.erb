@@ -1,37 +1,64 @@
-<p id="notice"><%= notice %></p>
+<div class="row clearfix">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    EDIT JADWAL
+                </h2>
+            </div>
+            <div class="body">
+              <h2 class="card-inside-title">Mulai registrasi</h2>
+              <%= form_for(@schedule) do |f| %>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.text_field :start_registration, value:I18n.l(@schedule.start_registration, format: :long), class: "form-control datepicker"%>
+                    </div>
+                </div>
+                <h2 class="card-inside-title">Selesai registrasi</h2>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.text_field :end_registration, value:I18n.l(@schedule.end_registration, format: :long), class: "form-control datepicker"%>
+                        
+                    </div>
+                </div>
+                <h2 class="card-inside-title">Mulai seleksi KBRI/KJRI</h2>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.text_field :start_consulate_selection,value:I18n.l(@schedule.start_consulate_selection , format: :long), class: "form-control datepicker"%>
+                        
+                    </div>
+                </div>
+                <h2 class="card-inside-title">Selesai seleksi KBRI/KJRI</h2>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.text_field :end_consulate_selection, value:I18n.l(@schedule.end_consulate_selection , format: :long), class: "form-control datepicker"%>
+                        
+                    </div>
+                </div>
+                <h2 class="card-inside-title">Mulai seleksi Pusat</h2>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.text_field :start_central_selection , value:I18n.l(@schedule.start_central_selection, format: :long), class: "form-control datepicker"%>
+                        
+                    </div>
+                </div>
+                <h2 class="card-inside-title">Selesai seleksi Pusat (pengumuman)</h2>
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.text_field :end_central_selection, value:I18n.l(@schedule.end_central_selection, format: :long), class: "form-control datepicker"%>
+                        
+                    </div>
+                </div>
+              <%= f.submit "SIMPAN", class: "btn btn-primary waves-effect"%>
+              <!-- <button class="btn btn-primary waves-effect" type="submit">SIMPAN</button> -->
+            <% end %>
+          </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <%= render "shared/schedule" %>
+   </div>
 
-<h1>Schedules</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Year</th>
-      <th>Start registration</th>
-      <th>End registration</th>
-      <th>Start central selection</th>
-      <th>Start consulate selection</th>
-      <th>End consulate selection</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @schedules.each do |schedule| %>
-      <tr>
-        <td><%= schedule.year %></td>
-        <td><%= schedule.start_registration %></td>
-        <td><%= schedule.end_registration %></td>
-        <td><%= schedule.start_central_selection %></td>
-        <td><%= schedule.start_consulate_selection %></td>
-        <td><%= schedule.end_consulate_selection %></td>
-        <td><%= link_to 'Show', schedule %></td>
-        <td><%= link_to 'Edit', edit_schedule_path(schedule) %></td>
-        <td><%= link_to 'Destroy', schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Schedule', new_schedule_path %>
+</div><!-- ROW -->

@@ -7,6 +7,22 @@ function js_remove_wrap(){
 // $(function () {
 $(document).ready(function() {
   // USERS
+  $('.js-editable').editableTableWidget();
+
+  $('.js-data-table').DataTable({
+      responsive: true
+  });
+
+  //Exportable table
+  $('.js-data-table-export').DataTable({
+      dom: 'lBfrtip',
+      // lengthMenu: [ 10, 25, 50, 75, 100 ],
+      responsive: true,
+      buttons: [
+          'copy', 'csv', 'excel', 'pdf', 'print'
+      ]
+  });
+
   if ($('.datepicker').length || $('.timepicker').length) {
     $('.datepicker').bootstrapMaterialDatePicker({
       format: 'DD MMMM YYYY',

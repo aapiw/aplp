@@ -1,9 +1,7 @@
-<p id="notice"><%= notice %></p>
+<div class="header">
+  <h2>
+    <%= link_to 'Back', landings_path, class:"btn btn-default waves-effect" %>
+  </h2>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @landing.title %>
-</p>
-
-<%= link_to 'Edit', edit_landing_path(@landing) %> |
-<%= link_to 'Back', landings_path %>
+<%= render "index" %>

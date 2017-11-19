@@ -37,6 +37,17 @@
 // require plugin/sweetalert.min
 // require sweet-alert
 // require sweet-alert-confirm
+//= require plugin/dataTable/jquery.dataTables
+//= require plugin/dataTable/dataTables.bootstrap.min
+//= require plugin/dataTable/dataTables.buttons.min
+//= require plugin/dataTable/buttons.flash.min
+//= require plugin/dataTable/jszip.min
+//= require plugin/dataTable/pdfmake.min
+//= require plugin/dataTable/vfs_fonts
+//= require plugin/dataTable/buttons.html5.min
+//= require plugin/dataTable/buttons.print.min
+//= require plugin/mindmup-editabletable
+
 //= require custom
 
 // require_tree .

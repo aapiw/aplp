@@ -60,7 +60,7 @@
                   <div class="form-group">
                     <div class="input-group form-float">
                       <div class="form-line">
-                        <%= f.select(:country_id, Country.all.collect {|c| [ c.name, c.id ] }, {include_blank: 'Pilih Negara'}, class:"form-control form-control--z-5 show-tick", required:true) %>
+                        <%= f.select(:country_id, Country.all.collect {|c| [ c.name, c.id ] }, {}, class:"form-control form-control--z-5 show-tick", required:true, "data-title":"Pilih Negara") %>
                       </div>
                     </div>
                   </div>
@@ -68,7 +68,7 @@
                   <div class="form-group">
                     <div class="input-group form-float">
                       <div class="form-line " id="consulates_lists">
-                        <%= f.select(:admin_id, Country.all.collect {|c| [ c.name, c.id ] }, {include_blank: 'Pilih KBRI'}, class:"form-control form-control--z-4 show-tick", required:true) %>
+                        <%= f.select(:admin_id, Country.all.collect {|c| [ c.name, c.id ] }, {}, class:"form-control form-control--z-4 show-tick", required:true, "data-title":"Pilih KBRI") %>
                       </div>
                     </div>
                   </div>
@@ -153,7 +153,7 @@
                           </div>
                           <div class="col-xs-6">
                             <div class="form-line">
-                                <%= ff.select(:unit, [["Hari","hari"], ["Bulan","bulan"], ["Tahun","tahun"]], {include_blank: 'Pilih Satuan'}, class:"form-control form-control--z-5 show-tick", required:true) %>
+                                <%= ff.select(:unit, [["Hari","hari"], ["Bulan","bulan"], ["Tahun","tahun"]], {}, class:"form-control form-control--z-5 show-tick", required:true, "data-title":"Pilih Satuan") %>
                             </div>
 
                             <%= link_to 'Hapus Kunjungan', to_indonesia_path(ff.object), class:"pull-right m-t-15 btn btn-danger waves-effect", data:{confirm: 'Kamu yakin?' }, :method => :delete %>
@@ -211,7 +211,7 @@
                           </div>
                           <div class="col-xs-6">
                             <div class="form-line">
-                              <%= ff.select(:unit, [["Hari","hari"], ["Bulan","bulan"], ["Tahun","tahun"]], {include_blank: 'Pilih Satuan'}, class:"form-control form-control--z-5 show-tick", required:true) %>
+                              <%= ff.select(:unit, [["Hari","hari"], ["Bulan","bulan"], ["Tahun","tahun"]], {}, class:"form-control form-control--z-5 show-tick", required:true, "data-title":"Pilih Satuan") %>
                             </div>
                             <%= link_to 'Hapus Kursus', bipa_course_path(ff.object), class:"pull-right m-t-15 btn btn-danger waves-effect",
                              data:{confirm: 'Kamu yakin?' }, :method => :delete %>

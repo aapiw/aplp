@@ -45,6 +45,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'sweet-alert'
 # gem 'sweet-alert-confirm'
 
+# Localization to ID
+gem 'rails-i18n', '~> 5.0.0'
+
 #Authenticable
 gem 'devise', '~> 4.3'
 

@@ -136,8 +136,27 @@ Rails.application.routes.draw do
   # eg. http://localhost:3000/admins/sign_in
   
   namespace :admins do
-    resources :dashboard
+    resources :dashboard do
+      member do
+        post :confirm
+        post :lock
+        post :win
+      end
+      # collection do
+      #     get :landings
+      # end
+    end
   end
+
+  scope module: 'admins/dashboard' do
+    # get :landings, as: :admins_landings
+    get :consulates
+    post :create_consulate
+  end
+  
+  patch "update_consulate/:id", to: "admins/dashboard#update_consulate", as: :update_consulate
+  get "edit_consulate/:id", to: "admins/dashboard#edit_consulate", as: :edit_consulate
+  delete "destroy_consulate/:id", to: "admins/dashboard#destroy_consulate", as: :destroy_consulate
 
   namespace :users do
     resources :dashboard

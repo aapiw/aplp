@@ -1,73 +1,86 @@
 class LandingsController < ApplicationController
-  before_action :set_landing, only: [:show, :edit, :update, :destroy]
+  before_action :set_landing, only: [:show, :edit, :update]
   skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_admin!, only: :index
 
-  before_action :set_class
+
+  before_action :set_class, only:[:index]
 
   # GET /landings
   # GET /landings.json
   def index
-    # @landings = Landing.all
+    @landing = Landing.last
+    if @admin
+      render "admin_landing"
+    end
   end
+
+  # def dashboard_landing
+  #   @landing = Landing.last
+  # end
 
   # GET /landings/1
   # GET /landings/1.json
-  def show
-  end
+  # def show
+  # end
 
   # GET /landings/new
-  def new
-    @landing = Landing.new
-  end
+  # def new
+  #   @landing = Landing.new
+  # end
 
   # GET /landings/1/edit
   def edit
+    @admin = current_admin
   end
 
   # POST /landings
   # POST /landings.json
-  def create
-    @landing = Landing.new(landing_params)
+  # def create
+  #   @landing = Landing.new(landing_params)
 
-    respond_to do |format|
-      if @landing.save
-        format.html { redirect_to @landing, notice: 'Landing was successfully created.' }
-        format.json { render :show, status: :created, location: @landing }
-      else
-        format.html { render :new }
-        format.json { render json: @landing.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @landing.save
+  #       format.html { redirect_to @landing, notice: 'Landing was successfully created.' }
+  #     else
+  #       format.html { render :new }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /landings/1
   # PATCH/PUT /landings/1.json
   def update
     respond_to do |format|
       if @landing.update(landing_params)
-        format.html { redirect_to @landing, notice: 'Landing was successfully updated.' }
-        format.json { render :show, status: :ok, location: @landing }
+        format.html { redirect_to landing_path, notice: 'Halaman Awal berhasil dirubah' }
       else
-        format.html { render :edit }
-        format.json { render json: @landing.errors, status: :unprocessable_entity }
+        format.html { render :index, alert: 'Halaman Awal berhasil dirubah' }
       end
     end
   end
 
   # DELETE /landings/1
   # DELETE /landings/1.json
-  def destroy
-    @landing.destroy
-    respond_to do |format|
-      format.html { redirect_to landings_url, notice: 'Landing was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @landing.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to landings_url, notice: 'Landing was successfully destroyed.' }
+  #   end
+  # end
 
   private
     
+    def set_landing
+      @landing = Landing.find(params["id"])
+    end
+
     def set_class
-      @body_class = "four-zero-four"
+      @body_class = "#{@admin ? 'landing' : 'four-zero-four'}"
+    end
+
+    def landing_params
+      params.require(:landing).permit(:title)
     end
 
 end

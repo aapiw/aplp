@@ -15,6 +15,6 @@
 #
 
 class Schedule < ApplicationRecord
-	validates_presence_of :year, :start_registration, :end_registration, :start_central_selection, :start_consulate_selection,
+	validates_presence_of :year, :start_registration, :end_registration, :start_central_selection, :end_central_selection, :start_consulate_selection,
 												:end_consulate_selection
 end

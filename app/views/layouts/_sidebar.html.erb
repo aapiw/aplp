@@ -2,16 +2,22 @@
 <aside id="leftsidebar" class="sidebar">
     <!-- User Info -->
     <div class="user-info">
-        <div class="image">
-            <img src="images/user.png" width="48" height="48" alt="User" />
+        <div class="image profile">
+            <span>A</span>
+            <!-- <img src="images/user.png" width="48" height="48" alt="User" /> -->
         </div>
         <div class="info-container">
             <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</div>
-            <div class="email">Admin Pusat</div>
+            <div class="email"><%= @admin.name %></div>
             <div class="btn-group user-helper-dropdown">
                 <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                 <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
+                    <li>
+                    <%= link_to destroy_admin_session_path, method: :delete, class: "waves-effect waves-block" do %>
+                        <i class="material-icons">input</i>
+                        Keluar
+                    <% end %>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -22,31 +28,31 @@
         <ul class="list">
             <li class="header">MAIN NAVIGATION</li>
             <li class="active">
-                <a href="admin.html">
+                <a href="<%= admin_root_path %>">
                     <i class="material-icons">home</i>
                     <span>Home</span>
                 </a>
             </li>
             <li class="">
-                <a href="jadwal.html">
+                <a href="<%= schedules_path %>">
                     <i class="material-icons">perm_contact_calendar</i>
                     <span>Jadwal</span>
                 </a>
             </li>
             <li class="">
-                <a href="negara.html">
+                <a href="<%= countries_path %>">
                     <i class="material-icons">public</i>
                     <span>Negara</span>
                 </a>
             </li>
             <li class="">
-                <a href="kbri-kjri.html">
+                <a href="<%= consulates_path %>">
                     <i class="material-icons">domain</i>
                     <span>KBRI/KJRI</span>
                 </a>
             </li>
             <li class="">
-                <a href="landing.html">
+                <a href="<%= landings_path %>">
                     <i class="material-icons">pages</i>
                     <span>HALAMAN AWAL</span>
                 </a>

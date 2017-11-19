@@ -20,7 +20,7 @@ annotate --routes --delete
 
 
 - satu kbri/kjri bisa punya banyak country
-- satu country bisa punya banyak kbri/kjri
+- satu country bisa punya banyak  kbri/kjri
 - satu pengguna cuma punya satu country
 
 - User cuma bisa ikut satu lomba, ditentukan oleh kbri/kjri
@@ -35,7 +35,7 @@ annotate --routes --delete
 
 FEEDBACK
 Email admin yg di sidebar di hapus 
-tambah foto profile di profile user
+admin masuk ke user foto profile diliatin
 
 firefo
 Xvfb :99 & export DISPLAY=:99

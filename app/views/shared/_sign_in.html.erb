@@ -7,13 +7,17 @@
         <div class="body">
           <%= form_for(resource, as: resource_name, url: session_path(resource_name), html:{ id:"sign_in"}) do |f| %>
             <%= devise_error_messages! %>
-            <div class="msg">Silahkan login terlebih dahulu</div>
+            <div class="msg"><%= type == "user" ? "Silahkan login terlebih dahulu" : "Login sebagai Admin" %></div>
             <div class="input-group">
                 <span class="input-group-addon">
                     <i class="material-icons">person</i>
                 </span>
                 <div class="form-line">
+                <% if type.eql? "user" %>
                     <%= f.email_field :email, placeholder:"Email", class: "form-control", required:true, autofocus: true %>
+                <% else %>
+                    <%= f.text_field :username, placeholder:"Username", class: "form-control", required:true, autofocus: true %>
+                <% end %>
                 </div>
             </div>
             <div class="input-group">
@@ -24,20 +28,22 @@
                     <%= f.password_field :password, class: "form-control", placeholder: "Password", required:true, autocomplete: "off" %>
                 </div>
             </div>
-            <% if devise_mapping.rememberable? -%>
-              <div class="row">
-                  <div class="col-xs-8 p-t-5">
-                      <%= f.check_box :remember_me, id: "rememberme", class: "filled-in chk-col-pink"%>
-                      <label for="rememberme">Remember Me</label>
-                  </div>
-                  <div class="col-xs-4">
-                      <%= f.submit "LOG IN", class: "btn btn-block bg-pink waves-effect" %>
-                  </div>
-              </div>
-            <% end -%>
+              <% if devise_mapping.rememberable? -%>
+                <div class="row">
+                    <div class="col-xs-8 p-t-5">
+                        <%= f.check_box :remember_me, id: "rememberme", class: "filled-in chk-col-pink"%>
+                        <label for="rememberme">Remember Me</label>
+                    </div>
+                    <div class="col-xs-4">
+                        <%= f.submit "LOG IN", class: "btn btn-block bg-pink waves-effect" %>
+                    </div>
+                </div>
+              <% end -%>
 
           <% end %>
-            <%= render "users/shared/links" %>
+            <% if type.eql? "user" %>
+              <%= render "users/shared/links" %>
+            <% end %>
         </div>
     </div>
 </div>

@@ -1,32 +1,34 @@
-<%= form_with(model: country, local: true) do |form| %>
-  <% if country.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(country.errors.count, "error") %> prohibited this country from being saved:</h2>
-
-      <ul>
-      <% country.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="row clearfix">
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="header">
+        <h2>
+            TAMBAH NEGARA
+        </h2>
+      </div>
+      <div class="body">
+      <%= form_for(@country) do |f| %>
+        <div class="form-group form-float">
+          <div class="form-line">
+            <%= f.text_field :name, class:"form-control", required:true %>
+            <label for="" class="form-label">Nama Negara</label>
+          </div>
+        </div>
+        <div class="form-group form-float">
+          <div class="form-line">
+            <%= f.text_field :iso_code, class:"form-control", required:true %>
+            <label for="" class="form-label">Kode ISO</label>
+          </div>
+        </div>
+        <div class="form-group form-float">
+          <div class="form-line">
+            <%= f.text_field :country_code, class:"form-control", required:true %>
+            <label for="" class="form-label">Kode Negara</label>
+          </div>
+        </div>
+        <%= f.submit "Simpan", class:"btn btn-primary waves-effect" %>
       <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :country_name %>
   </div>
-
-  <div class="field">
-    <%= form.label :country_code %>
-    <%= form.text_field :country_code, id: :country_country_code %>
-  </div>
-
-  <div class="field">
-    <%= form.label :iso_code %>
-    <%= form.text_field :iso_code, id: :country_iso_code %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

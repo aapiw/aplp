@@ -4,17 +4,17 @@ class SchedulesController < ApplicationController
   # GET /schedules
   # GET /schedules.json
   def index
-    @schedules = Schedule.all
+    @schedule = Schedule.last
   end
 
   # GET /schedules/1
   # GET /schedules/1.json
-  def show
-  end
+  # def show
+  # end
 
   # GET /schedules/new
   def new
-    @schedule = Schedule.new
+    # @schedule = Schedule.new
   end
 
   # GET /schedules/1/edit
@@ -42,11 +42,11 @@ class SchedulesController < ApplicationController
   def update
     respond_to do |format|
       if @schedule.update(schedule_params)
-        format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
-        format.json { render :show, status: :ok, location: @schedule }
+        format.html { redirect_to schedules_path, notice: 'Jadwal berhasil diperbaharui.' }
+        # format.json { render :show, status: :ok, location: @schedule }
       else
         format.html { render :edit }
-        format.json { render json: @schedule.errors, status: :unprocessable_entity }
+        # format.json { render json: @schedule.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -47,6 +47,30 @@ body:not(.ls-closed) .content.content-full{
 ul{
 	padding-left: 15px;
 }
+.profile{
+	border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  text-align: center;
+  // background: #fff;
+  background: #2196f3;
+  span{
+  	font-size: 25px;
+  	font-weight: 900;
+  	line-height: 40px;
+  	color:#fff;
+  }
+  &--user{
+	  float: left;
+	  margin-right: 8px;
+  }
+}
+section.content{
+	margin-top: 0px;
+}
 // .modal-view{
 // 	width: 100%;
 // 	max-width: 700px;
@@ -63,3 +87,6 @@ ul{
 // 		margin: auto;
 // 	}
 // }
+.bootstrap-select .bs-searchbox .form-control, .bootstrap-select .bs-actionsbox .form-control, .bootstrap-select .bs-donebutton .form-control{
+	margin-left: 40px;
+}

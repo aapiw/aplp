@@ -1,5 +1,5 @@
 <nav class="navbar">
-    <div class="container">
+    <div class="<%= current_admin ? 'container-fluid' : 'container' %> ">
         <div class="navbar-header">
             <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
             <a href="javascript:void(0);" class="bars"></a>
@@ -24,8 +24,9 @@
             </li>
             <li class="dropdown">
               <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" style="    margin-top: 8px;">
-                <img src="<%= asset_path('profil-dummy')%>" width="40" height="40" alt="User" style="border-radius:50%;">
-                John Doe
+                <div class="profile profile-user" style="background-image:url(<%= current_user.avatar.path ? current_user.avatar.url : asset_path('profil-dummy')%>)">
+                </div>
+                <%= current_user.name %>
                 <i class="material-icons" style="position: relative;top: 7px;">keyboard_arrow_down</i>
               </a>
               <ul class="dropdown-menu">

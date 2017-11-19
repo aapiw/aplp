@@ -1,0 +1,19 @@
+<div class="four-zero-four-container container text-center">
+    <h1 style="margin-bottom: 30px"><%= @landing.title %></h1>
+    <div class="row">
+        <div class="col-xs-12" style="height: 350px">
+                <img src="<%= asset_path('kemdikbud_logo') %>" width="250" alt="">
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-xs-12 error-message">
+        <h3>Pendaftaran belum dibuka</h3></div>
+        <div class="">
+            <a href="<%= new_user_session_path  %>" class="btn btn-default btn-lg waves-effect m-t-30" >LOGIN</a><!-- disabled --> 
+            <a href="<%= new_user_registration_path  %>" class="btn btn-default btn-lg waves-effect m-t-30">DAFTAR</a>
+        </div>
+        
+    </div>
+</div>
+<!-- <iframe src="http://localhost:3000/landings" frameborder="0"></iframe> -->

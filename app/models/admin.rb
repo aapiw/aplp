@@ -25,18 +25,18 @@ class Admin < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:username]
   
   # validates :email, format: false
   validates :username, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }
-
   validates_presence_of :name, :role
 
   has_many :users
   has_and_belongs_to_many :countries
-  
+
   enum role: [ :admin, :consulate ]
 
+  scope :consulates, -> { where(role: "consulate") }
 
 	class << self
 	  def total_countries_admins

@@ -1,0 +1,54 @@
+<div class="row clearfix">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="header">
+        <h2>
+            LIST KBRI/KJRI 
+        </h2>
+      </div>
+      <div class="body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-hover dataTable js-data-table-export">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Negara</th>
+                <th>Email</th>
+                <th>Kontak</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tfoot>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>Negara</th>
+              <th>Email</th>
+              <th>Kontak</th>
+              <th width="120">Aksi</th>
+            </tr>
+            </tfoot>
+            <tbody>
+            <% @consulates.each_with_index do |consulate, index| %>
+              <tr>
+                <td><%= index+1%></td>
+                <td><%= consulate.name %></td>
+                <td><%= consulate.countries.pluck(:name).to_sentence %></td>
+                <td><%= consulate.email %></td>
+                <td><%= consulate.contact %></td>
+                <td>
+                <%= link_to "Edit", edit_consulate_path(consulate), class:"btn bg-blue waves-effect" %>
+                <%= link_to "Hapus", destroy_consulate_path(consulate), method: :delete, class:"btn bg-blue waves-effect", data: { confirm: "Anda yakin ingin menghapus KBRI/KJRI #{ consulate.name }" } %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ROW -->
+<%= render partial: "consulate_form", locals:{ path: create_consulate_path, action: "index"} %>

@@ -38,7 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :id_reg
       t.string :passport, unique: true 
       t.date :passport_expire
-      t.date :dob
+      t.string :dob
       t.string :campus
       t.string :majors
       t.string :phone

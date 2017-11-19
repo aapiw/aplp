@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="header">
+    <h2>Jadwal</h2>
+  </div>
+  <div class="body">
+    <div class="table-responsive">
+      <table class="table table-hover table-striped dashboard-task-infos">
+        <tr>
+          <td>Mulai registrasi</td>
+          <td>
+            <%= I18n.l(@schedule.start_registration, format: :long) %>
+          </td>
+        </tr>
+        <tr>
+          <td>Selesai registrasi</td>
+          <td>
+            <%= I18n.l(@schedule.end_registration, format: :long)%>
+          </td>
+        </tr>
+        <tr>
+          <td>Mulai seleksi KBRI/KJRI</td>
+          <td>
+            <%= I18n.l(@schedule.start_consulate_selection , format: :long)%>
+          </td>
+        </tr>
+        <tr>
+          <td>Selesai seleksi KBRI/KJRI</td>
+          <td>
+            <%= I18n.l(@schedule.end_consulate_selection , format: :long)%>
+          </td>
+        </tr>
+        <tr>
+          <td>Mulai seleksi Pusat</td>
+          <td>
+            <%= I18n.l(@schedule.start_central_selection, format: :long)%>
+          </td>
+        </tr>
+        <tr>
+          <td>Selesai seleksi Pusat (pengumuman)</td>
+          <td>
+            <%= I18n.l(@schedule.end_central_selection, format: :long)%>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

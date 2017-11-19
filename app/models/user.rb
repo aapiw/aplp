@@ -62,8 +62,6 @@ class User < ApplicationRecord
 
 	has_many :to_indonesias, dependent: :destroy
 	has_many :bipa_courses, dependent: :destroy
-
-	accepts_nested_attributes_for :to_indonesias, :bipa_courses, allow_destroy: true, reject_if: :all_blank
 	
 	has_one :confirmation, dependent: :destroy
 	has_one :score, dependent: :destroy
@@ -71,18 +69,20 @@ class User < ApplicationRecord
 	belongs_to :admin
 	belongs_to :country
 
+	accepts_nested_attributes_for :to_indonesias, :bipa_courses, allow_destroy: true, reject_if: :all_blank
+	
 	enum gender: [ :lk, :pr]
 
 	validates_presence_of :name, :country_id, :gender, :passport, :passport_expire, :dob,
 												:campus, :majors, :phone, :profession, :lock, :avatar, :passport, if: :submit_profile
 
 	validates_presence_of	:win, if: :contest
-
 	validates :passport, uniqueness: true
 	validates :id_reg, uniqueness: true
-
 	validate :locked_form, on: :update
 	 
+	scope :completes, -> { where(complete: true) }
+
 	
 	after_create :create_id_reg
 
@@ -101,6 +101,29 @@ class User < ApplicationRecord
 			"<span class='label bg-pink'>Masa Pendaftaran</span>".html_safe
 		end
 	end
+
+	def status_akun
+		if confirmed? == true
+			"<span class='label bg-green'>Aktif</span>".html_safe
+		else
+			"<span class='label bg-pink'>Belum Aktif</span>".html_safe
+		end
+	end
+
+	def gender_print
+		gender == "lk" ? "Laki-Laki" : "Perempuan"
+	end
+	
+	def counting_age
+	  now = Time.now.to_date
+	  if self.dob.present?
+	    dob = self.dob.to_date
+	    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+	  else
+	    ""
+	  end
+	end
+
 
 	protected
 

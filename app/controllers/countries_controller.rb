@@ -6,11 +6,7 @@ class CountriesController < ApplicationController
   # GET /countries.json
   def index
     @countries = Country.all
-  end
-
-  # GET /countries/1
-  # GET /countries/1.json
-  def show
+    @country = Country.new
   end
 
   # GET /countries/new
@@ -29,11 +25,9 @@ class CountriesController < ApplicationController
 
     respond_to do |format|
       if @country.save
-        format.html { redirect_to @country, notice: 'Country was successfully created.' }
-        format.json { render :show, status: :created, location: @country }
+        format.html { redirect_to countries_path, notice: "Negara #{@country.name} berhasil di tambahkan" }
       else
-        format.html { render :new }
-        format.json { render json: @country.errors, status: :unprocessable_entity }
+        format.html { render :index }
       end
     end
   end
@@ -43,11 +37,9 @@ class CountriesController < ApplicationController
   def update
     respond_to do |format|
       if @country.update(country_params)
-        format.html { redirect_to @country, notice: 'Country was successfully updated.' }
-        format.json { render :show, status: :ok, location: @country }
+        format.html { redirect_to countries_path, notice: "Negara berhasil di rubah." }
       else
-        format.html { render :edit }
-        format.json { render json: @country.errors, status: :unprocessable_entity }
+        format.html { render :index }
       end
     end
   end
@@ -57,7 +49,7 @@ class CountriesController < ApplicationController
   def destroy
     @country.destroy
     respond_to do |format|
-      format.html { redirect_to countries_url, notice: 'Country was successfully destroyed.' }
+      format.html { redirect_to countries_url, notice: "Negara #{@country.name} berhasil dihapus" }
       format.json { head :no_content }
     end
   end

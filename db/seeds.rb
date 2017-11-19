@@ -37,19 +37,21 @@ end
 
 # Just can running for the first
 #create consulate habtm countries
-kbrixls.each_row_streaming(offset: 1) do |row|
-	admin = Admin.find_by_username(row[5].value)
-	if admin
-			country = Country.find_by_name(row[2].value)
-		  if country
-				admin.countries << country
-				puts "admin.countries.count"
-				puts admin.countries.count
-			else
-				puts "country not found"
-		  end
-	else
-		puts "Username is blank"
+if Admin.where(role:"consulate").count < 1
+	kbrixls.each_row_streaming(offset: 1) do |row|
+		admin = Admin.find_by_username(row[5].value)
+		if admin
+				country = Country.find_by_name(row[2].value)
+			  if country
+					admin.countries << country
+					puts "admin.countries.count"
+					puts admin.countries.count
+				else
+					puts "country not found"
+			  end
+		else
+			puts "Username is blank"
+		end
 	end
 end
 # END
@@ -60,6 +62,22 @@ Schedule.find_or_create_by(year:"2018", start_registration:Time.now.next_year,
 													end_consulate_selection:Time.now.next_year.next_month.next_week.next_month,
 													start_central_selection:Time.now.next_year.next_month.next_week.next_month,
 													end_central_selection:Time.now.next_year.next_month.next_month.next_month )
+
+if Admin.where(role:"admin").count < 1
+	adm = Admin.new
+	adm.username = ENV["APLP_ADMIN"]
+	adm.password = ENV["APLP_PASSWORD"]
+	adm.password_confirmation = ENV["APLP_PASSWORD"]
+	adm.name = "Admin Pusat"
+	adm.role = "admin"
+	adm.save
+end
+
+if Landing.count < 1
+	Landing.find_or_create_by(title:"Selamat datang di aplikasi APLP 2017 Atdikud Kemendikbud RI")
+end
+
+# Admin.find_or_create_by(username:"admin_aplp", password:"admin_aplp_2018!", password_confirmation:"admin_aplp_2018!", name:"Admin Pusat", role:"admin")
 
 if Rails.env.staging? or Rails.env.development?
 	puts 'start development seed'
