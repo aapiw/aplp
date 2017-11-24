@@ -38,20 +38,19 @@
 
 			<% if admin_signed_in? %>
 				<%= render "layouts/sidebar" %>
+				<section class="content">
+	        <div class="container-fluid">
+
+						<%= render  "layouts/flash_messages" %>
+			    	<%= yield %>
+		    	</div>
+	    	</section>
+    	<% else %>
+				<section class="container container-user ">
+						<%= render  "layouts/flash_messages" %>
+			    	<%= yield %>
+	    	</section>
 			<% end %>
-			<section class="content">
-        <div class="container-fluid">
-          <div class="block-header">
-              <h2>DASHBOARD</h2>
-          </div>
-			  
-				  <div class="block-header">
-				    <h2>HOME</h2>
-				  </div>
-					<%= render  "layouts/flash_messages" %>
-		    	<%= yield %>
-	    	</div>
-    	</section>
 
 		<% else %>
 			<%= render "layouts/flash_messages" %>

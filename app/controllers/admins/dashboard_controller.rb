@@ -1,6 +1,10 @@
 class Admins::DashboardController < ApplicationController
-	before_action :set_var, only: [:show, :edit, :update, :destroy, :index]
+	# load_and_authorize_resource
+
+	before_action :set_var, only: [:show, :edit, :update, :index]
 	before_action :set_var_consulate, only: [:edit_consulate, :update_consulate, :destroy_consulate ]
+	before_action :set_user, only: [:update_user, :confirm, :destroy]#:destroy, :contest, :lock, :activate]
+
 
 	def index
 		# flash.clear
@@ -18,14 +22,6 @@ class Admins::DashboardController < ApplicationController
 		
 	end
 
-	def destroy
-	  @user.destroy
-	  respond_to do |format|
-	    format.html { redirect_to admin_root_path }
-	    debugger
-	     flash["notice"] = "User dengan id #{@user.id_reg} berhasil dihapus"
-	  end
-	end
 	# def edit
 	# end
 
@@ -81,15 +77,76 @@ class Admins::DashboardController < ApplicationController
 		end
 	end
 
+	def destroy
+	  @user.destroy
+	  respond_to do |format|
+	    format.html { redirect_to admin_root_path }
+	     flash["notice"] = "User dengan id #{@user.id_reg} berhasil dihapus"
+	  end
+	end
 
+	def confirm
+		if @user.confirm
+			redirect_to admins_dashboard_path(@user)
+		  flash["notice"] = "User berhasil dirubah"
+		else
+			redirect_to admins_dashboard_path(@user)
+		  flash["alert"] = "User gagal dirubah"
+		end
+	end
+
+	def update_user
+		# debugger
+		if @user.update(dashboard_params)
+			redirect_to admins_dashboard_path(@user)
+		  flash["notice"] = "User berhasil dirubah"
+		else
+			redirect_to admins_dashboard_path(@user)
+		  flash["alert"] = "User gagal dirubah"
+		end
+	end
+	# def contest
+	# 	if @user.update(dashboard_params)
+	# 		redirect_to admins_dashboard_path(@user)
+	# 	  flash["notice"] = "User berhasil dirubah"
+	# 	else
+	# 		redirect_to admins_dashboard_path(@user)
+	# 	  flash["alert"] = "User berhasil dirubah"
+	# 	end
+	# end
+
+	# def lock
+	# 	if @user.update(dashboard_params)
+	# 		redirect_to admins_dashboard_path(@user)
+	# 	  flash["notice"] = "User berhasil dirubah"
+	# 	else
+	# 		redirect_to admins_dashboard_path(@user)
+	# 	  flash["alert"] = "User gagal dirubah"
+	# 	end
+	# end
+
+	# def activate
+	# 	if @user.update(dashboard_params)
+	# 		redirect_to admins_dashboard_path(@user)
+	# 	  flash["notice"] = "User berhasil dirubah"
+	# 	else
+	# 		redirect_to admins_dashboard_path(@user)
+	# 	  flash["alert"] = "User gagal dirubah"
+	# 	end
+	# end
 
 	private
 	
+	def set_user
+		@user = User.find(params[:id])
+	end
+
 	def set_var
 		@schedule = Schedule.last
 		@admin = current_admin
 	  @user = User.find(params[:id]) if params[:id] #and params[:id].to_i > 0
 	  @countries = Country.all
+	  @score = @user.score if @user
 	end
 	
 	def set_var_consulate
@@ -98,7 +155,7 @@ class Admins::DashboardController < ApplicationController
 	end
 
 	def dashboard_params
-	  params.require(:user).permit( :name, :country_id, :gender, :passport, :passport_expire, :dob, :admin_id, :skype_id,
+	  params.require(:user).permit( :name, :country_id, :gender, :passport, :passport_expire, :dob, :admin_id, :skype_id, :contest, :win,
 																	:campus, :majors, :phone, :profession, :lock, :note, :avatar, :passport_image, :complete, :submit_profile,
 																	to_indonesias_attributes: [:id, :destination, :long, :unit, :_destroy],
 																	bipa_courses_attributes: [:id, :location, :long, :unit, :_destroy] )

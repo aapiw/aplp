@@ -138,9 +138,11 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :dashboard do
       member do
-        post :confirm
-        post :lock
-        post :win
+        patch :update_user
+        get :confirm
+        # patch :lock
+        # patch :win
+        # patch :contest
       end
       # collection do
       #     get :landings

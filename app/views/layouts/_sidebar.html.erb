@@ -27,36 +27,45 @@
     <div class="menu">
         <ul class="list">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="active">
-                <a href="<%= admin_root_path %>">
-                    <i class="material-icons">home</i>
-                    <span>Home</span>
-                </a>
-            </li>
-            <li class="">
-                <a href="<%= schedules_path %>">
-                    <i class="material-icons">perm_contact_calendar</i>
-                    <span>Jadwal</span>
-                </a>
-            </li>
-            <li class="">
-                <a href="<%= countries_path %>">
-                    <i class="material-icons">public</i>
-                    <span>Negara</span>
-                </a>
-            </li>
-            <li class="">
-                <a href="<%= consulates_path %>">
-                    <i class="material-icons">domain</i>
-                    <span>KBRI/KJRI</span>
-                </a>
-            </li>
-            <li class="">
-                <a href="<%= landings_path %>">
-                    <i class="material-icons">pages</i>
-                    <span>HALAMAN AWAL</span>
-                </a>
-            </li>
+            <%if @admin.consulate? %>
+                <li class="<%= active_class(admin_root_path, admins_dashboard_index_path) %>">
+                    <a href="<%= admin_root_path %>">
+                        <i class="material-icons">home</i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <% else %>
+                <li class="<%= active_class(admin_root_path, admins_dashboard_index_path) %>">
+                    <a href="<%= admin_root_path %>">
+                        <i class="material-icons">home</i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="<%= active_class(schedules_path) %>">
+                    <a href="<%= schedules_path %>">
+                        <i class="material-icons">perm_contact_calendar</i>
+                        <span>Jadwal</span>
+                    </a>
+                </li>
+                <li class="<%= active_class(countries_path) %>">
+                    <a href="<%= countries_path %>">
+                        <i class="material-icons">public</i>
+                        <span>Negara</span>
+                    </a>
+                </li>
+                <li class="<%= active_class(consulates_path) %>">
+                    <a href="<%= consulates_path %>">
+                        <i class="material-icons">domain</i>
+                        <span>KBRI/KJRI</span>
+                    </a>
+                </li>
+                <li class="<%= active_class(landings_path) %>">
+                    <a href="<%= landings_path %>">
+                        <i class="material-icons">pages</i>
+                        <span>HALAMAN AWAL</span>
+                    </a>
+                </li>
+            <% end %>
         </ul>
     </div>
     <!-- #Menu -->

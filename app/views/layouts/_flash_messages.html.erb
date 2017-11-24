@@ -1,8 +1,15 @@
-<div class="container-flash" style="margin: 60px 0;">
-	<!-- <div class="row"> -->
+<% if action_name ==  'index' and controller_name == 'landings'
+		klass  = 'container' 
+	else
+		klass = 'container-flash'
+	end 
+%>
+
+<%if flash.present? %>
+<!-- <div class=" "> -->
 		<% flash.each do |key, value| %>
 		<% color = {alert:"red", notice:"green" } %>
-			<div class="alert bg-<%=color[key.to_sym] %>">
+			<div class="<%=klass%> alert bg-<%=color[key.to_sym] %>">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
 			  <ul>
 			  <% if value.respond_to? :each %>
@@ -15,5 +22,5 @@
 			  </ul>
 			</div>
 		<% end %>
-	<!-- </div> -->
-</div>
+<!-- </div> -->
+<% end %>

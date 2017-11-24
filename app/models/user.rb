@@ -72,19 +72,21 @@ class User < ApplicationRecord
 	accepts_nested_attributes_for :to_indonesias, :bipa_courses, allow_destroy: true, reject_if: :all_blank
 	
 	enum gender: [ :lk, :pr]
+	# enum contest: [ :pidato, :bercerita]
+
 
 	validates_presence_of :name, :country_id, :gender, :passport, :passport_expire, :dob,
 												:campus, :majors, :phone, :profession, :lock, :avatar, :passport, if: :submit_profile
 
-	validates_presence_of	:win, if: :contest
+	# validates_presence_of	:win, if: :contest
 	validates :passport, uniqueness: true
 	validates :id_reg, uniqueness: true
-	validate :locked_form, on: :update
+	validate :locked_form, on: :update, if: :submit_profile
 	 
 	scope :completes, -> { where(complete: true) }
 
 	
-	after_create :create_id_reg
+	after_create :build_additional
 
   def locked_form
     if User.find(id).lock
@@ -127,9 +129,10 @@ class User < ApplicationRecord
 
 	protected
 
-	def create_id_reg
+	def build_additional
 		update_attributes(id_reg: "APLP-#{Time.now.strftime("%Y-%d-%m")}-#{id.to_s.rjust(4, '0')}")
+		score = self.build_score
+		score.save(validate:false)
 	end
-
 
 end

@@ -1,6 +1,6 @@
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
   <div class="thumbnail">
-    <a data-fancybox="gallery" href="<%= @user.avatar.url %>" data-caption="Profile"> <img src="<%= @user.avatar.path ? asset_path(@user.avatar.url) : asset_path('dummyuser')%>" alt="" class="img-responsive"></a>
+    <a data-fancybox="gallery" href="<%= @user.avatar.url if @user.avatar.path  %>" data-caption="Profile"> <img src="<%= @user.avatar.path ? asset_path(@user.avatar.url) : asset_path('dummyuser')%>" alt="" class="img-responsive"></a>
   </div>
   <div class="card">
     <div class="header">

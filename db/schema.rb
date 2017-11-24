@@ -115,7 +115,9 @@ ActiveRecord::Schema.define(version: 20171111001755) do
     t.decimal "sound"
     t.decimal "duration"
     t.decimal "showing"
-    t.integer "type"
+    t.decimal "media"
+    t.text "note"
+    t.integer "kind"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -162,7 +164,6 @@ ActiveRecord::Schema.define(version: 20171111001755) do
     t.boolean "win"
     t.boolean "lock"
     t.boolean "complete"
-    t.integer "contest"
     t.text "note"
     t.string "skype_id"
     t.string "avatar_file_name"

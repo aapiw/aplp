@@ -19,10 +19,15 @@
 #
 
 class Score < ApplicationRecord
+	attr_accessor :scoring
+	# attr_accessor :scoring_pidato
+
   belongs_to :user
 
-  validates_presence_of :plot, :content, :bahasa, :fluency, :interlude, :gesture, :sound, :duration, :showing, :type
-
-  enum type: [ :pidato, :cerita]
+  validates_presence_of :plot, :content, :fluency, :gesture, :sound, :duration, :media, :note, :kind, if: :scoring
+  validates_presence_of :bahasa, :interlude, if: ->  { scoring and kind == "pidato" }
+  validates_presence_of :showing, if: ->  { scoring and kind == "bercerita" }
+ 
+  enum kind: [ :pidato, :bercerita ]
 
 end

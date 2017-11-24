@@ -10,7 +10,9 @@ class CreateScores < ActiveRecord::Migration[5.1]
       t.decimal :sound
       t.decimal :duration
       t.decimal :showing
-      t.integer :type
+      t.decimal :media
+      t.text :note
+      t.integer :kind
       t.references :user, foreign_key: true
 
       t.timestamps

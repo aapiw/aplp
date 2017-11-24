@@ -37,23 +37,23 @@ end
 
 # Just can running for the first
 #create consulate habtm countries
-if Admin.where(role:"consulate").count < 1
-	kbrixls.each_row_streaming(offset: 1) do |row|
-		admin = Admin.find_by_username(row[5].value)
-		if admin
-				country = Country.find_by_name(row[2].value)
-			  if country
-					admin.countries << country
-					puts "admin.countries.count"
-					puts admin.countries.count
-				else
-					puts "country not found"
-			  end
-		else
-			puts "Username is blank"
-		end
+# if Admin.where(role:"consulate").count < 1
+kbrixls.each_row_streaming(offset: 1) do |row|
+	admin = Admin.find_by_username(row[5].value)
+	if admin
+			country = Country.find_by_name(row[2].value)
+		  if country
+				admin.countries << country
+				puts "admin.countries.count"
+				puts admin.countries.count
+			else
+				puts "country not found"
+		  end
+	else
+		puts "Username is blank"
 	end
 end
+# end
 # END
 
 Schedule.find_or_create_by(year:"2018", start_registration:Time.now.next_year,

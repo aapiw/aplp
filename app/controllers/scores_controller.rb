@@ -29,10 +29,8 @@ class ScoresController < ApplicationController
     respond_to do |format|
       if @score.save
         format.html { redirect_to @score, notice: 'Score was successfully created.' }
-        format.json { render :show, status: :created, location: @score }
       else
         format.html { render :new }
-        format.json { render json: @score.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +40,10 @@ class ScoresController < ApplicationController
   def update
     respond_to do |format|
       if @score.update(score_params)
-        format.html { redirect_to @score, notice: 'Score was successfully updated.' }
-        format.json { render :show, status: :ok, location: @score }
+        format.html { redirect_to admins_dashboard_path(@score.user), notice: "Lomba berhasil dirubah" }
       else
-        format.html { render :edit }
-        format.json { render json: @score.errors, status: :unprocessable_entity }
+        format.html { redirect_to admins_dashboard_path(@score.user), notice: "Lomba gagal dirubah" }
+        # format.html { render :edit }
       end
     end
   end
@@ -57,7 +54,6 @@ class ScoresController < ApplicationController
     @score.destroy
     respond_to do |format|
       format.html { redirect_to scores_url, notice: 'Score was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -69,6 +65,6 @@ class ScoresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def score_params
-      params.require(:score).permit(:plot, :content, :bahasa, :fluency, :interlude, :gesture, :sound, :duration, :showing, :type, :user_id)
+      params.require(:score).permit(:plot, :content, :bahasa, :fluency, :interlude, :gesture, :sound, :media, :duration, :showing, :user_id, :note, :kind, :scoring, :scoring_pidato, :scoring_bercerita)
     end
 end

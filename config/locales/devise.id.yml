@@ -6,7 +6,7 @@ id:
           attributes:
             email:
               taken: "sudah ada"
-            admin:
+            admin: 
               required: "harus di isi"
             country:
               required: "harus di isi"

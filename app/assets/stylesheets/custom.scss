@@ -31,6 +31,12 @@ body:not(.ls-closed) .content.content-full{
 		width: 100%;
 	}
 }
+
+.container-flash{
+	// margin: 50px 0;
+	margin:0 0 40px 0;
+}
+
 .lock{
 	div, input, a:not([data-fancybox=gallery]){
 		pointer-events:none;
@@ -51,11 +57,10 @@ ul{
 	border-radius: 50%;
   width: 40px;
   height: 40px;
-  background-size: cover;
+  background-size: cover !important;
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: top center !important;
   text-align: center;
-  // background: #fff;
   background: #2196f3;
   span{
   	font-size: 25px;
@@ -63,13 +68,16 @@ ul{
   	line-height: 40px;
   	color:#fff;
   }
-  &--user{
+  &-user{
+	  background: rgba(255,255,255,0.7);
 	  float: left;
 	  margin-right: 8px;
   }
 }
 section.content{
-	margin-top: 0px;
+}
+.container-user{
+	margin-top: 120px;
 }
 // .modal-view{
 // 	width: 100%;
@@ -89,4 +97,15 @@ section.content{
 // }
 .bootstrap-select .bs-searchbox .form-control, .bootstrap-select .bs-actionsbox .form-control, .bootstrap-select .bs-donebutton .form-control{
 	margin-left: 40px;
+}
+.bootstrap-select > select{
+	display: none !important;
+}
+.action-user-users{
+	form{
+		float: left;
+	}
+	.btn{
+		margin-right: 5px;
+	}
 }

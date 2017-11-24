@@ -46,7 +46,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.boolean :win
       t.boolean :lock
       t.boolean :complete
-      t.integer :contest
       t.text :note
       t.string :skype_id
       t.attachment :avatar    

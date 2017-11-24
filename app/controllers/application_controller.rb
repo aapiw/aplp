@@ -1,18 +1,18 @@
 class ApplicationController < ActionController::Base
+  # load_and_authorize_resource
+  
   protect_from_forgery with: :exception
   before_action :authenticate_user!, unless: :admin
   before_action :authenticate_admin!, unless: :user
   before_action :set_var
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # load_and_authorize_resource
 
   include ApplicationHelper
   
-  # Catch all CanCan errors and alert the user of the exception
-  # rescue_from CanCan::AccessDenied do | exception |
-  #   redirect_to root_url, allocation_generation: exception.message
-  # end
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
 
   def admin
       current_admin
