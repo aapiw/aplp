@@ -4,24 +4,28 @@ function js_remove_wrap(){
   });
 }
 
+$.action = {};
+$.action.tableDataTable = {
+  activate: function(){
+    $('.js-data-table-export').DataTable({
+        dom: 'lBfrtip',
+        // lengthMenu: [ 10, 25, 50, 75, 100 ],
+        responsive: true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+    $('.js-editable').editableTableWidget();
+
+    $('.js-data-table').DataTable({
+        responsive: true
+    });
+  }
+}
 // $(function () {
 $(document).ready(function() {
-  // USERS
-  $('.js-editable').editableTableWidget();
 
-  $('.js-data-table').DataTable({
-      responsive: true
-  });
-
-  //Exportable table
-  $('.js-data-table-export').DataTable({
-      dom: 'lBfrtip',
-      // lengthMenu: [ 10, 25, 50, 75, 100 ],
-      responsive: true,
-      buttons: [
-          'copy', 'csv', 'excel', 'pdf', 'print'
-      ]
-  });
+  $.action.tableDataTable.activate();
 
   if ($('.datepicker').length || $('.timepicker').length) {
     $('.datepicker').bootstrapMaterialDatePicker({
@@ -243,6 +247,35 @@ $(document).ready(function() {
   setTimeout(function() {
     $(".flash").hide();
   }, 10000);
+
+  $("#collapseFilter")
+  .on('hidden.bs.collapse', function (e) {
+    $("[href='#collapseFilter']").text("Tampilkan")
+      // console.log(e.currentTarget.id)
+  })
+  .on('shown.bs.collapse', function (e) {
+    $("[href='#collapseFilter']").text("Sembunyikan")
+  });
+
+
+  // $(".filters form").submit(function(event) {
+  $(".filters form").change(function(event) {
+
+    // $(this).submit();
+    // console.log(event)
+    // console.log(event.target)
+    // autocomplete="off"
+    // console.log( $(event.target).prop('autocomplete') == "off" );
+    if ( $(event.target).prop('autocomplete') != "off" ) {
+      $(this).find("[type='submit']").click();
+      $('#all_users .card').waitMe({
+        effect: 'facebook',
+        color: "#2196F3"
+      });
+    }
+
+    
+  });
 
   // $(".img-view").click(function(event) {
   //   /* Act on the event */

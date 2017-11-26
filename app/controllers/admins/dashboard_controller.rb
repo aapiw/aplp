@@ -1,5 +1,6 @@
 class Admins::DashboardController < ApplicationController
 	# load_and_authorize_resource
+	
 
 	before_action :set_var, only: [:show, :edit, :update, :index]
 	before_action :set_var_consulate, only: [:edit_consulate, :update_consulate, :destroy_consulate ]
@@ -13,6 +14,8 @@ class Admins::DashboardController < ApplicationController
 		@user_complite_count = User.completes.count
 		@country_count = Country.count
 		@consulate_count = Admin.consulates.count
+		@consulates =  Admin.where(role:"consulate")
+		@consulates = @consulates.collect {|c| [ c.name, c.id ] }
 	end
 	
 	def update
@@ -105,6 +108,30 @@ class Admins::DashboardController < ApplicationController
 		  flash["alert"] = "User gagal dirubah"
 		end
 	end
+
+	def filters
+		@users = User.where(nil)
+		params["filters"].each do |key, value|
+			
+			if ["true","false","nil"].include? value
+				value_edit = eval(value)
+				else
+				value_edit = value
+			end
+			# debugger
+	    @users = @users.public_send("search_#{key}", value_edit ) if value.present?
+	  end
+
+		# @users = User.filters(params["filters"])
+		# public_send
+		# params.slice(:year, :kind, :country, :consulate, :complete, :win)
+	end
+	
+	# def filtering_params(params)
+	#   params.slice(:year, :kind, :country, :consulate, :complete, :win)
+	# end
+
+
 	# def contest
 	# 	if @user.update(dashboard_params)
 	# 		redirect_to admins_dashboard_path(@user)

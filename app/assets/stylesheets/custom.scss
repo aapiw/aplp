@@ -109,3 +109,19 @@ section.content{
 		margin-right: 5px;
 	}
 }
+.container-landing-page{
+	h1{
+		margin-bottom: 30px;
+		line-height: 6rem;
+	}
+}
+.filters{
+	@media(min-width: 768px){
+		label{
+			width: 100%
+		}
+	}
+	.col-sm-10{
+		margin: 0 !important;
+	}
+}

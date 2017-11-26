@@ -1,6 +1,8 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   include Accessible
+
+  # load_and_authorize_resource
   
   skip_before_action :check_user, only: :destroy
   before_action :set_class

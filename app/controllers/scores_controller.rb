@@ -1,16 +1,18 @@
 class ScoresController < ApplicationController
+  # load_and_authorize_resource
+  
   before_action :set_score, only: [:show, :edit, :update, :destroy]
 
   # GET /scores
   # GET /scores.json
-  def index
-    @scores = Score.all
-  end
+  # def index
+  #   @scores = Score.all
+  # end
 
   # GET /scores/1
   # GET /scores/1.json
-  def show
-  end
+  # def show
+  # end
 
   # GET /scores/new
   def new
@@ -18,22 +20,22 @@ class ScoresController < ApplicationController
   end
 
   # GET /scores/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /scores
   # POST /scores.json
-  def create
-    @score = Score.new(score_params)
+  # def create
+  #   @score = Score.new(score_params)
 
-    respond_to do |format|
-      if @score.save
-        format.html { redirect_to @score, notice: 'Score was successfully created.' }
-      else
-        format.html { render :new }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @score.save
+  #       format.html { redirect_to @score, notice: 'Score was successfully created.' }
+  #     else
+  #       format.html { render :new }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /scores/1
   # PATCH/PUT /scores/1.json
@@ -42,7 +44,8 @@ class ScoresController < ApplicationController
       if @score.update(score_params)
         format.html { redirect_to admins_dashboard_path(@score.user), notice: "Lomba berhasil dirubah" }
       else
-        format.html { redirect_to admins_dashboard_path(@score.user), notice: "Lomba gagal dirubah" }
+        format.html { redirect_to admins_dashboard_path(@score.user), alert: "Lomba gagal dirubah" }
+        # format.html { render admins_dashboard_path(@score.user), alert: "Lomba gagal dirubah" }
         # format.html { render :edit }
       end
     end
@@ -50,12 +53,12 @@ class ScoresController < ApplicationController
 
   # DELETE /scores/1
   # DELETE /scores/1.json
-  def destroy
-    @score.destroy
-    respond_to do |format|
-      format.html { redirect_to scores_url, notice: 'Score was successfully destroyed.' }
-    end
-  end
+  # def destroy
+  #   @score.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to scores_url, notice: 'Score was successfully destroyed.' }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

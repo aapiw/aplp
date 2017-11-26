@@ -24,8 +24,8 @@
 class Admin < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:username]
+  devise :database_authenticatable, #:registerable, :recoverable,
+         :rememberable, :trackable, :validatable, authentication_keys: [:username]
   
   # validates :email, format: false
   validates :username, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }
@@ -44,6 +44,10 @@ class Admin < ApplicationRecord
 		end
 	end
 	
+  def admin?
+    true
+  end
+
   protected
   
 

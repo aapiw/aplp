@@ -44,8 +44,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :phone
       t.string :profession
       t.boolean :win
-      t.boolean :lock
-      t.boolean :complete
+      t.boolean :lock, default: false
+      t.boolean :complete, default: false
       t.text :note
       t.string :skype_id
       t.attachment :avatar    

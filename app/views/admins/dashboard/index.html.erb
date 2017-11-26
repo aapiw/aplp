@@ -51,101 +51,83 @@
 
             <div class="row clearfix">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="card">
+                        <div class="card filters">
                             <div class="header">
                                 <h2>FILTER</h2>
                             </div>
                             <div class="body">
-                                <div class="row">
-                                    <div class="col-sm-3 m-t-15">
-                                        <h5>Tahun</h5>
-                                        <input type="checkbox" id="md_checkbox_1" class="filled-in chk-col-blue">
-                                        <label for="md_checkbox_1">Semua</label>
-                                        <input type="checkbox" id="md_checkbox_2" class="filled-in chk-col-blue">
-                                        <label for="md_checkbox_2">2017</label>
-                                    </div>
-                                    <div class="col-sm-3 m-t-15">
-                                        <h5>Jenis Lomba</h5>
-                                        <input type="checkbox" id="md_checkbox_3" class="filled-in chk-col-blue">
-                                        <label for="md_checkbox_3">Semua</label>
-                                        <input type="checkbox" id="md_checkbox_4" class="filled-in chk-col-blue">
-                                        <label for="md_checkbox_4">Kosong</label>
-                                    </div>
-                                    <div class="col-sm-3 m-t-15">
-                                        <h5>Negara</h5>
-                                        <input type="checkbox" id="md_checkbox_5" class="filled-in chk-col-blue">
-                                        <label for="md_checkbox_5">Semua</label>
-                                        <input type="checkbox" id="md_checkbox_6" class="filled-in chk-col-blue">
-                                        <label for="md_checkbox_6">Kosong</label>
-                                    </div>
-                                    <div class="col-sm-3 m-t-15">
-                                        <h5>KBRI/KJRI</h5>
-                                        <input type="checkbox" id="md_checkbox_7" class="filled-in chk-col-blue">
-                                        <label for="md_checkbox_7">Semua</label>
-                                        <input type="checkbox" id="md_checkbox_8" class="filled-in chk-col-blue">
-                                        <label for="md_checkbox_8">Kosong</label>
-                                    </div>
-                                    <div class="col-sm-3 m-t-15">
-                                        <h5>Kelengkapan</h5>
-                                        <input type="checkbox" id="md_checkbox_10" class="filled-in chk-col-blue">
-                                        <label for="md_checkbox_10">Semua</label>
-                                        <input type="checkbox" id="md_checkbox_9" class="filled-in chk-col-blue">
-                                        <label for="md_checkbox_9">Kosong</label>
-                                    </div>
-                                    <div class="col-sm-3 m-t-15">
-                                        <h5>Kelulusan</h5>
-                                        <input type="checkbox" id="md_checkbox_11" class="filled-in chk-col-blue">
-                                        <label for="md_checkbox_11">Lulus</label>
-                                        <input type="checkbox" id="md_checkbox_12" class="filled-in chk-col-blue">
-                                        <label for="md_checkbox_12">Tidak Lulus</label>
-                                    </div>
+                            <a class="btn bg-blue waves-effect" role="button" data-toggle="collapse" href="#collapseFilter" aria-expanded="true" aria-controls="collapseFilter">Sembunyikan</a>
+                                <div class="row collapse in" id="collapseFilter" aria-expanded="true">
+                                <%#= form_tag(filters_admins_dashboard_path, remote: true) %>
+                                <form action="<%= filters_path %>" data-remote="true" method="post" >                                
+                                    <!-- <div class="col-sm-10"> -->
+                                        <div class="col-sm-2 m-t-15">
+                                            <h5>Tahun</h5>
+                                            <input name="filters[year]" checked value="" type="radio" class="with-gap" id="radio_5">
+                                            <label for="radio_5">Semua</label>
+                                            <input name="filters[year]" value="2017" type="radio" class="with-gap" id="radio_6">
+                                            <label for="radio_6">2017</label>
+                                            <input name="filters[year]" value="2018" type="radio" class="with-gap" id="radio_7">
+                                            <label for="radio_7">2018</label>
+
+                                        </div>
+                                        <div class="col-sm-2 m-t-15">
+                                            <h5>Jenis Lomba</h5>
+                                            <input name="filters[kind]" checked value="" type="radio" class="with-gap" id="radio_8">
+                                            <label for="radio_8">Semua</label>
+                                            <input name="filters[kind]" value="nil" type="radio" class="with-gap" id="radio_9">
+                                            <label for="radio_9">Kosong</label>
+                                            <input name="filters[kind]" value="pidato" type="radio" class="with-gap" id="radio_10">
+                                            <label for="radio_10">Pidato</label>
+                                            <input name="filters[kind]" value="bercerita" type="radio" class="with-gap" id="radio_11">
+                                            <label for="radio_11">Bercerita</label>
+                                        </div>
+                                        <div class="col-sm-2 m-t-15">
+                                            <h5>Negara</h5>
+                                            <div class="form-group">
+                                                <div class="input-group form-float">
+                                                    <div class="form-line">
+                                                        <%= select("filters", 'country', Country.all.collect {|c| [ c.name, c.id ] }, {include_blank: 'Semua Negara'}, class:"form-control form-control--z-5 show-tick", "data-live-search":true) %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 m-t-15">
+                                            <h5>KBRI/KJRI</h5>
+                                            <%= select("filters", "consulate", @consulates, {include_blank: 'Semua KBRI'}, class:'form-control form-control--z-4 show-tick', "data-live-search":true) %>
+                                        </div>
+                                        <div class="col-sm-2 m-t-15">
+                                            <h5>Kelengkapan</h5>
+                                            <input name="filters[complete]" checked value="" type="radio" class="with-gap" id="radio_12">
+                                            <label for="radio_12">Semua</label>
+                                            <input name="filters[complete]" value="true" type="radio" class="with-gap" id="radio_13">
+                                            <label for="radio_13">Lengkap</label>
+                                            <input name="filters[complete]" value="false" type="radio" class="with-gap" id="radio_14">
+                                            <label for="radio_14">Belum Lengkap</label>
+                                        </div>
+                                        <div class="col-sm-2 m-t-15">
+                                            <h5>Kelulusan</h5>
+                                            <input name="filters[win]" checked value="" type="radio" class="with-gap" id="radio_18">
+                                            <label for="radio_18">Semua</label>
+                                            <input name="filters[win]"  value="nil" type="radio" class="with-gap" id="radio_15">
+                                            <label for="radio_15">Kosong</label>
+                                            <input name="filters[win]" value="true" type="radio" class="with-gap" id="radio_17">
+                                            <label for="radio_17">Lulus</label>
+                                            <input name="filters[win]" value="false" type="radio" class="with-gap" id="radio_16">
+                                            <label for="radio_16">Tidak Lulus</label>
+                                        </div>
+                                    <!-- </div> -->
+                                    <!-- <div class="col-sm-2 m-t-40"> -->
+                                        <input type="submit" class="hidden btn btn-lg bg-blue waves-effect" value="Cari">
+                                    <!-- </div> -->
+                                </form>
                                     
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="card">
-                            <div class="header">
-                                <h2>
-                                    SEMUA PESERTA
-                                </h2>
-                            </div>
-                            <div class="body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-striped table-hover dataTable js-data-table-export">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Status</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Status</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <% @users.each_with_index do |user, index| %>
-                                                <tr>
-                                                    <td><%= index+1 %></td>
-                                                    <td><%= user.name %></td>
-                                                    <td><%= user.complete ? "Lengkap" : "Belum Lengkap" %></td>
-                                                    <td>
-                                                        <a href="<%= admins_dashboard_path(user.id) %>" class="btn bg-blue waves-effect" target="blank">Show</a>
-                                                    </td>
-                                                </tr>
-                                            <% end %>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="all_users">
+                        <%= render "all_users" %>
                     </div>
                         <!-- #END# Exportable Table -->
             </div>

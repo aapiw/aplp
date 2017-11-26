@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
   # load_and_authorize_resource
-  
+  # authorize_resource :class => false
+
   protect_from_forgery with: :exception
-  before_action :authenticate_user!, unless: :admin
-  before_action :authenticate_admin!, unless: :user
+  before_action :authenticate_user!, if: :user
+  before_action :authenticate_admin!, if: :admin
   before_action :set_var
   before_action :configure_permitted_parameters, if: :devise_controller?
 

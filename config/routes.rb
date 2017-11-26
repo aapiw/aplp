@@ -152,6 +152,7 @@ Rails.application.routes.draw do
 
   scope module: 'admins/dashboard' do
     # get :landings, as: :admins_landings
+    post :filters
     get :consulates
     post :create_consulate
   end

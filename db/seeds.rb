@@ -1,3 +1,6 @@
+if Rails.env.staging? or Rails.env.development?
+puts 'start development seed or staging'
+
 # NEGARA
 puts 'start create countries seed'
 negaraxls = Roo::Excelx.new( Rails.root.join('NEGARA.xlsx') )
@@ -73,14 +76,22 @@ if Admin.where(role:"admin").count < 1
 	adm.save
 end
 
+if User.count < 10
+	30.times do |i|
+		i=i+1
+		u = User.create( email:"user#{i}@mail.com", password:"user#{i}@mail.com", password_confirmation:"user#{i}@mail.com", name:"user#{i}",
+								passport:"0890#{i}092", passport_expire:Time.now.next_month, gender:["lk",'pr'].sample, country_id:[1,2,3].sample,
+								admin_id:Country.find([1,2,3].sample).admins.sample.id, complete:[true,false].sample, confirmed_at:Time.now )
+		u.score.update_attribute(:kind, "pidato") 	if (1..8).include? i
+		u.score.update_attribute(:kind, "bercerita") if (8..16).include? i
+	end
+end
+
 if Landing.count < 1
-	Landing.find_or_create_by(title:"Selamat datang di aplikasi APLP 2017 Atdikud Kemendikbud RI")
+	Landing.find_or_create_by(title:"Selamat datang di aplikasi APLP 2018 <br> Atdikud BPKLN Kemendikbud RI")
 end
 
 # Admin.find_or_create_by(username:"admin_aplp", password:"admin_aplp_2018!", password_confirmation:"admin_aplp_2018!", name:"Admin Pusat", role:"admin")
-
-if Rails.env.staging? or Rails.env.development?
-	puts 'start development seed'
 	
 	puts 'end development seed'
 end

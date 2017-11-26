@@ -84,10 +84,24 @@ class User < ApplicationRecord
 	validate :locked_form, on: :update, if: :submit_profile
 	 
 	scope :completes, -> { where(complete: true) }
+	
+	# FOR FILTERS
+	scope :search_complete, -> (complete) { where(complete: complete) }
+	scope :search_year, -> (year) { where('extract(year  from users.created_at) = ?', year) }
+	scope :search_kind, -> (kind) { joins(:score).where(scores:{kind: kind}) }
+	scope :search_consulate, -> (consulate_id) { User.where(admin_id: consulate_id) }
+	scope :search_win, -> (win) { where(win: win) }
+	scope :search_country, -> (country_id) { User.where(country_id: country_id) }
+
+	# "year"=>"", "kind"=>"", "country"=>"", "consulate"=>"", "complete"=>"", "win"=>""
 
 	
 	after_create :build_additional
 
+	def admin?
+	  false
+	end
+	
   def locked_form
     if User.find(id).lock
       errors.add(:lock, "Akun Anda di Kunci")
@@ -126,6 +140,17 @@ class User < ApplicationRecord
 	  end
 	end
 
+	def year
+		created_at.year.to_s
+	end
+
+	def consulate
+		admin
+	end
+	
+	class << self
+		
+	end
 
 	protected
 

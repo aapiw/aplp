@@ -1,7 +1,9 @@
 <nav class="navbar">
     <div class="<%= current_admin ? 'container-fluid' : 'container' %> ">
         <div class="navbar-header">
-            <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+            <% if user_signed_in? %>    
+              <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+            <% end %>
             <a href="javascript:void(0);" class="bars"></a>
             <a class="navbar-brand" href="<%= root_path %>">Selamat Datang di Aplikasi APLP 2017</a>
         </div>
