@@ -1,4 +1,4 @@
-class BipaCoursesController < ApplicationController
+class BipaCoursesController < BaseController
   before_action :set_bipa_course, only: [:show, :edit, :update, :destroy]
 
   # GET /bipa_courses

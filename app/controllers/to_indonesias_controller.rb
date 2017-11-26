@@ -1,4 +1,4 @@
-class ToIndonesiasController < ApplicationController
+class ToIndonesiasController < BaseController
   before_action :set_to_indonesium, only: [:show, :edit, :update, :destroy]
 
   # GET /to_indonesia

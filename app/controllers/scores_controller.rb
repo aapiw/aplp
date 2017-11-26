@@ -1,4 +1,4 @@
-class ScoresController < ApplicationController
+class ScoresController < BaseController
   # load_and_authorize_resource
   
   before_action :set_score, only: [:show, :edit, :update, :destroy]

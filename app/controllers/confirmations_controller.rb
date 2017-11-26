@@ -1,25 +1,26 @@
 class ConfirmationsController < ApplicationController
   before_action :set_var #, only: [:show, :edit, :update, :destroy]
-
+  before_action :verify_winner
+  
   # GET /confirmations
   # GET /confirmations.json
   def index
-    @confirmations = Confirmation.all
   end
 
   # GET /confirmations/1
   # GET /confirmations/1.json
-  def show
-  end
+  
+  # def show
+  # end
 
   # GET /confirmations/new
-  def new
-    @confirmation = Confirmation.new
-  end
+  # def new
+  #   @confirmation = Confirmation.new
+  # end
 
   # GET /confirmations/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /confirmations
   # POST /confirmations.json
@@ -33,7 +34,7 @@ class ConfirmationsController < ApplicationController
     respond_to do |format|
       if @confirmation.save
         format.html { redirect_to present_confirmation_index_path }
-        flash["notice"] = 'Confirmasi berhasil diperbarui.'
+        flash["notice"] = 'Konfirmasi berhasil diperbarui.'
       else
         format.html { render :new }
       end
@@ -48,8 +49,8 @@ class ConfirmationsController < ApplicationController
     confirmation_params_edit["date_of_return_flight"] = confirmation_params_edit["date_of_return_flight"].to_date
     respond_to do |format|
       if @confirmation.update(confirmation_params_edit)
-        format.html { redirect_to present_confirmation_index_path, notice: 'Confirmation was successfully updated.' }
-        flash["notice"] = 'Confirmasi berhasil diperbarui.'
+        format.html { redirect_to present_confirmation_index_path }
+        flash["notice"] = 'Konfirmasi berhasil diperbarui.'
       else
         format.html { render :edit }
       end
@@ -58,15 +59,19 @@ class ConfirmationsController < ApplicationController
 
   # DELETE /confirmations/1
   # DELETE /confirmations/1.json
-  def destroy
-    @confirmation.destroy
-    respond_to do |format|
-      format.html { redirect_to present_confirmation_index_path, notice: 'Confirmation was successfully destroyed.' }
-    end
-  end
+  # def destroy
+  #   @confirmation.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to present_confirmation_index_path, notice: 'Confirmation was successfully destroyed.' }
+  #   end
+  # end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def verify_winner
+      redirect_to root_url unless user.win
+      flash["alert"] = "Kamu tidak mempunyai Otoritas untuk mengakses halaman tersebut" unless user.win
+    end
+
     def set_var
       @schedule = Schedule.last
       @user = current_user #User.find(params[:id])

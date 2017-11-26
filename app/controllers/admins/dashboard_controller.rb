@@ -1,4 +1,4 @@
-class Admins::DashboardController < ApplicationController
+class Admins::DashboardController < BaseController
 	# load_and_authorize_resource
 	
 

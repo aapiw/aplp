@@ -1,4 +1,4 @@
-class LandingsController < ApplicationController
+class LandingsController < BaseController
   before_action :set_landing, only: [:show, :edit, :update]
   skip_before_action :authenticate_user!, only: :index
   skip_before_action :authenticate_admin!, only: :index

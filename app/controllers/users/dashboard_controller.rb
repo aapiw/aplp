@@ -1,5 +1,6 @@
 class Users::DashboardController < ApplicationController
 	before_action :set_var #, only: [:show, :edit, :update, :destroy]
+	before_action :verify_user
 
 	def index
 		# flash.clear
@@ -32,11 +33,16 @@ class Users::DashboardController < ApplicationController
 	  @user = current_user #User.find(params[:id])
 	end
 
-	 def dashboard_params
-	    params.require(:user).permit( :name, :country_id, :gender, :passport, :passport_expire, :dob, :admin_id, :skype_id,
-																		:campus, :majors, :phone, :profession, :lock, :note, :avatar, :passport_image, :complete, :submit_profile,
-																		to_indonesias_attributes: [:id, :destination, :long, :unit, :_destroy],
-																		bipa_courses_attributes: [:id, :location, :long, :unit, :_destroy] )
-	  end
+	def verify_user
+	  redirect_to root_url if admin
+	  flash["notice"] = "Silahkan mengakses menu Admin untuk mengelola user" if admin
+	end
+
+ 	def dashboard_params
+    params.require(:user).permit( :name, :country_id, :gender, :passport, :passport_expire, :dob, :admin_id, :skype_id,
+																	:campus, :majors, :phone, :profession, :lock, :note, :avatar, :passport_image, :complete, :submit_profile,
+																	to_indonesias_attributes: [:id, :destination, :long, :unit, :_destroy],
+																	bipa_courses_attributes: [:id, :location, :long, :unit, :_destroy] )
+  end
 
 end
