@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20171111001755) do
   create_table "admins", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "display_password"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -162,8 +163,8 @@ ActiveRecord::Schema.define(version: 20171111001755) do
     t.string "phone"
     t.string "profession"
     t.boolean "win"
-    t.boolean "lock"
-    t.boolean "complete"
+    t.boolean "lock", default: false
+    t.boolean "complete", default: false
     t.text "note"
     t.string "skype_id"
     t.string "avatar_file_name"
