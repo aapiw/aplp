@@ -16,7 +16,7 @@
 
 	# puts 'start create admin consulate seed'
 	#Validate by username
-	kbrixls = Roo::Excelx.new( Rails.root.join('KBRI.xlsx') )
+	kbrixls = Roo::Excelx.new( Rails.root.join('KBRI-development.xlsx') )
 
 	kbrixls.each_row_streaming(offset: 1) do |row|
 		admin = Admin.new
