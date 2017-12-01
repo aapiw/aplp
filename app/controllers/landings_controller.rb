@@ -1,7 +1,9 @@
 class LandingsController < BaseController
+  load_and_authorize_resource
+  
   before_action :set_landing, only: [:show, :edit, :update]
-  skip_before_action :authenticate_user!, only: :index
-  skip_before_action :authenticate_admin!, only: :index
+  skip_before_action :authenticate_user!, only: :index, raise: false
+  skip_before_action :authenticate_admin!, only: :index, raise: false
 
 
   before_action :set_class, only:[:index]
@@ -21,8 +23,9 @@ class LandingsController < BaseController
 
   # GET /landings/1
   # GET /landings/1.json
-  # def show
-  # end
+  def show
+    @body_class = "bg-four-zero-four"
+  end
 
   # GET /landings/new
   # def new

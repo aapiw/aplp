@@ -24,21 +24,58 @@ class Score < ApplicationRecord
 
   belongs_to :user
 
-  validates_presence_of :plot, :content, :fluency, :gesture, :sound, :duration, :media, :note, :kind, if: :scoring
-  validates_presence_of :bahasa, :interlude, if: ->  { scoring and kind == "pidato" }
-  validates_presence_of :showing, if: ->  { scoring and kind == "bercerita" }
+  validates_presence_of :plot, :content, :fluency, :gesture, :sound, :duration, :note, :kind, if: :scoring
+  validates_presence_of :bahasa, :interlude, if: :contest_pidato
+  validates_presence_of :showing, :media, if: :contest_bercerita
 
-  validates :plot, numericality: { less_than_or_equal_to: 15}
-  validates :content, numericality: { less_than_or_equal_to: 20}
-  validates :fluency, numericality: { less_than_or_equal_to: 15}
-  validates :gesture, numericality: { less_than_or_equal_to: 10}
-  validates :sound, numericality: { less_than_or_equal_to: 5}
-  validates :duration, numericality: { less_than_or_equal_to: 5}
-  validates :media, numericality: { less_than_or_equal_to: 10}
-  validates :showing, numericality: { less_than_or_equal_to: 15}
-  validates :bahasa, numericality: { less_than_or_equal_to: 15}
 
- 
+  before_update :clear_datas_before
+
+  validates :plot, numericality: { less_than_or_equal_to: 15}, if: :scoring
+  validates :content, numericality: { less_than_or_equal_to: 20}, if: :scoring
+  validates :fluency, numericality: { less_than_or_equal_to: 15}, if: :scoring
+  validates :gesture, numericality: { less_than_or_equal_to: 10}, if: :scoring
+  validates :sound, numericality: { less_than_or_equal_to: 5}, if: :scoring
+  validates :duration, numericality: { less_than_or_equal_to: 5}, if: :scoring
+  validates :media, numericality: { less_than_or_equal_to: 10}, if: :contest_bercerita
+  validates :showing, numericality: { less_than_or_equal_to: 15}, if: :contest_bercerita
+  validates :bahasa, numericality: { less_than_or_equal_to: 15}, if: :contest_pidato
+  validates :interlude, numericality: { less_than_or_equal_to: 15}, if: :contest_pidato
+
   enum kind: [ :pidato, :bercerita ]
+
+  def contest_pidato
+    # debugger
+    if scoring == "true"
+      eval(scoring) and kind == "pidato"
+    end
+  end
+  
+  def contest_bercerita
+    # debugger
+    if scoring == "true"
+      eval(scoring) and kind == "bercerita" if scoring == "true"
+    end
+  end
+
+  # def just_scoring
+    
+  # end
+
+  def clear_datas_before
+    if kind and scoring.blank?
+      self.media = nil
+      self.plot = nil
+      self.content = nil
+      self.fluency = nil
+      self.gesture = nil
+      self.sound = nil
+      self.duration = nil
+      self.showing = nil
+      self.bahasa = nil
+      self.interlude = nil
+      self. note = nil
+    end
+  end
 
 end

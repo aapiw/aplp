@@ -27,6 +27,5 @@ module ApplicationHelper
 		else
 			exp.titlecase
 		end
-
 	end
 end

@@ -1,8 +1,11 @@
 class CountriesController < BaseController
+  load_and_authorize_resource
+  
   before_action :set_country, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: [:consulate_lists]
-  skip_before_action :authenticate_admin!, only: [:consulate_lists]
-
+  skip_before_action :authenticate_user!, only: :index, raise: false
+  skip_before_action :authenticate_admin!, only: :index, raise: false
+  skip_before_action :verify_admin, only: :consulate_lists, raise: false
+  
   # GET /countries
   # GET /countries.json
   def index
@@ -61,6 +64,14 @@ class CountriesController < BaseController
   end
 
   private
+    # def skip_authentication
+    #   if current_admin != nil
+    #      skip_before_action :authenticate_admin!, only: :index
+    #   else
+    #      skip_before_action :authenticate_user!, only: :index
+    #   end
+    # end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_country
       @country = Country.find(params[:id])

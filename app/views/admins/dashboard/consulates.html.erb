@@ -13,6 +13,8 @@
               <tr>
                 <th>No</th>
                 <th>Nama</th>
+                <th>Username</th>
+                <th>Password</th>
                 <th>Negara</th>
                 <th>Email</th>
                 <th>Kontak</th>
@@ -23,6 +25,8 @@
             <tr>
               <th>No</th>
               <th>Nama</th>
+              <th>Username</th>
+              <th>Password</th>
               <th>Negara</th>
               <th>Email</th>
               <th>Kontak</th>
@@ -34,6 +38,8 @@
               <tr>
                 <td><%= index+1%></td>
                 <td><%= consulate.name %></td>
+                <td><%= consulate.username %></td>
+                <td><%= consulate.decrypt_password %></td>
                 <td><%= consulate.countries.pluck(:name).to_sentence %></td>
                 <td><%= consulate.email %></td>
                 <td><%= consulate.contact %></td>

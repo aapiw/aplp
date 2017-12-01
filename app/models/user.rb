@@ -93,7 +93,6 @@ class User < ApplicationRecord
 	scope :search_win, -> (win) { where(win: win) }
 	scope :search_country, -> (country_id) { User.where(country_id: country_id) }
 
-	# "year"=>"", "kind"=>"", "country"=>"", "consulate"=>"", "complete"=>"", "win"=>""
 
 	
 	after_create :build_additional

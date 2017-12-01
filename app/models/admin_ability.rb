@@ -1,14 +1,19 @@
-class Ability
+class AdminAbility
   include CanCan::Ability
 
-  def initialize(user)
-    user ||= User.new
-
-    if user.admin?
-      can :manage, :all
+  def initialize(admin)
+  	if admin.role == "admin"
+    	can :manage, :all
     else
-      cannot :manage, :all
-    end
+    	can :read, :all
+    	# cannot :manage, Score
+    	# can :manage, User
+    	cannot :manage, Country
+    	cannot :manage, Landing
+    	cannot :manage, Schedule
+    	cannot :manage, ToIndonesia
+    	can :read, :filters
+  	end
   end
 end
 
@@ -27,7 +32,6 @@ end
 #   include CanCan::Ability
 
 #   def initialize(user)
-#     can :read, :all
 #   end
 # end
 

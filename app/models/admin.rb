@@ -38,15 +38,29 @@ class Admin < ApplicationRecord
 
   scope :consulates, -> { where(role: "consulate") }
 
-	class << self
+  # after_save :update_user_status
+	before_save :encrypt_password, if: :password
+
+  def encrypt_password
+    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base)
+    encrypted_data = crypt.encrypt_and_sign(self.password)
+    self.display_password = encrypted_data
+  end
+  
+  def decrypt_password
+    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base)
+    crypt.decrypt_and_verify(display_password) if display_password
+  end
+
+  def admin?
+    true
+  end
+
+  class << self
 	  def total_countries_admins
 		  Admin.find_by_sql("SELECT count(*) as total FROM admins_countries").last.total
 		end
 	end
-	
-  def admin?
-    true
-  end
 
   protected
   

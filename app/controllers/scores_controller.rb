@@ -1,7 +1,7 @@
 class ScoresController < BaseController
   # load_and_authorize_resource
   
-  before_action :set_score, only: [:show, :edit, :update, :destroy]
+  before_action :set_score, only: [:edit, :update, :destroy]
 
   # GET /scores
   # GET /scores.json
@@ -15,13 +15,14 @@ class ScoresController < BaseController
   # end
 
   # GET /scores/new
-  def new
-    @score = Score.new
-  end
+  # def new
+  #   @score = Score.new
+  # end
 
   # GET /scores/1/edit
-  # def edit
-  # end
+  def edit
+   
+  end
 
   # POST /scores
   # POST /scores.json
@@ -41,12 +42,13 @@ class ScoresController < BaseController
   # PATCH/PUT /scores/1.json
   def update
     respond_to do |format|
+      # debugger
       if @score.update(score_params)
         format.html { redirect_to admins_dashboard_path(@score.user), notice: "Lomba berhasil dirubah" }
       else
-        format.html { redirect_to admins_dashboard_path(@score.user), alert: "Lomba gagal dirubah" }
-        # format.html { render admins_dashboard_path(@score.user), alert: "Lomba gagal dirubah" }
-        # format.html { render :edit }
+        # format.html { redirect_to admins_dashboard_path(@score.user), alert: "Lomba gagal dirubah" }
+        format.html { render :edit, alert: "Lomba gagal dirubah" }
+        flash[:alert] =  "Lomba gagal dirubah"
       end
     end
   end
@@ -64,6 +66,7 @@ class ScoresController < BaseController
     # Use callbacks to share common setup or constraints between actions.
     def set_score
       @score = Score.find(params[:id])
+      @user = @score.user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

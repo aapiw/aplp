@@ -1,11 +1,13 @@
 class Admins::DashboardController < BaseController
+	# load_and_authorize_resource :class => "Admins::DashboardController" #, find_by: :find_by_id
 	# load_and_authorize_resource
+	authorize_resource :class => false
 	
 
 	before_action :set_var, only: [:show, :edit, :update, :index]
 	before_action :set_var_consulate, only: [:edit_consulate, :update_consulate, :destroy_consulate ]
 	before_action :set_user, only: [:update_user, :confirm, :destroy]#:destroy, :contest, :lock, :activate]
-
+	skip_authorize_resource :only => :filters
 
 	def index
 		# flash.clear
@@ -99,7 +101,6 @@ class Admins::DashboardController < BaseController
 	end
 
 	def update_user
-		# debugger
 		if @user.update(dashboard_params)
 			redirect_to admins_dashboard_path(@user)
 		  flash["notice"] = "User berhasil dirubah"
@@ -182,7 +183,7 @@ class Admins::DashboardController < BaseController
 	end
 
 	def dashboard_params
-	  params.require(:user).permit( :name, :country_id, :gender, :passport, :passport_expire, :dob, :admin_id, :skype_id, :contest, :win,
+	  params.require(:user).permit( :name, :country_id, :gender, :passport, :passport_expire, :dob, :admin_id, :skype_id, :contest, :win, :display_password,
 																	:campus, :majors, :phone, :profession, :lock, :note, :avatar, :passport_image, :complete, :submit_profile,
 																	to_indonesias_attributes: [:id, :destination, :long, :unit, :_destroy],
 																	bipa_courses_attributes: [:id, :location, :long, :unit, :_destroy] )

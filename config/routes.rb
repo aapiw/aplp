@@ -162,9 +162,20 @@ Rails.application.routes.draw do
   delete "destroy_consulate/:id", to: "admins/dashboard#destroy_consulate", as: :destroy_consulate
 
   namespace :users do
-    resources :dashboard
+    resources :dashboard do
+      # collection do
+      #   post :update_password
+      # end
+    end
   end
 
+  scope module: 'users/dashboard' do
+    # get :landings, as: :admins_landings
+      patch :update_password
+    # post :filters
+    # get :consulates
+    # post :create_consulate
+  end
   
   resources :scores
   resources :confirmations, as: :present_confirmation
