@@ -1,9 +1,7 @@
 class Users::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
   include Accessible
 
-  # load_and_authorize_resource
-  
+  before_action :authenticate_can_sign_in!
   skip_before_action :check_user, only: :destroy
   before_action :set_class
 
@@ -26,6 +24,13 @@ class Users::SessionsController < Devise::SessionsController
 
   def set_class
     @body_class = "login-page"
+  end
+
+  def authenticate_can_sign_in!
+    unless Schedule.can_sign_in?
+      redirect_to root_url
+      flash["alert"] = "Halaman tidak bisa diakses"
+    end
   end
 
   # If you have extra params to permit, append them to the sanitizer.

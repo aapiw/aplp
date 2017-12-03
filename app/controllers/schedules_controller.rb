@@ -1,12 +1,16 @@
 class SchedulesController < BaseController
-  load_and_authorize_resource
   
-  before_action :set_schedule, only: [:show, :edit, :update, :destroy]
+  before_action :set_schedule, only: [:update, :index]
 
   # GET /schedules
   # GET /schedules.json
   def index
-    @schedule = Schedule.last
+    @schedule.start_registration = I18n.l(@schedule.start_registration, format: :long)
+    @schedule.end_registration = I18n.l(@schedule.end_registration, format: :long)
+    @schedule.start_consulate_selection = I18n.l(@schedule.start_consulate_selection, format: :long)
+    @schedule.end_consulate_selection = I18n.l(@schedule.end_consulate_selection, format: :long)
+    @schedule.start_central_selection = I18n.l(@schedule.start_central_selection, format: :long)
+    @schedule.end_central_selection = I18n.l(@schedule.end_central_selection, format: :long)
   end
 
   # GET /schedules/1
@@ -15,62 +19,69 @@ class SchedulesController < BaseController
   # end
 
   # GET /schedules/new
-  def new
-    # @schedule = Schedule.new
-  end
+  # def new
+  #   # @schedule = Schedule.new
+  # end
 
   # GET /schedules/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /schedules
   # POST /schedules.json
-  def create
-    @schedule = Schedule.new(schedule_params)
+  # def create
+  #   @schedule = Schedule.new(schedule_params)
 
-    respond_to do |format|
-      if @schedule.save
-        format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
-        format.json { render :show, status: :created, location: @schedule }
-      else
-        format.html { render :new }
-        format.json { render json: @schedule.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @schedule.save
+  #       format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
+  #       format.json { render :show, status: :created, location: @schedule }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @schedule.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /schedules/1
   # PATCH/PUT /schedules/1.json
   def update
+    schedule_params_edit = schedule_params
+    schedule_params_edit["start_registration"] = schedule_params_edit["start_registration"].to_date
+    schedule_params_edit["end_registration"] = schedule_params_edit["end_registration"].to_date
+    schedule_params_edit["start_consulate_selection"] = schedule_params_edit["start_consulate_selection"].to_date
+    schedule_params_edit["end_consulate_selection"] = schedule_params_edit["end_consulate_selection"].to_date
+    schedule_params_edit["start_central_selection"] = schedule_params_edit["start_central_selection"].to_date
+    schedule_params_edit["end_central_selection"] = schedule_params_edit["end_central_selection"].to_date
     respond_to do |format|
-      if @schedule.update(schedule_params)
+      if @schedule.update(schedule_params_edit)
         format.html { redirect_to schedules_path, notice: 'Jadwal berhasil diperbaharui.' }
-        # format.json { render :show, status: :ok, location: @schedule }
       else
-        format.html { render :edit }
-        # format.json { render json: @schedule.errors, status: :unprocessable_entity }
+        format.html { render :index }
+        flash["alert"] = 'Jadwal gagal diperbaharui.' 
       end
     end
   end
 
   # DELETE /schedules/1
   # DELETE /schedules/1.json
-  def destroy
-    @schedule.destroy
-    respond_to do |format|
-      format.html { redirect_to schedules_url, notice: 'Schedule was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @schedule.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to schedules_url, notice: 'Schedule was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule
-      @schedule = Schedule.find(params[:id])
+      # @schedule = Schedule.find(params[:id])
+      @schedule = Schedule.last
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.require(:schedule).permit(:year, :start_registration, :end_registration, :start_central_selection, :start_consulate_selection, :end_consulate_selection)
+      params.require(:schedule).permit(:year, :start_registration, :end_registration, :start_central_selection, :start_consulate_selection, :end_consulate_selection, :end_central_selection)
     end
 end

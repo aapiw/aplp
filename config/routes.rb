@@ -115,7 +115,9 @@
 Rails.application.routes.draw do
   
   # root "landings#index"
-
+  resources :invoices do
+    post :send, on: :member
+  end
   authenticated :user do
     root 'users/dashboard#index', as: :user_root
   end
@@ -177,18 +179,18 @@ Rails.application.routes.draw do
     # post :create_consulate
   end
   
-  resources :scores
+  resources :scores, only: [:edit, :update, :destroy] 
   resources :confirmations, as: :present_confirmation
   # scope :present do
   #   resources :confirmations
   # end
-  resources :bipa_courses
-  resources :to_indonesias
-  resources :schedules
+  resources :bipa_courses, only: [:destroy]
+  resources :to_indonesias, only: [:destroy]
+  resources :schedules, only: [:update, :index]
   resources :landings
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :countries do 
+  resources :countries, except: [:edit, :new] do
     member do 
       get :consulate_lists
     end

@@ -49,10 +49,19 @@ test:
   password: yasfi
 
 production:
-  host: localhost
+  host: <%= ENV['DATABASE_URL'] %>
   adapter: postgresql
   encoding: unicode
-  database: aplp_production
+  database: <%= ENV['DATABASE'] %>
   pool: 5
-  username: <%= ENV['PG_USERNAME'] %>
-  password: <%= ENV['PG_PASSWORD'] %>
+  username: <%= ENV['USER'] %>
+  password: <%= ENV['PASSWORD'] %>
+
+staging:
+  host: <%= ENV['DATABASE_URL'] %>
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV['DATABASE'] %>
+  pool: 5
+  username: <%= ENV['USER'] %>
+  password: <%= ENV['PASSWORD'] %>

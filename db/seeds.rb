@@ -56,9 +56,9 @@
 		end
 	end
 
-	Schedule.find_or_create_by(year:"2018", start_registration:Time.now.next_year,
-														end_registration:Time.now.next_year.next_month, 
-														start_consulate_selection:Time.now.next_year.next_month.next_week,
+	Schedule.find_or_create_by(year:"2018", start_registration:Time.now.prev_month,
+														end_registration:Time.now,
+														start_consulate_selection:Time.now.next_month,
 														end_consulate_selection:Time.now.next_year.next_month.next_week.next_month,
 														start_central_selection:Time.now.next_year.next_month.next_week.next_month,
 														end_central_selection:Time.now.next_year.next_month.next_month.next_month )

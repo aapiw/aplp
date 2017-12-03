@@ -1,6 +1,8 @@
 class ConfirmationsController < ApplicationController
-  before_action :set_var #, only: [:show, :edit, :update, :destroy]
+  
+  before_action :verify_user
   before_action :verify_winner
+  before_action :set_var #, only: [:show, :edit, :update, :destroy]
   
   # GET /confirmations
   # GET /confirmations.json
@@ -68,14 +70,22 @@ class ConfirmationsController < ApplicationController
 
   private
     def verify_winner
-      redirect_to root_url unless user.win
-      flash["alert"] = "Kamu tidak mempunyai Otoritas untuk mengakses halaman tersebut" unless user.win
+      redirect_to root_url unless @user.win
+      flash["alert"] = "Kamu tidak mempunyai Otoritas untuk mengakses halaman tersebut" unless @user.win
+    end
+
+    def verify_user
+      redirect_to root_url unless current_user
+      flash["alert"] = "Kamu tidak mempunyai Otoritas untuk mengakses halaman tersebut" unless current_user
     end
 
     def set_var
+
       @schedule = Schedule.last
       @user = current_user #User.find(params[:id])
+      # if @user
       @confirmation =  @user.confirmation || Confirmation.new
+      # end
       # @confirmation = Confirmation.find(params[:id])
     end
 

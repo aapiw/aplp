@@ -1,11 +1,8 @@
 class LandingsController < BaseController
-  load_and_authorize_resource
   
+  skip_authorize_resource :only => :index
+
   before_action :set_landing, only: [:show, :edit, :update]
-  skip_before_action :authenticate_user!, only: :index, raise: false
-  skip_before_action :authenticate_admin!, only: :index, raise: false
-
-
   before_action :set_class, only:[:index]
 
   # GET /landings

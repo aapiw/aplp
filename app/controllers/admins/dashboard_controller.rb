@@ -1,7 +1,7 @@
 class Admins::DashboardController < BaseController
 	# load_and_authorize_resource :class => "Admins::DashboardController" #, find_by: :find_by_id
 	# load_and_authorize_resource
-	authorize_resource :class => false
+	# authorize_resource :class => false
 	
 
 	before_action :set_var, only: [:show, :edit, :update, :index]

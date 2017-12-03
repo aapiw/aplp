@@ -1,7 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   
   include Accessible
-  
+  before_action :authenticate_can_regis!
+
   skip_before_action :check_user, only: :destroy
   before_action :set_class
 
@@ -48,6 +49,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def set_class
     @body_class = "signup-page"
+  end
+
+  def authenticate_can_regis!
+    unless Schedule.can_register?
+      redirect_to root_url
+      flash["alert"] = "Halaman tidak bisa diakses"
+    end
   end
 
   # If you have extra params to permit, append them to the sanitizer.

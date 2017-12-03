@@ -2,19 +2,37 @@ class AdminAbility
   include CanCan::Ability
 
   def initialize(admin)
-  	if admin.role == "admin"
-    	can :manage, :all
+  	 admin ||= Admin.new
+
+    if admin
+        #Admin
+      if admin.role == "admin"
+        can :manage, :all
+      else 
+        #consulate
+      	can :read, :all
+        can :edit, :score
+        can :update, :score
+        
+        cannot :manage, :country
+        cannot :manage, :landing
+        cannot :manage, :schedule
+        cannot :manage, :to_indonesia
+        cannot :manage, :bipa_course
+        
+
+      	# cannot :read, BipaCourse
+      	# can :read, :filters
+    	end
     else
-    	can :read, :all
-    	# cannot :manage, Score
-    	# can :manage, User
-    	cannot :manage, Country
-    	cannot :manage, Landing
-    	cannot :manage, Schedule
-    	cannot :manage, ToIndonesia
-    	can :read, :filters
-  	end
+      # debugger
+      # can :read, :consulate
+      # can :consulate_lists, :country
+      # show, :tool
+    end
+
   end
+
 end
 
 # class ApplicationController < ActionController::Base

@@ -3,7 +3,6 @@ class Users::DashboardController < ApplicationController
 	before_action :verify_user
 
 	def index
-		# flash.clear
 	end
 	
 	def update
@@ -46,8 +45,8 @@ class Users::DashboardController < ApplicationController
 	end
 
 	def verify_user
-	  redirect_to root_url if admin
-	  flash["notice"] = "Silahkan mengakses menu Admin untuk mengelola user" if admin
+	  redirect_to root_url if @admin
+	  flash["notice"] = "Silahkan mengakses menu Admin untuk mengelola user" if @admin
 	end
 
  	def dashboard_params

@@ -1,3 +1,5 @@
+<% content_for :title, "| Selamat datang di aplikasi APLP 2018" %>
+
 <div class="four-zero-four-container container-landing-page container text-center">
     <h1><%= @landing.title.html_safe %></h1>
     <div class="row">
@@ -8,11 +10,25 @@
     </div>
     <div class="row">
         <div class="col-xs-12 error-message">
-        <h3>Pendaftaran belum dibuka</h3></div>
+            <h3>Jadwal Pendaftaran</h3>
+            <p><%= I18n.l(Schedule.last.start_registration, format: :long) %> S.D <%= I18n.l(Schedule.last.end_registration, format: :long) %> </p>
+        </div>
+
         <div class="">
         <% unless user_signed_in? or admin_signed_in? %>
-            <a href="<%= new_user_session_path  %>" class="btn btn-default btn-lg waves-effect m-t-30" >LOGIN</a><!-- disabled --> 
-            <a href="<%= new_user_registration_path  %>" class="btn btn-default btn-lg waves-effect m-t-30">DAFTAR</a>
+            <% 
+            unless Schedule.can_register?
+                klass_regis = "disabled"
+            end
+
+            unless Schedule.can_sign_in?
+                klass_sign_in = "disabled"
+            end 
+
+            %>
+            <%= %>
+            <a href="<%= new_user_session_path  %>" class="btn btn-default btn-lg waves-effect m-t-30 <%= klass_sign_in %>" >LOGIN</a><!-- disabled --> 
+            <a href="<%= new_user_registration_path  %>" class="btn btn-default btn-lg waves-effect m-t-30 <%= klass_regis %>">DAFTAR</a>
         <% end %>
         </div>
         

@@ -17,4 +17,13 @@
 class Schedule < ApplicationRecord
 	validates_presence_of :year, :start_registration, :end_registration, :start_central_selection, :end_central_selection, :start_consulate_selection,
 												:end_consulate_selection
+	class << self
+		def can_register?
+			Time.now >= self.last.start_registration and Time.now <= self.last.end_registration
+		end
+		
+		def can_sign_in?
+			Time.now >= self.last.start_registration
+		end
+	end
 end

@@ -1,5 +1,4 @@
 class ScoresController < BaseController
-  # load_and_authorize_resource
   
   before_action :set_score, only: [:edit, :update, :destroy]
 
@@ -42,12 +41,11 @@ class ScoresController < BaseController
   # PATCH/PUT /scores/1.json
   def update
     respond_to do |format|
-      # debugger
       if @score.update(score_params)
         format.html { redirect_to admins_dashboard_path(@score.user), notice: "Lomba berhasil dirubah" }
       else
         # format.html { redirect_to admins_dashboard_path(@score.user), alert: "Lomba gagal dirubah" }
-        format.html { render :edit, alert: "Lomba gagal dirubah" }
+        format.html { render :edit }
         flash[:alert] =  "Lomba gagal dirubah"
       end
     end
