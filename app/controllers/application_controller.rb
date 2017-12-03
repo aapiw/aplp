@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-  	devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :passport, :gender, :country_id, :admin_id, :display_password] )
+  	devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :passport, :gender, :country_id, :admin_id, :passport_expire, :display_password] )
   end
   
 end
