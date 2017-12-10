@@ -29,6 +29,24 @@ class Admins::DashboardController < BaseController
 
 	# def edit
 	# end
+	def profile
+		@admin = current_admin
+		@admin.password = @admin.decrypt_password
+	end
+
+	def update_profile
+		@admin = current_admin
+	  respond_to do |format|
+	  	if @admin.update(admin_params)
+	  		sign_in(current_admin, :bypass => true)
+		    format.html { redirect_to profile_path }
+		    flash["notice"] = "Admin berhasil dirubah"
+		  else
+		  	format.html { render :profile }
+		  	flash["alert"] = @admin.errors.full_messages
+	  	end
+		end
+	end
 
 	def consulates
 		@consulates = Admin.consulates
@@ -37,6 +55,7 @@ class Admins::DashboardController < BaseController
 	end
 
 	def edit_consulate
+		@consulate.password = @consulate.decrypt_password
 		# @consulate = User.find(params[:id]) if params[:consulate_id]
 	end
 
@@ -119,7 +138,6 @@ class Admins::DashboardController < BaseController
 				else
 				value_edit = value
 			end
-			# debugger
 	    @users = @users.public_send("search_#{key}", value_edit ) if value.present?
 	  end
 

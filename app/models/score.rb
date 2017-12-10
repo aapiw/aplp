@@ -45,22 +45,16 @@ class Score < ApplicationRecord
   enum kind: [ :pidato, :bercerita ]
 
   def contest_pidato
-    # debugger
     if scoring == "true"
       eval(scoring) and kind == "pidato"
     end
   end
   
   def contest_bercerita
-    # debugger
     if scoring == "true"
       eval(scoring) and kind == "bercerita" if scoring == "true"
     end
   end
-
-  # def just_scoring
-    
-  # end
 
   def clear_datas_before
     if kind and scoring.blank?

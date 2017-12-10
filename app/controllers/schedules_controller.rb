@@ -5,6 +5,8 @@ class SchedulesController < BaseController
   # GET /schedules
   # GET /schedules.json
   def index
+    # @schedule = Schedule.last
+    @schedule_view = Schedule.last
     @schedule.start_registration = I18n.l(@schedule.start_registration, format: :long)
     @schedule.end_registration = I18n.l(@schedule.end_registration, format: :long)
     @schedule.start_consulate_selection = I18n.l(@schedule.start_consulate_selection, format: :long)
@@ -12,6 +14,7 @@ class SchedulesController < BaseController
     @schedule.start_central_selection = I18n.l(@schedule.start_central_selection, format: :long)
     @schedule.end_central_selection = I18n.l(@schedule.end_central_selection, format: :long)
   end
+
 
   # GET /schedules/1
   # GET /schedules/1.json

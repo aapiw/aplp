@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
 
   def set_var
     @admin = current_admin if admin_signed_in?
-    @user = current_user if user_signed_in?
+    #@user = current_user if user_signed_in?
   end
 
   def configure_permitted_parameters

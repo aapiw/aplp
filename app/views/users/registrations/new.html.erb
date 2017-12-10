@@ -39,6 +39,7 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="form-label m-b-10 m-t-10">Negara dimana anda mengikuti lomba</label>
                 <div class="input-group form-float">
                     <div class="form-line">
                         <%= f.select(:country_id, Country.all.collect {|c| [ c.name, c.id ] }, {}, class:"form-control form-control--z-5 show-tick", required:true, "data-title":"Pilih Negara", "data-live-search":true) %>
@@ -46,6 +47,7 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="form-label m-b-10 m-t-10">KBRI dimana anda mengikuti lomba</label>
                 <div class="input-group form-float">
                     <div class="form-line " id="consulates_lists">
                         <select name="user[admin_id]" class="form-control form-control--z-4 show-tick" disabled required>

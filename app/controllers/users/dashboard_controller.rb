@@ -3,6 +3,8 @@ class Users::DashboardController < ApplicationController
 	before_action :verify_user
 
 	def index
+		@user.passport_expire = I18n.l(@user.passport_expire, format: :long)  if @user.passport_expire
+		@user.dob = I18n.l(@user.dob, format: :long)  if @user.dob
 	end
 	
 	def update

@@ -130,9 +130,9 @@ class User < ApplicationRecord
 	end
 	
 	def counting_age
-	  now = Time.now.to_date
+	  now = Time.now
 	  if self.dob.present?
-	    dob = self.dob.to_date
+	    dob = self.dob
 	    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
 	  else
 	    ""

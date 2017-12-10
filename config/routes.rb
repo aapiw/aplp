@@ -155,6 +155,8 @@ Rails.application.routes.draw do
   scope module: 'admins/dashboard' do
     # get :landings, as: :admins_landings
     post :filters
+    get :profile
+    patch :update_profile
     get :consulates
     post :create_consulate
   end
@@ -185,12 +187,12 @@ Rails.application.routes.draw do
   #   resources :confirmations
   # end
   resources :bipa_courses, only: [:destroy]
-  resources :to_indonesias, only: [:destroy]
+  resources :to_indonesias, only: [:destroy, :show]
   resources :schedules, only: [:update, :index]
   resources :landings
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :countries, except: [:edit, :new] do
+  resources :countries do
     member do 
       get :consulate_lists
     end

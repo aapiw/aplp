@@ -25,7 +25,12 @@ module ApplicationHelper
 		elsif exp.nil? or exp.blank?
 			"<span class='label bg-orange'>Kosong</span>".html_safe
 		else
-			exp.titlecase
+			case exp
+			when String
+				exp.titlecase rescue nil
+			else
+				exp
+			end
 		end
 	end
 end

@@ -8,37 +8,43 @@
         <tr>
           <td>Mulai registrasi</td>
           <td>
-            <%= I18n.l(@schedule.start_registration, format: :long) if @schedule.start_registration %>
+            <%= I18n.l(schedule.start_registration, format: :long)%>
+            <%#= @schedule_view.start_registration %>
           </td>
         </tr>
         <tr>
           <td>Selesai registrasi</td>
           <td>
-            <%= I18n.l(@schedule.end_registration, format: :long)%>
+            <%= I18n.l(schedule.end_registration, format: :long)%>
+            <%#= @schedule_view.end_registration %>
           </td>
         </tr>
         <tr>
           <td>Mulai seleksi KBRI/KJRI</td>
           <td>
-            <%= I18n.l(@schedule.start_consulate_selection , format: :long)%>
+            <%= I18n.l(schedule.start_consulate_selection , format: :long)%>
+            <%#= @schedule_view.start_consulate_selection %>
           </td>
         </tr>
         <tr>
           <td>Selesai seleksi KBRI/KJRI</td>
           <td>
-            <%= I18n.l(@schedule.end_consulate_selection , format: :long)%>
+            <%= I18n.l(schedule.end_consulate_selection , format: :long)%>
+            <%#= @schedule_view.end_consulate_selection %>
           </td>
         </tr>
         <tr>
           <td>Mulai seleksi Pusat</td>
           <td>
-            <%= I18n.l(@schedule.start_central_selection, format: :long)%>
+            <%= I18n.l(schedule.start_central_selection, format: :long)%>
+            <%#= @schedule_view.start_central_selection %>
           </td>
         </tr>
         <tr>
           <td>Selesai seleksi Pusat (pengumuman)</td>
           <td>
-            <%= I18n.l(@schedule.end_central_selection, format: :long)%>
+            <%= I18n.l(schedule.end_central_selection, format: :long)%>
+            <%#= @schedule_view.end_central_selection %>
           </td>
         </tr>
       </table>

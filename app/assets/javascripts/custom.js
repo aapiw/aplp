@@ -48,6 +48,7 @@ $(document).ready(function() {
       $(".js-pekerjaan input").attr('disabled', false);
       $(".js-pekerjaan .form-line").addClass("focused");
     } else {
+      $(".js-pekerjaan input").val("");
       $(".js-pekerjaan input").attr('disabled', true);
       $(".js-pekerjaan .form-line").removeClass("focused");
     }

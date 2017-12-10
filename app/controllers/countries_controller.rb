@@ -1,7 +1,8 @@
 class CountriesController < BaseController
   
-  before_action :set_country, only: [:show, :update, :destroy]
-  skip_authorize_resource :only => :consulate_lists
+  before_action :set_country, only: [:edit, :show, :update, :destroy]
+  skip_authorize_resource only: :consulate_lists
+  skip_before_action :verify_admin, only: [:consulate_lists]
   
   # GET /countries
   # GET /countries.json
@@ -11,13 +12,13 @@ class CountriesController < BaseController
   end
 
   # GET /countries/new
-  # def new
-  #   @country = Country.new
-  # end
+  def new
+    @country = Country.new
+  end
 
   # GET /countries/1/edit
-  # def edit
-  # end
+  def edit
+  end
 
   # POST /countries
   # POST /countries.json
