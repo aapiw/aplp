@@ -126,7 +126,7 @@
                                     <td><%= show(user.consulate.name) %></td>
                                     <td><%= show( user.complete.present? ? "Dikirim" : "Belum Dikirim" ) %></td>
                                     <td><%= show(user.win) %></td>
-                                    <td><%= user.year %></td>
+                                    <td><%= user.year rescue nil %></td>
                                     <td>
                                         <a href="<%= admins_dashboard_path(user.id) %>" class="btn bg-blue waves-effect" target="blank">Tampilkan</a>
                                     </td>
