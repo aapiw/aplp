@@ -55,7 +55,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-	attr_accessor :submit_profile
+	attr_accessor :save_profile
 	# attr_accessor :decided
 
 	# has_attached :avaatar
@@ -72,16 +72,15 @@ class User < ApplicationRecord
 	accepts_nested_attributes_for :to_indonesias, :bipa_courses, allow_destroy: true, reject_if: :all_blank
 	
 	enum gender: [ :lk, :pr]
-	# enum contest: [ :pidato, :bercerita]
 
 
 	validates_presence_of :name, :country_id, :gender, :passport, :passport_expire, :dob,
-												:campus, :majors, :phone, :profession, :lock, :avatar, :passport, if: :submit_profile
+												:campus, :majors, :phone, :profession, :avatar, :passport, if: :save_profile
 
-	# validates_presence_of	:win, if: :contest
 	validates :passport, uniqueness: true
 	validates :id_reg, uniqueness: true
-	validate :locked_form, on: :update, if: :submit_profile
+	# validates_presence_of	:lock
+	# validate :locked_form, on: :update, if: :save_profile
 	 
 	scope :completes, -> { where(complete: true) }
 	

@@ -15,12 +15,21 @@
                           <table class="table table-hover table-striped dashboard-task-infos">
                               <tbody>
                               <tr>
-                                <td>Status</td>
+                                <td>Status Pendaftaran</td>
                                 <td><%= @user.status %></td>
                               </tr>
                               <tr>
                                 <td>Status Akun</td>
-                                <td><%= @user.status_akun%></td>
+                                <td><%= @user.status_akun %></td>
+                              </tr>
+                              <tr>
+                                <td>Status Profile</td>
+                                <td><%= @user.lock ? "Dikunci" : "Tidak Dikunci" %></td>
+                              </tr>
+                              <tr>
+                              <tr>
+                                <td>Status Kiriman</td>
+                                <td><%= show( @user.lock ? "Dikirim" : "Belum Dikirim") %></td>
                               </tr>
                               <tr>
                                 <td>No Registrasi</td>
@@ -114,12 +123,12 @@
                           <% if @user.lock %>
                             <%= form_for(@user, url: update_user_admins_dashboard_path) do |f| %>
                                 <%= f.hidden_field :lock, value:false %>
-                                <%= f.submit "Buka Akun", class:"btn bg-blue waves-effect" %>
+                                <%= f.submit "Buka Kunci", class:"btn bg-blue waves-effect" %>
                             <% end %>
                             <% else %>
                             <%= form_for(@user, url: update_user_admins_dashboard_path) do |f| %>
                                 <%= f.hidden_field :lock, value:true %>
-                                <%= f.submit "Kunci AKun", class:"btn bg-blue waves-effect" %>
+                                <%= f.submit "Kunci Profile", class:"btn bg-blue waves-effect" %>
                             <% end %>
                           <% end %>
 

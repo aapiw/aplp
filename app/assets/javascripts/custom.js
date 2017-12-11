@@ -26,6 +26,10 @@ $.action.tableDataTable = {
 $(document).ready(function() {
 
   $.action.tableDataTable.activate();
+  
+  $('[data-toggle="tooltip"]').tooltip({
+      container: 'body'
+  });
 
   if ($('.datepicker').length || $('.timepicker').length) {
     $('.datepicker').bootstrapMaterialDatePicker({

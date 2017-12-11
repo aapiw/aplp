@@ -25,9 +25,9 @@
             </div>
             <div class="body <%= @user.lock ? "lock" : '' %>">
               <%= form_for(@user, url: users_dashboard_path(@user), html: { multipart: true } ) do |f| %>
-                <%= f.hidden_field :complete, value:true %>
-                <%= f.hidden_field :lock, value:true %>
-                <%= f.hidden_field :submit_profile, value:true %>
+                <%#= f.hidden_field :complete, value:true %>
+                <%#= f.hidden_field :lock, value:true %>
+                <%= f.hidden_field :save_profile, value:true %>
                   <h2  class="card-inside-title">Nama Sesuai Passport</h2>
                   <div class="form-group form-float">
                     <div class="form-line">
@@ -269,7 +269,10 @@
                     </div>
                   <% end %>
                   <div class="clearfix m-t-20">
-                    <%= f.submit "KIRIM", class: "btn btn-lg btn-primary waves-effect"%>
+                    <%= f.submit "SIMPAN", class: "btn btn-lg btn-success waves-effect", data:{toggle:"tooltip", placement:"top",
+                        "original-title":"Hanya Simpan"}%>
+                    <%= f.submit "KIRIM", class: "btn btn-lg btn-primary waves-effect", data:{toggle:"tooltip", placement:"top",
+                        "original-title":"Simpan dan Kirim"}%>
                   </div>
               <% end %>
             </div>

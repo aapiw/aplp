@@ -20,8 +20,8 @@ module ApplicationHelper
 	end
 
 	def show(exp=nil)
-		if exp == "Belum"
-			"<span class='label bg-orange'>Belum Lengkap</span>".html_safe 
+		if exp == "Belum Dikirim"
+			"<span class='label bg-orange'>Kosong</span>".html_safe 
 		elsif exp.nil? or exp.blank?
 			"<span class='label bg-orange'>Kosong</span>".html_safe
 		else

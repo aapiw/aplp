@@ -11,7 +11,11 @@ class Users::DashboardController < ApplicationController
 		dashboard_params_edit = dashboard_params
 		dashboard_params_edit["dob"] = dashboard_params_edit["dob"].to_date
 		dashboard_params_edit["passport_expire"] = dashboard_params_edit["passport_expire"].to_date
-		# debugger
+
+		if params["commit"] == "KIRIM"
+			dashboard_params_edit["complete"] = true
+			dashboard_params_edit["lock"] = true
+		end
 	  respond_to do |format|
 	    if @user.update(dashboard_params_edit)
 	      format.html { redirect_to user_root_path }
@@ -53,7 +57,7 @@ class Users::DashboardController < ApplicationController
 
  	def dashboard_params
     params.require(:user).permit( :name, :country_id, :gender, :passport, :passport_expire, :dob, :admin_id, :skype_id, :password, :password_confirmation,
-																	:campus, :majors, :phone, :profession, :lock, :note, :avatar, :passport_image, :complete, :submit_profile,
+																	:campus, :majors, :phone, :profession, :lock, :note, :avatar, :passport_image, :complete, :save_profile,
 																	to_indonesias_attributes: [:id, :destination, :long, :unit, :_destroy],
 																	bipa_courses_attributes: [:id, :location, :long, :unit, :_destroy] )
   end

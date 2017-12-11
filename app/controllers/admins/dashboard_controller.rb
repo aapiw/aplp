@@ -11,13 +11,21 @@ class Admins::DashboardController < BaseController
 
 	def index
 		# flash.clear
-		@users = User.all
-		@user_count = User.count
-		@user_complite_count = User.completes.count
-		@country_count = Country.count
-		@consulate_count = Admin.consulates.count
-		@consulates =  Admin.where(role:"consulate")
-		@consulates = @consulates.collect {|c| [ c.name, c.id ] }
+		if @admin.role == "admin"
+			@users = User.all
+			@user_count = User.count
+			@user_complite_count = User.completes.count
+			@country_count = Country.count
+			@consulate_count = Admin.consulates.count
+			@consulates =  Admin.where(role:"consulate")
+			@consulates = @consulates.collect {|c| [ c.name, c.id ] }
+		else
+			@users = @admin.users
+			@user_count = @users.count
+			@user_complite_count = @users.select{|d| d.complete == true}.count
+			@user_win_count = @users.select{|d| d.win == true}.count
+			@user_lose_count = @users.select{|d| d.win == false}.count
+		end
 	end
 	
 	def update
@@ -202,7 +210,7 @@ class Admins::DashboardController < BaseController
 
 	def dashboard_params
 	  params.require(:user).permit( :name, :country_id, :gender, :passport, :passport_expire, :dob, :admin_id, :skype_id, :contest, :win, :display_password,
-																	:campus, :majors, :phone, :profession, :lock, :note, :avatar, :passport_image, :complete, :submit_profile,
+																	:campus, :majors, :phone, :profession, :lock, :note, :avatar, :passport_image, :complete, :save_profile,
 																	to_indonesias_attributes: [:id, :destination, :long, :unit, :_destroy],
 																	bipa_courses_attributes: [:id, :location, :long, :unit, :_destroy] )
 	end

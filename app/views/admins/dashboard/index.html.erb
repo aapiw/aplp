@@ -8,7 +8,7 @@
                             <i class="material-icons">person_outline</i>
                         </div>
                         <div class="content">
-                            <div class="text">Total Pendaftar</div>
+                            <div class="text">Pendaftar</div>
                             <div class="number count-to" data-from="0" data-to="<%= @user_count %>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -19,33 +19,58 @@
                             <i class="material-icons">person_add</i>
                         </div>
                         <div class="content">
-                            <div class="text">Total User yang Lengkap</div>
+                            <div class="text">Sudah mengirim</div>
                             <div class="number count-to" data-from="0" data-to="<%= @user_complite_count %>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-light-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">public</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">NEGARA</div>
-                            <div class="number count-to" data-from="0" data-to="<%= @country_count %>" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-orange hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">domain</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">KBRI/KJRI</div>
-                            <div class="number count-to" data-from="0" data-to="<%= @consulate_count %>" data-speed="1000" data-fresh-interval="20"></div>
+                <% if @admin.role.eql? "admin" %>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box bg-light-green hover-expand-effect">
+                            <div class="icon">
+                                <i class="material-icons">public</i>
+                            </div>
+                            <div class="content">
+                                <div class="text">NEGARA</div>
+                                <div class="number count-to" data-from="0" data-to="<%= @country_count %>" data-speed="1000" data-fresh-interval="20"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box bg-orange hover-expand-effect">
+                            <div class="icon">
+                                <i class="material-icons">domain</i>
+                            </div>
+                            <div class="content">
+                                <div class="text">KBRI/KJRI</div>
+                                <div class="number count-to" data-from="0" data-to="<%= @consulate_count %>" data-speed="1000" data-fresh-interval="20"></div>
+                            </div>
+                        </div>
+                    </div>
+                <% else %>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box bg-light-green hover-expand-effect">
+                            <div class="icon">
+                                <i class="material-icons">check_circle</i>
+                            </div>
+                            <div class="content">
+                                <div class="text">Menang</div>
+                                <div class="number count-to" data-from="0" data-to="<%= @user_win_count %>" data-speed="1000" data-fresh-interval="20"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box bg-orange hover-expand-effect">
+                            <div class="icon">
+                                <i class="material-icons">cancel</i>
+                            </div>
+                            <div class="content">
+                                <div class="text">Kalah</div>
+                                <div class="number count-to" data-from="0" data-to="<%= @user_lose_count %>" data-speed="1000" data-fresh-interval="20"></div>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
             </div>           
     
 
@@ -58,9 +83,7 @@
                             <div class="body">
                             <a class="btn bg-blue waves-effect" role="button" data-toggle="collapse" href="#collapseFilter" aria-expanded="true" aria-controls="collapseFilter">Sembunyikan</a>
                                 <div class="row collapse in" id="collapseFilter" aria-expanded="true">
-                                <%#= form_tag(filters_admins_dashboard_path, remote: true) %>
                                 <form action="<%= filters_path %>" data-remote="true" method="post" >                                
-                                    <!-- <div class="col-sm-10"> -->
                                         <div class="col-sm-2 m-t-15">
                                             <h5>Tahun</h5>
                                             <input name="filters[year]" checked value="" type="radio" class="with-gap" id="radio_5">
@@ -82,28 +105,30 @@
                                             <input name="filters[kind]" value="bercerita" type="radio" class="with-gap" id="radio_11">
                                             <label for="radio_11">Bercerita</label>
                                         </div>
-                                        <div class="col-sm-2 m-t-15">
-                                            <h5>Negara</h5>
-                                            <div class="form-group">
-                                                <div class="input-group form-float">
-                                                    <div class="form-line">
-                                                        <%= select("filters", 'country', Country.all.collect {|c| [ c.name, c.id ] }, {include_blank: 'Semua Negara'}, class:"form-control form-control--z-5 show-tick", "data-live-search":true) %>
+                                        <% if @admin.role.eql? "admin" %>
+                                            <div class="col-sm-2 m-t-15">
+                                                <h5>Negara</h5>
+                                                <div class="form-group">
+                                                    <div class="input-group form-float">
+                                                        <div class="form-line">
+                                                            <%= select("filters", 'country', Country.all.collect {|c| [ c.name, c.id ] }, {include_blank: 'Semua Negara'}, class:"form-control form-control--z-5 show-tick", "data-live-search":true) %>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            <div class="col-sm-2 m-t-15">
+                                                <h5>KBRI/KJRI</h5>
+                                                <%= select("filters", "consulate", @consulates, {include_blank: 'Semua KBRI'}, class:'form-control form-control--z-4 show-tick', "data-live-search":true) %>
+                                            </div>
+                                        <% end %>
                                         <div class="col-sm-2 m-t-15">
-                                            <h5>KBRI/KJRI</h5>
-                                            <%= select("filters", "consulate", @consulates, {include_blank: 'Semua KBRI'}, class:'form-control form-control--z-4 show-tick', "data-live-search":true) %>
-                                        </div>
-                                        <div class="col-sm-2 m-t-15">
-                                            <h5>Kelengkapan</h5>
+                                            <h5>Status Kiriman</h5>
                                             <input name="filters[complete]" checked value="" type="radio" class="with-gap" id="radio_12">
                                             <label for="radio_12">Semua</label>
                                             <input name="filters[complete]" value="true" type="radio" class="with-gap" id="radio_13">
-                                            <label for="radio_13">Lengkap</label>
+                                            <label for="radio_13">Dikirim</label>
                                             <input name="filters[complete]" value="false" type="radio" class="with-gap" id="radio_14">
-                                            <label for="radio_14">Belum Lengkap</label>
+                                            <label for="radio_14">Belum Dikirim</label>
                                         </div>
                                         <div class="col-sm-2 m-t-15">
                                             <h5>Kelulusan</h5>
