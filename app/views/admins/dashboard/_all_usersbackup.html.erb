@@ -62,3 +62,59 @@
         </div>
     </div>
 </div>
+
+
+
+<td class="hid"><%= user.to_indonesias.map{|d| [d.destination, d.long, d.unit]}.flatten.to_sentence(last_word_connector:",") if user.to_indonesias
+                                     %></td>
+                                    <td class="hid"><%= user.bipa_courses.map{|d| [d.location, d.long, d.unit]}.flatten.to_sentence(last_word_connector:",") if user.bipa_courses %></td>
+                                    <td class="hid"><%= user.skype_id %></td>
+                                    <td><%= show(user.score.kind) %></td>
+
+
+
+
+
+                                        <% if score.kind.eql?"bercerita"  %>
+                                            <table class="hid">
+                                               <tr class="hid" width="100">
+                                                    <td class="hid">Isi</td>
+                                                    <td class="hid"><%= score.content %></td>
+                                               </tr>
+                                               <tr class="hid" width="100">
+                                                    <td class="hid">Alur</td>
+                                                    <td class="hid"><%= score.plot %></td>
+                                               </tr>
+                                               <tr class="hid" width="100">
+                                                    <td class="hid">Kelancaran</td>
+                                                    <td class="hid"><%= score.fluency %></td>
+                                               </tr>
+                                               <tr class="hid" width="100">
+                                                    <td class="hid">Gestur</td>
+                                                    <td class="hid"><%= score.gesture %></td>
+                                               </tr>
+                                               <tr class="hid" width="100">
+                                                    <td class="hid">Suara</td>
+                                                    <td class="hid"><%= score.sound %></td>
+                                               </tr>
+                                               <tr class="hid" width="100">
+                                                    <td class="hid">Durasi</td>
+                                                    <td class="hid"><%= score.duration %></td>
+                                               </tr>
+                                               <tr class="hid" width="100">
+                                                    <td class="hid">Penampilan</td>
+                                                    <td class="hid"><%= score.showing %></td>
+                                               </tr>
+                                               <tr class="hid" width="100">
+                                                    <td class="hid">Media</td>
+                                                    <td class="hid"><%= score.media %></td>
+                                               </tr>
+                                               <tr class="hid" width="100">
+                                                    <td class="hid">Catatan</td>
+                                                    <td class="hid"><%= score.note %></td>
+                                               </tr>
+                                            </table>
+                                        <% else %>
+
+                                        <% end %>
+                                    <% end %>

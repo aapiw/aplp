@@ -12,7 +12,14 @@ $.action.tableDataTable = {
         // lengthMenu: [ 10, 25, 50, 75, 100 ],
         responsive: true,
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+            // 'copy', 'csv', 'excel', 'pdf', 'print',
+            {
+               text: 'export excel',
+               extend: 'excel',
+               exportOptions: {
+                 columns: ':not(.not-export-col)'
+               }
+             }
         ]
     });
     $('.js-editable').editableTableWidget();
@@ -33,11 +40,11 @@ $(document).ready(function() {
 
   if ($('.datepicker').length || $('.timepicker').length) {
     $('.datepicker').bootstrapMaterialDatePicker({
-      format: 'DD MMMM YYYY',
+      format: 'DD MMM YYYY',
       clearButton: true,
       weekStart: 1,
       time: false,
-      lang: 'id'
+      lang: 'en-au'
     });
 
     $('.timepicker').bootstrapMaterialDatePicker({

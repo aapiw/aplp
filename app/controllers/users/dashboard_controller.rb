@@ -9,12 +9,15 @@ class Users::DashboardController < ApplicationController
 	
 	def update
 		dashboard_params_edit = dashboard_params
+		debugger
 		dashboard_params_edit["dob"] = dashboard_params_edit["dob"].to_date
 		dashboard_params_edit["passport_expire"] = dashboard_params_edit["passport_expire"].to_date
 
 		if params["commit"] == "KIRIM"
 			dashboard_params_edit["complete"] = true
 			dashboard_params_edit["lock"] = true
+		else
+			dashboard_params_edit["complete"] = false
 		end
 	  respond_to do |format|
 	    if @user.update(dashboard_params_edit)
