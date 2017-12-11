@@ -68,8 +68,20 @@ class Score < ApplicationRecord
       self.showing = nil
       self.bahasa = nil
       self.interlude = nil
-      self. note = nil
+      self.note = nil
     end
   end
 
+  def counting
+    sum_all(self.media, self.plot, self.content, self.fluency, self.gesture, self.sound, self.duration , self.showing, self.bahasa, self.interlude, self.note)
+  end
+
+  def sum_all *val
+    # debugger
+    sum = 0
+    val.each do |data|
+      sum = sum+data if data.present? and data.class == BigDecimal
+    end
+    sum
+  end
 end

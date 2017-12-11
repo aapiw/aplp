@@ -25,14 +25,14 @@
                     </div>
                 </div>
                 <% if @admin.role.eql? "admin" %>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box bg-light-green hover-expand-effect">
                             <div class="icon">
                                 <i class="material-icons">public</i>
                             </div>
                             <div class="content">
                                 <div class="text">NEGARA</div>
-                                <div class="number count-to" data-from="0" data-to="<%= @country_count %>" data-speed="1000" data-fresh-interval="20"></div>
+                                <div class="number count-to" data-from="0" data-to="<#%= @country_count %>" data-speed="1000" data-fresh-interval="20"></div>
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,29 @@
                             </div>
                             <div class="content">
                                 <div class="text">KBRI/KJRI</div>
-                                <div class="number count-to" data-from="0" data-to="<%= @consulate_count %>" data-speed="1000" data-fresh-interval="20"></div>
+                                <div class="number count-to" data-from="0" data-to="<#%= @consulate_count %>" data-speed="1000" data-fresh-interval="20"></div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box bg-light-green hover-expand-effect">
+                            <div class="icon">
+                                <i class="material-icons">check_circle</i>
+                            </div>
+                            <div class="content">
+                                <div class="text">Menang</div>
+                                <div class="number count-to" data-from="0" data-to="<%= @user_win_count %>" data-speed="1000" data-fresh-interval="20"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box bg-orange hover-expand-effect">
+                            <div class="icon">
+                                <i class="material-icons">cancel</i>
+                            </div>
+                            <div class="content">
+                                <div class="text">Kalah</div>
+                                <div class="number count-to" data-from="0" data-to="<%= @user_lose_count %>" data-speed="1000" data-fresh-interval="20"></div>
                             </div>
                         </div>
                     </div>

@@ -27,6 +27,7 @@
                                 <th rowspan="2">Jenis Lomba</th>
                                 <th colspan="9" rowspan="1" class="hide">Skor Pidato</th>
                                 <th colspan="8" rowspan="1" class="hide">Skor Bercerita</th>
+                                <th rowspan="2" class="hide">Total Score</th>
                                 <th rowspan="2" class="hide"  >Catatan</th>
                                 <th rowspan="2" class="not-export-col">Status Kiriman</th>
                                 <th rowspan="2" class="not-export-col">Kelulusan</th>
@@ -163,6 +164,7 @@
                                             <td class="hide"><%= score.duration %></td>
                                         <% end %>
                                         <td class="hide" ><%= score.note %></td>
+                                        <td class="hide" ><%= score.counting %></td>
                                     <% else %>
                                             <td class="hide"></td>
                                             <td class="hide"></td>

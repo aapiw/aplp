@@ -14,7 +14,7 @@ class Admins::DashboardController < BaseController
 		if @admin.role == "admin"
 			@users = User.all
 			@user_count = User.count
-			@user_complite_count = User.completes.count
+			# @user_complite_count = User.completes.count
 			@country_count = Country.count
 			@consulate_count = Admin.consulates.count
 			@consulates =  Admin.where(role:"consulate")
@@ -22,10 +22,10 @@ class Admins::DashboardController < BaseController
 		else
 			@users = @admin.users
 			@user_count = @users.count
-			@user_complite_count = @users.select{|d| d.complete == true}.count
-			@user_win_count = @users.select{|d| d.win == true}.count
-			@user_lose_count = @users.select{|d| d.win == false}.count
 		end
+		@user_complite_count = @users.select{|d| d.complete == true}.count
+		@user_win_count = @users.select{|d| d.win == true}.count
+		@user_lose_count = @users.select{|d| d.win == false}.count
 	end
 	
 	def update
