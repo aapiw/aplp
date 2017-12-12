@@ -32,6 +32,7 @@
                                 <th rowspan="2" class="not-export-col">Status Kiriman</th>
                                 <th rowspan="2" class="not-export-col">Kelulusan</th>
                                 <th rowspan="2" class="not-export-col">Tahun</th>
+                                <th>Password</th>
                                 
                                 <th rowspan="2" class="not-export-col">Aksi</th>
                             </tr>
@@ -188,6 +189,7 @@
                                     <td><%= show( user.complete.present? ? "Dikirim" : "Belum Dikirim" ) %></td>
                                     <td><%= show(user.win) %></td>
                                     <td><%= user.year rescue nil %></td>
+                                    <td><%= user.decrypt_password rescue nil %></td>
                                     <td>
                                         <a href="<%= admins_dashboard_path(user.id) %>" class="btn bg-blue waves-effect" target="blank">Tampilkan</a>
                                     </td>

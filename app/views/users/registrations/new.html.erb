@@ -11,35 +11,39 @@
             <%= devise_error_messages! %>
             <div class="msg">Pendaftaran akun baru</div>
 
-            <div class="form-group form-float">
+            <div class="form-group">
+                <label class="form-label ">Nama Sesuai passport <%= "<span class='col-pink'>(Harus Diisi)</span>".html_safe if @user.name.blank? %></label>
                 <div class="form-line">
                     <%= f.text_field :name, class:"form-control", autofocus: true, required:true %>
 
-                    <label class="form-label">Nama sesuai passport</label>
+                    <!-- <label class="form-label">Nama sesuai passport <%#= "<span class='col-pink'>(Harus Diisi)</span>".html_safe if @user.name.blank? %><span></span></label> -->
                 </div>
             </div>
 
-            <div class="form-group form-float">
+            <div class="form-group">
+                <label class="form-label ">No Passport <%="<span class='col-pink'>(Harus Diisi)</span>".html_safe if @user.passport.blank? %></label>
                 <div class="form-line">
-                    <%= f.number_field :passport, min:"0", class:"form-control", required:true %>
-                    <label class="form-label">No Passport</label>
+                    <%= f.text_field :passport, class:"form-control", required:true %>
+                    <!-- <label class="form-label">No Passport <%#= "<span class='col-pink'>(Harus Diisi)</span>".html_safe if @user.passport.blank? %></label> -->
                 </div>
             </div>
-            <div class="form-group form-float">
+            <div class="form-group">
+            <label class="form-label ">Kadaluarsa Passport <%="<span class='col-pink'>(Harus Diisi)</span>".html_safe if @user.passport_expire.blank? %></label>
                 <div class="form-line">
-                    <%= f.text_field :passport_expire, class:"form-control datepicker", placeholder:"Kadaluarsa Passport", required:true %>
+                    <%= f.text_field :passport_expire, class:"form-control datepicker", required:true %>
                 </div>
             </div>
             <div class="input-group">
+            <label class="form-label ">Jenis Kelamin <%="<span class='col-pink'>(Harus Diisi)</span>".html_safe if @user.gender.blank? %></label>
                 <div class="form-line">
-                    <%= f.radio_button :gender, "lk", required:true, checked:true, id:"male", class: "with-gap" %>
+                    <%= f.radio_button :gender, "lk", required:true, id:"male", class: "with-gap" %>
                     <%= label :male, "Laki-Laki", for:"male" %>
                     <%= f.radio_button :gender, "pr", id:"female", required:true, class: "with-gap" %>
                     <%= label :female, "Perempuan", for:"female" %>
                 </div>
             </div>
             <div class="form-group">
-                <label class="form-label m-b-10 m-t-10">Negara dimana anda mengikuti lomba</label>
+                <label class="form-label m-b-10 m-t-10"><%= "<span class='col-pink'>(Harus Diisi)</span><br/>".html_safe if @user.country.blank? %>Negara dimana anda mengikuti lomba</label>
                 <div class="input-group form-float">
                     <div class="form-line">
                         <%= f.select(:country_id, Country.all.collect {|c| [ c.name, c.id ] }, {}, class:"form-control form-control--z-5 show-tick", required:true, "data-title":"Pilih Negara", "data-live-search":true) %>
@@ -47,7 +51,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="form-label m-b-10 m-t-10">KBRI dimana anda mengikuti lomba</label>
+                <label class="form-label m-b-10 m-t-10"><%= "<span class='col-pink'>(Harus Diisi)</span><br/>".html_safe if @user.consulate.blank? %> KBRI dimana anda mengikuti lomba </label>
                 <div class="input-group form-float">
                     <div class="form-line " id="consulates_lists">
                         <select name="user[admin_id]" class="form-control form-control--z-4 show-tick" disabled required>
@@ -57,22 +61,25 @@
                 </div>
             </div>
 
-            <div class="form-group form-float">
+            <div class="form-group">
+            <label class="form-label m-b-10 m-t-10"> Email <%= "<span class='col-pink'>(Harus Diisi)</span>".html_safe if @user.email.blank? %></label>
                 <div class="form-line">
                     <%= f.email_field :email, class:"form-control", required:true %>
-                    <label class="form-label">Email</label>
+                    <!-- <label class="form-label">Email</label> -->
                 </div>
             </div>
-            <div class="form-group form-float">
+            <div class="form-group ">
+            <label class="form-label m-b-10 m-t-10">Password <%= "<span class='col-pink'>(Harus Diisi)</span>".html_safe if @user.password.blank? %></label>
                 <div class="form-line">
                     <%= f.password_field :password, class:"form-control", autocomplete: "off" %>
-                    <label class="form-label">Password</label>
+                    <!-- <label class="form-label">Password</label> -->
                 </div>
             </div>
             <div class="form-group form-float">
+            <label class="form-label m-b-10 m-t-10">Password <%= "<span class='col-pink'>(Harus Diisi)</span>".html_safe if @user.password.blank? %></label>
                 <div class="form-line">
                     <%= f.password_field :password_confirmation, class:"form-control", minlength:"6", required:true, autocomplete: "off" %>
-                    <label class="form-label">Konfirmasi Password </label>
+                    <!-- <label class="form-label">Konfirmasi Password </label> -->
                 </div>
             </div>
             <%= f.submit "SIGN UP", class:"btn btn-block btn-lg bg-pink waves-effect" %>

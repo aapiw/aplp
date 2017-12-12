@@ -92,9 +92,19 @@ class User < ApplicationRecord
 	scope :search_win, -> (win) { where(win: win) }
 	scope :search_country, -> (country_id) { User.where(country_id: country_id) }
 
-
-	
 	after_create :build_additional
+	before_save :encrypt_password, if: :password
+
+  def encrypt_password
+    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base)
+    encrypted_data = crypt.encrypt_and_sign(self.password)
+    self.display_password = encrypted_data
+  end
+  
+  def decrypt_password
+    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base)
+    crypt.decrypt_and_verify(display_password) if display_password
+  end
 
 	def admin?
 	  false
@@ -153,7 +163,7 @@ class User < ApplicationRecord
 	protected
 
 	def build_additional
-		update_attributes(id_reg: "APLP-#{Time.now.strftime("%Y-%d-%m")}-#{id.to_s.rjust(4, '0')}")
+		update_attributes(id_reg: "APLP#{Time.now.strftime("%Y-%d-%m")}#{id.to_s.rjust(4, '0')}")
 		score = self.build_score
 		score.save(validate:false)
 	end
