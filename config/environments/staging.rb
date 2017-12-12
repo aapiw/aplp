@@ -80,7 +80,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-   :address              => "mail.kemdikbud.go.id",
+   :address              => "webmail.kemdikbud.go.id",
    :port                 => 465,
    :user_name            => ENV['APLP_MAILER_USERNAME'],
    :password             => ENV['APLP_MAILER_PASSWORD'],
