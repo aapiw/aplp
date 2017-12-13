@@ -67,26 +67,26 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   
-  # config.action_mailer.smtp_settings = {
-  #   address: 'localhost',
-  #   port: 587,
-  #   domain: 'gmail.com',
-  #   authentication: 'plain',
-  #   enable_starttls_auto: true,
-  #   user_name: 'yasfi.mail',
-  #   password: ENV["GMAIL_PASSWORD"]
-  # }
+  config.action_mailer.smtp_settings = {
+    address: 'localhost',
+    port: 587,
+    domain: 'gmail.com',
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    user_name: 'yasfi.mail',
+    password: ENV["GMAIL_PASSWORD"]
+  }
   config.action_mailer.default_url_options = { host: 'aplp.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
-  config.action_mailer.smtp_settings = {
-   :address              => "webmail.kemdikbud.go.id",
-   :port                 => 465,
-   :user_name            => ENV['APLP_MAILER_USERNAME'],
-   :password             => ENV['APLP_MAILER_PASSWORD'],
-   :authentication       => "plain",
-  :enable_starttls_auto => true
-  }
+  # config.action_mailer.smtp_settings = {
+  #  :address              => "webmail.kemdikbud.go.id",
+  #  :port                 => 465,
+  #  :user_name            => ENV['APLP_MAILER_USERNAME'],
+  #  :password             => ENV['APLP_MAILER_PASSWORD'],
+  #  :authentication       => "plain",
+  # :enable_starttls_auto => true
+  # }
   # Google authentication issue
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
