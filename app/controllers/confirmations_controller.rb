@@ -29,8 +29,8 @@ class ConfirmationsController < ApplicationController
   def create
     
     confirmation_params_edit = confirmation_params
-    confirmation_params_edit["flight_arrival_date"] = confirmation_params_edit["flight_arrival_date"].to_date
-    confirmation_params_edit["date_of_return_flight"] = confirmation_params_edit["date_of_return_flight"].to_date
+    confirmation_params_edit["flight_arrival_date"] = localize_month(confirmation_params_edit["flight_arrival_date"]).to_date
+    confirmation_params_edit["date_of_return_flight"] = localize_month(confirmation_params_edit["date_of_return_flight"]).to_date
 
     @confirmation = Confirmation.new(confirmation_params_edit)
     respond_to do |format|
@@ -47,8 +47,8 @@ class ConfirmationsController < ApplicationController
   # PATCH/PUT /confirmations/1.json
   def update
     confirmation_params_edit = confirmation_params
-    confirmation_params_edit["flight_arrival_date"] = confirmation_params_edit["flight_arrival_date"].to_date
-    confirmation_params_edit["date_of_return_flight"] = confirmation_params_edit["date_of_return_flight"].to_date
+    confirmation_params_edit["flight_arrival_date"] = localize_month(confirmation_params_edit["flight_arrival_date"]).to_date
+    confirmation_params_edit["date_of_return_flight"] = localize_month(confirmation_params_edit["date_of_return_flight"]).to_date
     respond_to do |format|
       if @confirmation.update(confirmation_params_edit)
         format.html { redirect_to present_confirmation_index_path }

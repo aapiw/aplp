@@ -1,14 +1,15 @@
 <% content_for :title, "| Selamat datang di aplikasi APLP 2018" %>
-
-<div class="row container-landing-page">
-    <div class="col-xs-12" style="height: 350px">
-            <img src="<%= asset_path('kemdikbud_logo') %>" width="250" alt="">
-            <div class="sub">
-                <p>APRESIASI PEMENANG LOMBA PIDATO</p>
-                <p>ATDIKBUD BPKLN KEMENDIKBUD RI</p>
-            </div>
-    </div>
-    
+<div class="container container-landing-page">
+    <div class="row ">
+        <div class="col-xs-12" style="height: 350px">
+                <img src="<%= asset_path('kemdikbud_logo') %>" width="250" alt="">
+                <div class="sub">
+                    <p>APRESIASI PEMENANG LOMBA PIDATO</p>
+                    <p>ATDIKBUD BPKLN KEMENDIKBUD RI</p>
+                </div>
+        </div>
+        
+    </div>    
 </div>
 <div class="four-zero-four-container bg-white container-landing-page container text-center">
     <h1><%= @landing.title.html_safe %></h1>

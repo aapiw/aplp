@@ -4,7 +4,9 @@
             <% if user_signed_in? %>    
               <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
             <% end %>
-            <a href="javascript:void(0);" class="bars"></a>
+            <% if admin_signed_in? %>
+              <a href="javascript:void(0);" class="bars"></a> 
+            <% end %>
             <a class="navbar-brand" href="<%= root_path %>">Selamat Datang di Aplikasi APLP 2017</a>
         </div>
         <% if user_signed_in? %>

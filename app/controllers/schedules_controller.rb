@@ -50,12 +50,12 @@ class SchedulesController < BaseController
   # PATCH/PUT /schedules/1.json
   def update
     schedule_params_edit = schedule_params
-    schedule_params_edit["start_registration"] = schedule_params_edit["start_registration"].to_date
-    schedule_params_edit["end_registration"] = schedule_params_edit["end_registration"].to_date
-    schedule_params_edit["start_consulate_selection"] = schedule_params_edit["start_consulate_selection"].to_date
-    schedule_params_edit["end_consulate_selection"] = schedule_params_edit["end_consulate_selection"].to_date
-    schedule_params_edit["start_central_selection"] = schedule_params_edit["start_central_selection"].to_date
-    schedule_params_edit["end_central_selection"] = schedule_params_edit["end_central_selection"].to_date
+    schedule_params_edit["start_registration"] = localize_month(schedule_params_edit["start_registration"]).to_date
+    schedule_params_edit["end_registration"] = localize_month(schedule_params_edit["end_registration"]).to_date
+    schedule_params_edit["start_consulate_selection"] = localize_month(schedule_params_edit["start_consulate_selection"]).to_date
+    schedule_params_edit["end_consulate_selection"] = localize_month(schedule_params_edit["end_consulate_selection"]).to_date
+    schedule_params_edit["start_central_selection"] = localize_month(schedule_params_edit["start_central_selection"]).to_date
+    schedule_params_edit["end_central_selection"] = localize_month(schedule_params_edit["end_central_selection"]).to_date
     respond_to do |format|
       if @schedule.update(schedule_params_edit)
         format.html { redirect_to schedules_path, notice: 'Jadwal berhasil diperbaharui.' }
