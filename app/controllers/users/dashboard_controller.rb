@@ -9,7 +9,6 @@ class Users::DashboardController < ApplicationController
 	
 	def update
 		dashboard_params_edit = dashboard_params
-		debugger
 		dashboard_params_edit["dob"] = localize_month(dashboard_params_edit["dob"]).to_date
 		dashboard_params_edit["passport_expire"] = localize_month(dashboard_params_edit["passport_expire"]).to_date
 
