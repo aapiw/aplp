@@ -38,6 +38,7 @@
 // require sweet-alert
 // require sweet-alert-confirm
 //= require plugin/dataTable/jquery.dataTables
+//= require plugin/jquery.backstretch.min
 //= require plugin/dataTable/dataTables.bootstrap.min
 //= require plugin/dataTable/dataTables.buttons.min
 //= require plugin/dataTable/buttons.flash.min

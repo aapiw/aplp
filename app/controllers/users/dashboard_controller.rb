@@ -10,8 +10,8 @@ class Users::DashboardController < ApplicationController
 	def update
 		dashboard_params_edit = dashboard_params
 		debugger
-		dashboard_params_edit["dob"] = dashboard_params_edit["dob"].to_date
-		dashboard_params_edit["passport_expire"] = dashboard_params_edit["passport_expire"].to_date
+		dashboard_params_edit["dob"] = localize_month(dashboard_params_edit["dob"]).to_date
+		dashboard_params_edit["passport_expire"] = localize_month(dashboard_params_edit["passport_expire"]).to_date
 
 		if params["commit"] == "KIRIM"
 			dashboard_params_edit["complete"] = true
@@ -23,6 +23,7 @@ class Users::DashboardController < ApplicationController
 	    if @user.update(dashboard_params_edit)
 	      format.html { redirect_to user_root_path }
 	      flash["notice"] = 'Data berhasil diperbarui.'
+	      UserMailer.submit_email(@user).deliver_later if params["commit"] == "KIRIM"
 	    else
 	      format.html { render :index }
 	      flash["alert"] = @user.errors.full_messages

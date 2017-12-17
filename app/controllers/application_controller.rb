@@ -34,6 +34,38 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def localize_month date
+    month = date.split
+    case month[1]
+      when "Januari"
+        month[1] = "January"
+      when "Februari"
+        month[1] = "February"
+      when "Maret"
+        month[1] = "March"
+      when "April"
+        month[1] = "April"
+      when "Mei"
+        month[1] = "May"
+      when "Juni"
+        month[1] = "June"
+      when "Juli"
+        month[1] = "July"
+      when "Agustus"
+        month[1] = "August"
+      when "September"
+        month[1] = "September"
+      when "Oktober"
+        month[1] = "October"
+      when "November"
+        month[1] = "November"
+      when "Desember"
+        month[1] = "December"
+    end
+    month.join(" ")   
+    
+  end
+
   private
 
   def set_var

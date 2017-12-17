@@ -110,6 +110,20 @@ section.content{
 	}
 }
 .container-landing-page{
+	padding: 20px;
+	color: #333;
+	.sub{
+		color: #fff;
+		font-size: 20px;
+		font-weight: 700;
+		margin-top: 15px;
+		p{
+			margin: 10px 0 0 0;
+		&:last-child{
+			font-size: 15px;
+		}
+		}
+	}
 	h1{
 		margin-bottom: 30px;
 		line-height: 6rem;
@@ -126,5 +140,8 @@ section.content{
 	}
 }
 .four-zero-four, .bg-four-zero-four{
-	background: rgba(0, 146, 222, 0.65);
+	background: #000;
+}
+.backstretch{
+	opacity: 0.5;
 }

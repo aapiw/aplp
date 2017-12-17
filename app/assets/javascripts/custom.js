@@ -40,11 +40,11 @@ $(document).ready(function() {
 
   if ($('.datepicker').length || $('.timepicker').length) {
     $('.datepicker').bootstrapMaterialDatePicker({
-      format: 'DD MMM YYYY',
+      format: 'DD MMMM YYYY',
       clearButton: true,
       weekStart: 1,
       time: false,
-      lang: 'en-au'
+      lang: 'id'
     });
 
     $('.timepicker').bootstrapMaterialDatePicker({
@@ -287,6 +287,15 @@ $(document).ready(function() {
     }
 
     
+  });
+  
+  $(".four-zero-four").backstretch([
+    "/assets/bg-1.jpg",
+    "/assets/bg-2.jpg",
+    "/assets/bg-3.jpg",
+  ], {
+    fade: 600,
+    duration: 8000
   });
 
   // $(".img-view").click(function(event) {
