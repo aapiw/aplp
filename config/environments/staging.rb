@@ -79,24 +79,24 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'aplp.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
-  # config.action_mailer.smtp_settings = {
-  #  :address              => "smtp.gmail.com",
-  #  :port                 => 587,
-  #  :user_name            => ENV['GMAIL_USERNAME'],
-  #  :password             => ENV['GMAIL_PASSWORD'],
-  #  :authentication       => "plain",
-  # :enable_starttls_auto => true
-  # }
   config.action_mailer.smtp_settings = {
-   :address              => "mail.kemdikbud.go.id",
-   # :address              => "smtp.kemdikbud.go.id",
-   :port                 => 465,
-   :user_name            => ENV['APLP_MAILER_USERNAME'],
-   :password             => ENV['APLP_MAILER_PASSWORD'],
+   :address              => "smtp.gmail.com",
+   :port                 => 587,
+   :user_name            => ENV['GMAIL_USERNAME'],
+   :password             => ENV['GMAIL_PASSWORD'],
    :authentication       => "plain",
-   :domain               => 'kemdikbud.go.id',
   :enable_starttls_auto => true
   }
+  # config.action_mailer.smtp_settings = {
+  #  :address              => "mail.kemdikbud.go.id",
+  #  # :address              => "smtp.kemdikbud.go.id",
+  #  :port                 => 465,
+  #  :user_name            => ENV['APLP_MAILER_USERNAME'],
+  #  :password             => ENV['APLP_MAILER_PASSWORD'],
+  #  :authentication       => "plain",
+  #  :domain               => 'kemdikbud.go.id',
+  #  :enable_starttls_auto => true
+  # }
 
   # Google authentication issue
   config.action_mailer.perform_deliveries = true
