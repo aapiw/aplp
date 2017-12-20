@@ -113,7 +113,7 @@
                             </tbody>
                           </table>
 
-                        <div class="action-user-users m-b-15">
+                        <div class="action-user-users">
                           
                           <% if @user.confirmed? %>
                             <a href="#x" class="disabled btn bg-blue waves-effect">Aktivasi</a>
@@ -153,9 +153,7 @@
                             <% end %>
                           <% end %>
 
-                        </div>
 
-                        <div class="">
                           <%= link_to "Hapus", admins_dashboard_path(@user), class:"btn bg-blue waves-effect m-b-15", data:{confirm:"Kamu Yakin ingin menghapusnya"}, method: :delete %>                        
                           <% if @user.passport_image.path %>
                             <%= link_to "Download Passport", @user.passport_image.url, class: "btn bg-blue waves-effect m-b-15", download: "Passport-#{@user.id_reg}" %>
