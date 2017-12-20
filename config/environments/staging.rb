@@ -88,13 +88,13 @@ Rails.application.configure do
   # :enable_starttls_auto => true
   # }
   config.action_mailer.smtp_settings = {
-   # :address              => "mail.kemdikbud.go.id",
-   :address              => "smtp.kemdikbud.go.id",
+   :address              => "mail.kemdikbud.go.id",
+   # :address              => "smtp.kemdikbud.go.id",
    :port                 => 465,
    :user_name            => ENV['APLP_MAILER_USERNAME'],
    :password             => ENV['APLP_MAILER_PASSWORD'],
    :authentication       => "plain",
-   # :domain               => 'kemdikbud.go.id',
+   :domain               => 'kemdikbud.go.id',
   :enable_starttls_auto => true
   }
 
