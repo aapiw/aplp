@@ -112,6 +112,7 @@
                               <% end %>
                             </tbody>
                           </table>
+
                         <div class="action-user-users m-b-15">
                           
                           <% if @user.confirmed? %>
@@ -132,9 +133,11 @@
                             <% end %>
                           <% end %>
 
-                          <%= link_to "Hapus", admins_dashboard_path(@user), class:"btn bg-blue waves-effect", data:{confirm:"Kamu Yakin ingin menghapusnya"}, method: :delete %>
-
-                          <% if @user.win %>
+                          <% if @user.win.nil? %>
+                            <%= form_for(@user, url: update_user_admins_dashboard_path) do |f| %>
+                                <%= f.hidden_field :win, value:true %>
+                                <%= f.submit "Menang", class:"btn bg-blue waves-effect" %>
+                            <% end %>
                             <%= form_for(@user, url: update_user_admins_dashboard_path) do |f| %>
                                 <%= f.hidden_field :win, value:false %>
                                 <%= f.submit "Kalah", class:"btn bg-blue waves-effect" %>
@@ -142,14 +145,18 @@
                             <% else %>
                             <%= form_for(@user, url: update_user_admins_dashboard_path) do |f| %>
                                 <%= f.hidden_field :win, value:true %>
-                                <%= f.submit "Menang", class:"btn bg-blue waves-effect" %>
+                                <%= f.submit "Menang", class:"btn bg-blue waves-effect", disabled: @user.win ? true : false %>
+                            <% end %>
+                            <%= form_for(@user, url: update_user_admins_dashboard_path) do |f| %>
+                                <%= f.hidden_field :win, value:false %>
+                                <%= f.submit "Kalah", class:"btn bg-blue waves-effect", disabled: @user.win ? false : true %>
                             <% end %>
                           <% end %>
-                          
-                        
+
                         </div>
 
                         <div class="">
+                          <%= link_to "Hapus", admins_dashboard_path(@user), class:"btn bg-blue waves-effect m-b-15", data:{confirm:"Kamu Yakin ingin menghapusnya"}, method: :delete %>                        
                           <% if @user.passport_image.path %>
                             <%= link_to "Download Passport", @user.passport_image.url, class: "btn bg-blue waves-effect m-b-15", download: "Passport-#{@user.id_reg}" %>
                           <% else %>
