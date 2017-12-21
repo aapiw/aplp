@@ -35,6 +35,7 @@ class ConfirmationsController < ApplicationController
     @confirmation = Confirmation.new(confirmation_params_edit)
     respond_to do |format|
       if @confirmation.save
+        # format.html { redirect_to present_confirmation_index_path }
         format.html { redirect_to present_confirmation_index_path }
         flash["notice"] = 'Konfirmasi berhasil diperbarui.'
       else
