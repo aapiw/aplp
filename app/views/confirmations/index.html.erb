@@ -26,7 +26,7 @@
               <h2><%= @user.lock ? '<i class="material-icons">lock </i>'.html_safe : '' %> 
               Form Konfirmasi Kehadiran</h2>
             </div>
-            <div class="body <%= @user.lock ? "lock" : '' %>">
+            <div class="body">
             <%= form_for(@confirmation, url: present_confirmation_index_path, html: { multipart: true } ) do |f| %>
                 <%= f.hidden_field :user_id, value:@user.id %>
                 <h2 class="card-inside-title">Nomor Penerbangan Kedatangan</h2>

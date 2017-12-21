@@ -70,8 +70,8 @@ class ConfirmationsController < ApplicationController
 
   private
     def verify_winner
-      redirect_to root_url unless @user.win
-      flash["alert"] = "Kamu tidak mempunyai Otoritas untuk mengakses halaman tersebut" unless @user.win
+      redirect_to root_url unless current_user.win
+      flash["alert"] = "Kamu tidak mempunyai Otoritas untuk mengakses halaman tersebut" unless current_user.win
     end
 
     def verify_user
