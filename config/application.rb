@@ -11,7 +11,7 @@ module Aplp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
     config.i18n.default_locale = :id
-    config.time_zone = 'Jakarta'
+    # config.time_zone = 'Jakarta'
     config.active_record.default_timezone = :local #default :utc
     config.action_view.embed_authenticity_token_in_remote_forms = true
 
