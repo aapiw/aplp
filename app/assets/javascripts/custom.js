@@ -38,12 +38,20 @@ $(document).ready(function() {
       container: 'body'
   });
 
-  if ($('.datepicker').length || $('.timepicker').length) {
+  if ($('.datepicker').length || $('.timepicker').length || $('.datetimepicker').length) {
     $('.datepicker').bootstrapMaterialDatePicker({
       format: 'DD MMMM YYYY',
       clearButton: true,
       weekStart: 1,
       time: false,
+      lang: 'id'
+    });
+
+    $('.datetimepicker').bootstrapMaterialDatePicker({
+      format: 'DD MMMM YYYY HH:mm',
+      clearButton: true,
+      weekStart: 1,
+      time: true,
       lang: 'id'
     });
 

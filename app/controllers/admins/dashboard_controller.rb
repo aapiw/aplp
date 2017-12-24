@@ -1,5 +1,5 @@
 class Admins::DashboardController < BaseController
-	# load_and_authorize_resource :class => "Admins::DashboardController" #, find_by: :find_by_id
+	# load_and_authorize_resource :class => "User" #, find_by: :find_by_id
 	# load_and_authorize_resource
 	# authorize_resource :class => false
 	
@@ -32,7 +32,7 @@ class Admins::DashboardController < BaseController
 	end
 
 	def show
-		
+		# authorize! :show, @user
 	end
 
 	# def edit

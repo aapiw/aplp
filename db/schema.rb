@@ -96,12 +96,12 @@ ActiveRecord::Schema.define(version: 20171111001755) do
 
   create_table "schedules", force: :cascade do |t|
     t.string "year"
-    t.date "start_registration"
-    t.date "end_registration"
-    t.date "start_central_selection"
-    t.date "end_central_selection"
-    t.date "start_consulate_selection"
-    t.date "end_consulate_selection"
+    t.datetime "start_registration"
+    t.datetime "end_registration"
+    t.datetime "start_central_selection"
+    t.datetime "end_central_selection"
+    t.datetime "start_consulate_selection"
+    t.datetime "end_consulate_selection"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 20171111001755) do
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "display_password"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -157,7 +158,7 @@ ActiveRecord::Schema.define(version: 20171111001755) do
     t.string "id_reg"
     t.string "passport"
     t.date "passport_expire"
-    t.string "dob"
+    t.date "dob"
     t.string "campus"
     t.string "majors"
     t.string "phone"

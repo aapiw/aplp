@@ -6,7 +6,12 @@ class BaseController < ApplicationController
   before_action :verify_admin
 
   def current_ability
-    @current_ability ||= AdminAbility.new(current_admin)
+    user_id = params[:id] if admin_actions
+    @current_ability ||= AdminAbility.new(admin: current_admin, user: user_id)
+  end
+  
+  def admin_actions
+    (controller_name == "dashboard") and (action_name == "show" or action_name == "update_user" or action_name == "index" or action_name == "destroy")
   end
 
   rescue_from CanCan::AccessDenied do |exception|

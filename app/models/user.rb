@@ -163,7 +163,7 @@ class User < ApplicationRecord
 	protected
 
 	def build_additional
-		update_attributes(id_reg: "APLP#{Time.now.strftime("%Y-%d-%m")}#{id.to_s.rjust(4, '0')}")
+		update_attributes(id_reg: "APLP#{Time.now.strftime("%Y%d%m")}#{id.to_s.rjust(4, '0')}")
 		score = self.build_score
 		score.save(validate:false)
 	end

@@ -7,12 +7,12 @@ class SchedulesController < BaseController
   def index
     # @schedule = Schedule.last
     @schedule_view = Schedule.last
-    @schedule.start_registration = I18n.l(@schedule.start_registration, format: :long)
-    @schedule.end_registration = I18n.l(@schedule.end_registration, format: :long)
-    @schedule.start_consulate_selection = I18n.l(@schedule.start_consulate_selection, format: :long)
-    @schedule.end_consulate_selection = I18n.l(@schedule.end_consulate_selection, format: :long)
-    @schedule.start_central_selection = I18n.l(@schedule.start_central_selection, format: :long)
-    @schedule.end_central_selection = I18n.l(@schedule.end_central_selection, format: :long)
+    @schedule.start_registration = I18n.l(@schedule.start_registration, format: :longtime)
+    @schedule.end_registration = I18n.l(@schedule.end_registration, format: :longtime)
+    @schedule.start_consulate_selection = I18n.l(@schedule.start_consulate_selection, format: :longtime)
+    @schedule.end_consulate_selection = I18n.l(@schedule.end_consulate_selection, format: :longtime)
+    @schedule.start_central_selection = I18n.l(@schedule.start_central_selection, format: :longtime)
+    @schedule.end_central_selection = I18n.l(@schedule.end_central_selection, format: :longtime)
   end
 
 
@@ -50,12 +50,12 @@ class SchedulesController < BaseController
   # PATCH/PUT /schedules/1.json
   def update
     schedule_params_edit = schedule_params
-    schedule_params_edit["start_registration"] = localize_month(schedule_params_edit["start_registration"]).to_date
-    schedule_params_edit["end_registration"] = localize_month(schedule_params_edit["end_registration"]).to_date
-    schedule_params_edit["start_consulate_selection"] = localize_month(schedule_params_edit["start_consulate_selection"]).to_date
-    schedule_params_edit["end_consulate_selection"] = localize_month(schedule_params_edit["end_consulate_selection"]).to_date
-    schedule_params_edit["start_central_selection"] = localize_month(schedule_params_edit["start_central_selection"]).to_date
-    schedule_params_edit["end_central_selection"] = localize_month(schedule_params_edit["end_central_selection"]).to_date
+    schedule_params_edit["start_registration"] = localize_month(schedule_params_edit["start_registration"]).to_datetime
+    schedule_params_edit["end_registration"] = localize_month(schedule_params_edit["end_registration"]).to_datetime
+    schedule_params_edit["start_consulate_selection"] = localize_month(schedule_params_edit["start_consulate_selection"]).to_datetime
+    schedule_params_edit["end_consulate_selection"] = localize_month(schedule_params_edit["end_consulate_selection"]).to_datetime
+    schedule_params_edit["start_central_selection"] = localize_month(schedule_params_edit["start_central_selection"]).to_datetime
+    schedule_params_edit["end_central_selection"] = localize_month(schedule_params_edit["end_central_selection"]).to_datetime
     respond_to do |format|
       if @schedule.update(schedule_params_edit)
         format.html { redirect_to schedules_path, notice: 'Jadwal berhasil diperbaharui.' }

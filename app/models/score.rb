@@ -77,7 +77,6 @@ class Score < ApplicationRecord
   end
 
   def sum_all *val
-    # debugger
     sum = 0
     val.each do |data|
       sum = sum+data if data.present? and data.class == BigDecimal

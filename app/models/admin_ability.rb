@@ -1,8 +1,10 @@
 class AdminAbility
   include CanCan::Ability
 
-  def initialize(admin)
-  	 admin ||= Admin.new
+  def initialize(opts={})
+    admin      = opts[:admin]
+    user_id    = opts[:user]
+  	admin ||= Admin.new
 
     if admin
         #Admin
@@ -19,16 +21,14 @@ class AdminAbility
         cannot :manage, :schedule
         cannot :manage, :to_indonesia
         cannot :manage, :bipa_course
-        
 
-      	# cannot :read, BipaCourse
-      	# can :read, :filters
+        cannot :show, :dashboard unless admin.users.pluck(:id).include? user_id.to_i
+        can :update_user, :dashboard if admin.users.pluck(:id).include? user_id.to_i
+        can :destroy, :dashboard if admin.users.pluck(:id).include? user_id.to_i
+        
     	end
     else
-      # debugger
-      # can :read, :consulate
-      # can :consulate_lists, :country
-      # show, :tool
+
     end
 
   end
