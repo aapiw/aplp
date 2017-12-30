@@ -24,20 +24,20 @@ class Score < ApplicationRecord
 
   belongs_to :user
 
-  validates_presence_of :plot, :content, :fluency, :gesture, :sound, :duration, :note, :kind, :showing, :media, if: :scoring
+  validates_presence_of :plot, :content, :fluency, :gesture, :sound, :duration, :kind, :showing, :media, if: :scoring
   validates_presence_of :bahasa, if: :contest_pidato #:interlude
-  # validates_presence_of :media, if: :contest_bercerita
+  validates_presence_of :giver, :note
 
 
   before_update :clear_datas_before
 
-  validates :plot, numericality: { less_than_or_equal_to: 15}, if: :scoring
+  validates :plot, numericality: { less_than_or_equal_to: 20}, if: :scoring
   validates :content, numericality: { less_than_or_equal_to: 20}, if: :scoring
   validates :fluency, numericality: { less_than_or_equal_to: 15}, if: :scoring
   validates :gesture, numericality: { less_than_or_equal_to: 10}, if: :scoring
   validates :sound, numericality: { less_than_or_equal_to: 5}, if: :scoring
   validates :duration, numericality: { less_than_or_equal_to: 5}, if: :scoring
-  # validates :media, numericality: { less_than_or_equal_to: 10}, if: :scoring
+  validates :media, numericality: { less_than_or_equal_to: 10}, if: :scoring
   validates :showing, numericality: { less_than_or_equal_to: 15}, if: :scoring
   validates :bahasa, numericality: { less_than_or_equal_to: 15}, if: :contest_pidato
   # validates :interlude, numericality: { less_than_or_equal_to: 15}, if: :contest_pidato
@@ -67,13 +67,14 @@ class Score < ApplicationRecord
       self.duration = nil
       self.showing = nil
       self.bahasa = nil
-      self.interlude = nil
+      # self.interlude = nil
       self.note = nil
+      self.giver = nil
     end
   end
 
   def counting
-    sum_all(self.media, self.plot, self.content, self.fluency, self.gesture, self.sound, self.duration , self.showing, self.bahasa, self.interlude, self.note)
+    sum_all(self.media, self.plot, self.content, self.fluency, self.gesture, self.sound, self.duration , self.showing, self.bahasa)#, self.interlude)
   end
 
   def sum_all *val

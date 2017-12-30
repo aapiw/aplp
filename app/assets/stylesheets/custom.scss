@@ -15,6 +15,7 @@ body:not(.ls-closed) .content.content-full{
 }
 
 .signup-page{
+	max-width: 440px;
 	position: relative;
 }
 .form-control{
@@ -23,6 +24,9 @@ body:not(.ls-closed) .content.content-full{
 	}
 	&--z-5{
 		z-index: 5 !important;
+	}
+	&--z-6{
+		z-index: 6 !important;
 	}
 }
 

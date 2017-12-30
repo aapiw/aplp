@@ -28,7 +28,7 @@
                   <h2  class="card-inside-title">Nama Sesuai Passport</h2>
                   <div class="form-group form-float">
                     <div class="form-line">
-                      <%= f.text_field :name, class: "form-control"%>
+                      <%= f.text_field :name, class: "form-control", placeholder:"Nama Sesuai Passport" %>
                     </div>
                   </div>
                   <h2  class="card-inside-title">Jenis Kelamin</h2>
@@ -38,18 +38,19 @@
                     <%= f.radio_button :gender, "pr", id:"female", required:true  , class: "with-gap" %>
                       <%= label :female, "Perempuan", for:"female" %>
                   </div>
-                  <h2  class="card-inside-title">No Passport</h2>
+                  <h2 class="card-inside-title">No Passport</h2>
                   <div class="form-group form-float">
                     <div class="form-line">
-                      <%= f.text_field :passport, class:"form-control", required:true, disabled:true  %>
+                      <%= f.text_field :passport, class:"form-control",  placeholder:"No Passport"%>
                     </div>
                   </div>
                   <h2 class="card-inside-title">Kadaluarsa Passport</h2>
                   <div class="form-group form-float">
                     <div class="form-line">
-                      <%= f.text_field :passport_expire, class:"form-control datepicker", placeholder:"Kadaluarsa Passport", required:true %>
+                      <%= f.text_field :passport_expire, class:"form-control datepicker", placeholder:"Kadaluarsa Passport" %>
                     </div>
                   </div>
+                  
                   <h2 class="card-inside-title">Negara dimana anda mengikuti lomba</h2>
                   <div class="form-group">
                     <div class="input-group form-float">
@@ -71,7 +72,7 @@
                   </h2>
                   <div class="form-group form-float">
                     <div class="form-line">
-                      <%= f.text_field :dob, class:"datepicker form-control", required:true %>
+                      <%= f.text_field :dob, class:"datepickerage form-control", required:true %>
                     </div>
                   </div>
                   <h2  class="card-inside-title">No Handphone
@@ -79,54 +80,33 @@
                   </h2>
                   <div class="form-group form-float">
                     <div class="form-line">
-                      <%= f.number_field :phone, class:"form-control", required:true %>
+                      <%= f.number_field :phone, class:"form-control", required:true, placeholder:"No Handphone" %>
                     </div>
                   </div>
-                  <h2  class="card-inside-title">Nama Kampus
-                    <%= "<span class='col-pink'><b>(Harus Diisi)</b></span>".html_safe if @user.campus.blank? %>
-                  </h2>
-                  <div class="form-group form-float">
-                    <div class="form-line">
-                      <%= f.text_field :campus, class:"form-control", required:true %>
-                    </div>
-                  </div>
-                  <h2  class="card-inside-title">Nama Jurusan
-                    <%= "<span class='col-pink'><b>(Harus Diisi)</b></span>".html_safe if @user.campus.blank? %>
-                  </h2>
-                  <div class="form-group form-float">
-                    <div class="form-line">
-                        <%= f.text_field :majors, class:"form-control", required:true %>
-                    </div>
-                  </div>
+                  
                   <h2  class="card-inside-title">Profesi
                     <%= "<span class='col-pink'><b>(Harus Diisi)</b></span>".html_safe if @user.profession.blank? %>
                   </h2>
                   <div class="form-group form-float">
                     <div class="form-line">
-                      <% 
+                      <%# 
                       if @user.profession == "" || @user.profession == nil
                           professional = false
-                          pelajar = false
-                      elsif @user.profession == "Pelajar"
-                        pelajar = true
+                          umum = false
+                      elsif @user.profession == "Umum"
+                        umum = true
                         professional = false
                       else
                           professional = true
-                          pelajar = false
+                          umum = false
                       end
                       %>
 
-                      <%= f.radio_button :profession, "Pelajar", checked: pelajar , required:true, id:"pelajar", class: "js-profession with-gap" %>
-                      <%= label :pelajar, "Pelajar", for:"pelajar" %>
-                      <%= f.radio_button :profession, "Profesional", checked: professional, id:"profesional", required:true  , class: "js-profession with-gap" %>
+                      <%= f.radio_button :profession, "Profesional", id:"profesional", required:true  , class: "js-profession with-gap" %>
                       <%= label :profesional, "Profesional", for:"profesional" %>
+                      <%= f.radio_button :profession, "Umum", required:true, id:"umum", class: "with-gap" %>
+                      <%= label :umum, "Umum", for:"umum" %>
 
-                    </div>
-                  </div>
-                  <div class="form-group form-float js-pekerjaan">
-                    <div class="form-line">
-                    <% profession = @user.profession != "Pelajar" ? @user.profession : "" %>
-                      <%= f.text_field :profession, placeholder:"Pekerjaan", value:profession,  class:"form-control", required:true, disabled:true%>
                     </div>
                   </div>
                   
@@ -209,10 +189,29 @@
                     <a class="btn btn-primary waves-effect js-add-course m-b-25">Tambahkan Kursus</a>
 
                   <% end %>
+                  <h2 class="card-inside-title">ID Skype</h2>
                   <div class="form-group form-float">
                     <div class="form-line">
                       <%= f.text_field :skype_id, class:"form-control" %>
-                      <label class="form-label">ID Skype</label>
+                      <!-- <label class="form-label">ID Skype</label> -->
+                    </div>
+                  </div>
+
+                  <h2  class="card-inside-title">Riwayat Pendidikan</h2>
+                  <h2  class="card-inside-title">Nama Kampus
+                    <%= "<span class='col-pink'><b>(Harus Diisi)</b></span>".html_safe if @user.campus.blank? %>
+                  </h2>
+                  <div class="form-group form-float">
+                    <div class="form-line">
+                      <%= f.text_field :campus, class:"form-control", required:true, placeholder:"Nama Kampus" %>
+                    </div>
+                  </div>
+                  <h2  class="card-inside-title">Nama Jurusan
+                    <%= "<span class='col-pink'><b>(Harus Diisi)</b></span>".html_safe if @user.campus.blank? %>
+                  </h2>
+                  <div class="form-group form-float">
+                    <div class="form-line">
+                        <%= f.text_field :majors, class:"form-control", required:true, placeholder:"Nama Jurusan"%>
                     </div>
                   </div>
 
@@ -230,6 +229,8 @@
                     <h2 class="card-inside-title">Upload Foto 
                       <%= "<span class='col-pink'><b>(Harus Diisi) </b></span>".html_safe if @user.avatar.blank? %>
                     <span class="col-pink">(Max 1MB, Format: JPG, PNG)</span></h2>
+                  <b>Foto 3 bulan terakhir, Background putih,Menghadap depan
+                  <a data-fancybox="gallery" href="<%= asset_path('foto') %>" data-caption="Contoh Poto">Lihat contoh foto</a></b>
                     <div class="form-group form-float">
                       <div class="form-line">
                         <%= f.file_field :avatar, placeholder:"Upload Foto", class:"form-control", required:true %>
@@ -237,10 +238,6 @@
                     </div>
                   <% end %>
 
-                  <p>Foto 3 bulan terakhir</p>
-                  <p>Background putih</p>
-                  <p>Menghadap depan</p>
-                  <a data-fancybox="gallery" href="<%= asset_path('foto') %>" data-caption="Contoh Poto">Lihat contoh foto</a>
                   <% if @user.passport_image.path %>
                     <h2 class="card-inside-title">Ganti Passport 
                       <%= "<span class='col-pink'><b>(Harus Diisi) </b></span>".html_safe if @user.passport_image.blank? %>

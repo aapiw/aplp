@@ -82,13 +82,13 @@ puts 'end start production data behaviour'
 unless Rails.env.production?
 	puts 'start development data behaviour'
 	if User.count < 30
-		30.times do |i|
-			i=i+1
-			u = User.create( email:"user#{i}@mail.com", password:"user#{i}@mail.com", password_confirmation:"user#{i}@mail.com", name:"user#{i}",
-									passport:"0890#{i}092", passport_expire:Time.now.next_month, gender:["lk",'pr'].sample, country_id:[1,2,3].sample,
+		30.times do |index|
+			index=index+1
+			u = User.create( email:"user#{index}@mail.com", password:"user#{index}@mail.com", password_confirmation:"user#{index}@mail.com", name:"user#{index}",
+									passport:"0890#{index}092", passport_expire:Time.now.next_month, gender:["lk",'pr'].sample, country_id:[1,2,3].sample, country_live_id:[1,2,3].sample,
 									admin_id:Country.find([1,2,3].sample).admins.sample.id, complete:[true,false].sample, confirmed_at:Time.now )
-			u.score.update_attribute(:kind, "pidato") 	if (1..8).include? i
-			u.score.update_attribute(:kind, "bercerita") if (8..16).include? i
+			u.score.update_attribute(:kind, "pidato") 	if (1..8).include? index
+			u.score.update_attribute(:kind, "bercerita") if (8..16).include? index
 		end
 	end
 	puts 'end start development data behaviour'

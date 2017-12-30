@@ -1,4 +1,4 @@
-class ToIndonesiasController < BaseController
+class ToIndonesiasController < ApplicationController
   
   before_action :set_to_indonesia, only: [:destroy]
 

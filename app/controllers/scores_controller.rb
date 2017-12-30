@@ -41,12 +41,12 @@ class ScoresController < BaseController
   # PATCH/PUT /scores/1.json
   def update
     respond_to do |format|
+      debugger
       if @score.update(score_params)
         format.html { redirect_to admins_dashboard_path(@score.user), notice: "Lomba berhasil dirubah" }
       else
-        # format.html { redirect_to admins_dashboard_path(@score.user), alert: "Lomba gagal dirubah" }
         format.html { render :edit }
-        flash[:alert] =  "Lomba gagal dirubah"
+        flash[:alert] =  @user.errors.full_messages
       end
     end
   end
@@ -69,6 +69,6 @@ class ScoresController < BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def score_params
-      params.require(:score).permit(:plot, :content, :bahasa, :fluency, :interlude, :gesture, :sound, :media, :duration, :showing, :user_id, :note, :kind, :scoring, :scoring_pidato, :scoring_bercerita)
+      params.require(:score).permit(:plot, :content, :bahasa, :fluency, :interlude, :gesture, :sound, :media, :duration, :showing, :user_id, :note, :kind, :scoring, :scoring_pidato, :scoring_bercerita, :giver)
     end
 end

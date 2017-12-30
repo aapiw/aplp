@@ -6,7 +6,7 @@ class AdminAbility
     user_id    = opts[:user]
   	admin ||= Admin.new
 
-    if admin
+    if admin#.class == Admin
         #Admin
       if admin.role == "admin"
         can :manage, :all
@@ -28,7 +28,6 @@ class AdminAbility
         
     	end
     else
-
     end
 
   end

@@ -56,9 +56,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 	attr_accessor :save_profile
-	# attr_accessor :decided
-
-	# has_attached :avaatar
+	attr_accessor :sign_up
+	attr_accessor :save_confirmation
 
 	has_many :to_indonesias, dependent: :destroy
 	has_many :bipa_courses, dependent: :destroy
@@ -67,17 +66,21 @@ class User < ApplicationRecord
 	has_one :score, dependent: :destroy
 
 	belongs_to :admin
-	belongs_to :country
+	belongs_to :country_live, class_name: "Country", foreign_key:"country_live_id"
+	belongs_to :country, class_name: "Country", foreign_key: "country_id"
 
 	accepts_nested_attributes_for :to_indonesias, :bipa_courses, allow_destroy: true, reject_if: :all_blank
 	
 	enum gender: [ :lk, :pr]
 
 
-	validates_presence_of :name, :country_id, :gender, :passport, :passport_expire, :dob,
-												:campus, :majors, :phone, :profession, :avatar, :passport, if: :save_profile
+	validates_presence_of :name, :country_id, :gender, :dob, :country_live_id,
+												:campus, :majors, :phone, :profession, :avatar, if: :save_profile
+	validates_presence_of :passport, :passport_expire, if: :save_confirmation
+	
+	validates_presence_of :dob, :name, :gender, if: :sign_up
 
-	validates :passport, uniqueness: true
+	validates :passport, uniqueness: true, if: :save_confirmation
 	validates :id_reg, uniqueness: true
 	# validates_presence_of	:lock
 	# validate :locked_form, on: :update, if: :save_profile
@@ -92,8 +95,8 @@ class User < ApplicationRecord
 	scope :search_win, -> (win) { where(win: win) }
 	scope :search_country, -> (country_id) { User.where(country_id: country_id) }
 
-	after_create :build_additional
 	before_save :encrypt_password, if: :password
+	after_create :build_additional
 
   def encrypt_password
     crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base)
@@ -110,11 +113,11 @@ class User < ApplicationRecord
 	  false
 	end
 	
-  def locked_form
-    if User.find(id).lock
-      errors.add(:lock, "Akun Anda di Kunci")
-    end
-  end
+  # def locked_form
+  #   if User.find(id).lock
+  #     errors.add(:lock, "Akun Anda di Kunci")
+  #   end
+  # end
 
 	def status
 		if win == true
@@ -155,15 +158,11 @@ class User < ApplicationRecord
 	def consulate
 		admin
 	end
-	
-	class << self
-		
-	end
 
 	protected
 
 	def build_additional
-		update_attributes(id_reg: "APLP#{Time.now.strftime("%Y%d%m")}#{id.to_s.rjust(4, '0')}")
+		update_attributes(id_reg: "BIPA#{Time.now.strftime("%Y%m%d")}#{id.to_s.rjust(4, '0')}")
 		score = self.build_score
 		score.save(validate:false)
 	end

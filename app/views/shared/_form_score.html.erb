@@ -1,4 +1,4 @@
-
+<div id="scoring">
 <div class="form-group form-float">
     <div class="form-line">
         <%= f.number_field :plot, class:"form-control" , min:"0", max:"20", required:true  %>
@@ -49,8 +49,21 @@
     </div>
 </div>
 <div class="form-group form-float">
-        <label class="form-label"> <span class="col-pink">(*harus diisi)</span></label>
+    <div class="form-line">
+        <input type="text" class="form-control total-nilai" max="100" value="<%= @score.counting %>" disabled>
+        <label class="form-label">Total Nilai<span class="col-pink"> (100)</span></label>
+    </div>
+</div>
+<div class="form-group form-float">
+        <label class="form-label"> <span class="col-pink">(harus diisi)</span></label>
     <div class="form-line">
         <%= f.text_area :note, class:"form-control", placeholder:"Catatan", required:true  %>
     </div>
+</div>
+<div class="form-group form-float">
+        <label class="form-label"> <span class="col-pink">(harus diisi)</span></label>
+    <div class="form-line">
+        <%= f.text_field :giver, class:"form-control", placeholder:"Pemberi Nilai", required:true  %>
+    </div>
+</div>
 </div>

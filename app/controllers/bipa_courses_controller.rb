@@ -1,4 +1,4 @@
-class BipaCoursesController < BaseController
+class BipaCoursesController < ApplicationController
   # load_resource
   before_action :set_bipa_course, only: [:destroy]
 

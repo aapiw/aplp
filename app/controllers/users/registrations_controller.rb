@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super do
-      resource.passport_expire = localize_month(params["user"]["passport_expire"]).to_date
+      resource.dob = localize_month(params["user"]["dob"]).to_date
       resource.save
     end
   end

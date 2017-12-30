@@ -32,6 +32,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       # t.datetime :locked_at
 
       # Additional
+      t.integer :country_live_id, foreign_key: true
       t.string :name
       t.integer :country_id, foreign_key: true
       t.integer :admin_id, foreign_key: true

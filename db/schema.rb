@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 20171111001755) do
     t.decimal "showing"
     t.decimal "media"
     t.text "note"
+    t.string "giver"
     t.integer "kind"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -151,6 +152,7 @@ ActiveRecord::Schema.define(version: 20171111001755) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.integer "country_live_id"
     t.string "name"
     t.integer "country_id"
     t.integer "admin_id"

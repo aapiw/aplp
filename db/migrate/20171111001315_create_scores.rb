@@ -12,6 +12,7 @@ class CreateScores < ActiveRecord::Migration[5.1]
       t.decimal :showing
       t.decimal :media
       t.text :note
+      t.string :giver
       t.integer :kind
       t.references :user, foreign_key: true
 

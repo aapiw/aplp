@@ -33,4 +33,9 @@ module ApplicationHelper
 			end
 		end
 	end
+
+	def required field=nil
+		"<span class='col-pink'> (Harus Diisi)</span>".html_safe if field.blank?
+	end
+
 end

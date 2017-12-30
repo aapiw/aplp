@@ -11,7 +11,10 @@
 #
 
 class Country < ApplicationRecord
-	has_many :users
+	# has_many :users
+	has_many :user_lives, class_name: "User", foreign_key: "country_live_id"
+	has_many :users, class_name: "User", foreign_key: "country_id"
+
 	has_and_belongs_to_many :admins
 
 	validates_presence_of :name, :country_code, :iso_code
