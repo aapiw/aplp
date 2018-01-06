@@ -25,10 +25,10 @@ development:
     host: <%= ENV['DATABASE_URL'] %>
     adapter: postgresql
     encoding: unicode
-    database: <%= ENV['DATABASE'] %>  
+    database: <%= ENV['DATABASE_NAME'] %>  
     pool: 5
-    username: <%= ENV['USER'] %>  
-    password: <%= ENV['PASSWORD'] %>
+    username: <%= ENV['PG_USERNAME'] %>  
+    password: <%= ENV['PG_PASSWORD'] %>
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -61,7 +61,7 @@ production:
   host: localhost
   adapter: postgresql
   encoding: utf8
-  database: bipa_production
+  database: <%= ENV['DATABASE_NAME'] %> 
   pool: 5
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
+  username: <%= ENV['PG_USERNAME'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
