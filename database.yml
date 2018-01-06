@@ -61,7 +61,7 @@ production:
   host: localhost
   adapter: postgresql
   encoding: utf8
-  database: 
+  database: bipa_production
   pool: 5
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
