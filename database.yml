@@ -25,7 +25,7 @@ development:
     host: <%= ENV['DATABASE_URL'] %>
     adapter: postgresql
     encoding: unicode
-    database: <%= ENV['DATABASE_NAME'] %>  
+    database: <%= ENV['DATABASE_NAME'] %>
     pool: 5
     username: <%= ENV['PG_USERNAME'] %>  
     password: <%= ENV['PG_PASSWORD'] %>
@@ -61,7 +61,7 @@ production:
   host: localhost
   adapter: postgresql
   encoding: utf8
-  database: <%= ENV['DATABASE_NAME'] %> 
+  database: bipa_production
   pool: 5
   username: <%= ENV['PG_USERNAME'] %>
   password: <%= ENV['PG_PASSWORD'] %>
