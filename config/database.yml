@@ -21,6 +21,15 @@ development:
   username: yasfi
   password: yasfi
 
+  staging:
+    host: <%= ENV['DATABASE_URL'] %>
+    adapter: postgresql
+    encoding: unicode
+    database: <%= ENV['DATABASE_NAME'] %>
+    pool: 5
+    username: <%= ENV['PG_USERNAME'] %>  
+    password: <%= ENV['PG_PASSWORD'] %>
+
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
@@ -49,19 +58,10 @@ test:
   password: yasfi
 
 production:
-  host: <%= ENV['DATABASE_URL'] %>
+  host: localhost
   adapter: postgresql
-  encoding: unicode
-  database: <%= ENV['DATABASE'] %>
+  encoding: utf8
+  database: bipa_production
   pool: 5
-  username: <%= ENV['USER'] %>
-  password: <%= ENV['PASSWORD'] %>
-
-staging:
-  host: <%= ENV['DATABASE_URL'] %>
-  adapter: postgresql
-  encoding: unicode
-  database: <%= ENV['DATABASE'] %>
-  pool: 5
-  username: <%= ENV['USER'] %>
-  password: <%= ENV['PASSWORD'] %>
+  username: <%= ENV['PG_USERNAME'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
