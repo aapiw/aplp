@@ -1,8 +1,8 @@
 if Rails.env.production?
 	SIZE = 5
-	kbri = 'KBRI.xlsx'
+	KBRI = 'KBRI.xlsx'
 else
-	kbri = 'KBRI-development.xlsx'
+	KBRI = 'KBRI-development.xlsx'
 	SIZE = 30
 end
 
@@ -24,7 +24,7 @@ end
 
 	# puts 'start create admin consulate seed'
 	#Validate by username
-	kbrixls = Roo::Excelx.new( Rails.root.join(kbri) )
+	kbrixls = Roo::Excelx.new( Rails.root.join(KBRI) )
 
 	kbrixls.each_row_streaming(offset: 1) do |row|
 		admin = Admin.new
