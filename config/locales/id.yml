@@ -1,4 +1,7 @@
 id:
+  simple_captcha:
+    label: Isilah sesuai gambar diatas
+    placeholder: Isilah sesuai gambar diatas
   activerecord:
     errors:
       messages:

@@ -40,6 +40,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem "recaptcha", require: "recaptcha/rails"
+gem 'simple_captcha2', require: 'simple_captcha'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

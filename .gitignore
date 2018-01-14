@@ -26,3 +26,4 @@
 adminbsb-materialdesign
 *.note
 public/system/*
+secrets.yml
